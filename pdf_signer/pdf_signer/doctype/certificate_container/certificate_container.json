@@ -1,0 +1,141 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-11-11 20:34:12.090238",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "general_settings_tab",
+  "container_name",
+  "column_break_3",
+  "company",
+  "certificate_settings_tab",
+  "is_pfx",
+  "cert_file",
+  "key_file",
+  "column_break_7",
+  "is_pair",
+  "passphrase",
+  "certificate_authority_ca_tab",
+  "caroot_is_chain",
+  "ca_root",
+  "column_break_15",
+  "ca_interms"
+ ],
+ "fields": [
+  {
+   "fieldname": "general_settings_tab",
+   "fieldtype": "Tab Break",
+   "label": "General Settings"
+  },
+  {
+   "fieldname": "container_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Container Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval: doc.__islocal == undefined",
+   "fieldname": "certificate_settings_tab",
+   "fieldtype": "Tab Break",
+   "label": "Certificate Settings"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_pfx",
+   "fieldtype": "Check",
+   "label": "Is PFX or P12"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_pair",
+   "fieldtype": "Check",
+   "label": "Is Pair (Cert File and Key File)"
+  },
+  {
+   "fieldname": "cert_file",
+   "fieldtype": "Attach",
+   "label": "Certificate File"
+  },
+  {
+   "fieldname": "key_file",
+   "fieldtype": "Attach",
+   "label": "Key File"
+  },
+  {
+   "fieldname": "passphrase",
+   "fieldtype": "Password",
+   "label": "Passphrase"
+  },
+  {
+   "depends_on": "eval:doc.__islocal == undefined",
+   "fieldname": "certificate_authority_ca_tab",
+   "fieldtype": "Tab Break",
+   "label": "Certificate Authority (CA)"
+  },
+  {
+   "default": "0",
+   "fieldname": "caroot_is_chain",
+   "fieldtype": "Check",
+   "label": "CA Root is Chain"
+  },
+  {
+   "fieldname": "ca_root",
+   "fieldtype": "Attach",
+   "label": "Certificate Authority File"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ca_interms",
+   "fieldtype": "Table",
+   "label": "Certificate Authority Intermediarie",
+   "options": "Certificate Authority Intermediarie"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-11-11 22:04:04.495659",
+ "modified_by": "Administrator",
+ "module": "Pdf Signer",
+ "name": "Certificate Container",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "container_name"
+}
