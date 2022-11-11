@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include pdf_signer *.css
+recursive-include pdf_signer *.csv
+recursive-include pdf_signer *.html
+recursive-include pdf_signer *.ico
+recursive-include pdf_signer *.js
+recursive-include pdf_signer *.json
+recursive-include pdf_signer *.md
+recursive-include pdf_signer *.png
+recursive-include pdf_signer *.py
+recursive-include pdf_signer *.svg
+recursive-include pdf_signer *.txt
+recursive-exclude pdf_signer *.pyc
