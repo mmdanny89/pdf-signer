@@ -1,0 +1,101 @@
+{
+ "actions": [],
+ "autoname": "filed:sign_name",
+ "creation": "2022-11-14 17:42:30.508863",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sign_settings_section",
+  "sign_name",
+  "company",
+  "is_default",
+  "column_break_4",
+  "cert_container",
+  "status",
+  "algorithm"
+ ],
+ "fields": [
+  {
+   "fieldname": "sign_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sign Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cert_container",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Certificate Container",
+   "options": "Certificate Container",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_default",
+   "fieldtype": "Check",
+   "label": "Is Default"
+  },
+  {
+   "default": "Disabled",
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": "Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sign_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Sign Settings"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "algorithm",
+   "fieldtype": "Select",
+   "label": "Algorithm",
+   "options": "XAdES\nPAdES",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-11-14 18:10:30.356041",
+ "modified_by": "Administrator",
+ "module": "Pdf Signer",
+ "name": "Electronic Sign Setting",
+ "name_case": "Title Case",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "sign_name"
+}
