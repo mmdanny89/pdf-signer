@@ -6,6 +6,7 @@ app_publisher = "Danny Molina Morales"
 app_description = "Application for signing PDF files"
 app_email = "mmdanny89@gmail.com"
 app_license = "MIT"
+app_version = app_version
 
 # Includes in <head>
 # ------------------
@@ -29,8 +30,8 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
-# doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
+doctype_js = {"File": "public/js/file.js"}
+doctype_list_js = {"File": "public/js/file_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
@@ -42,7 +43,7 @@ app_license = "MIT"
 
 # website user home page (by Role)
 # role_home_page = {
-#	"Role": "home_page"
+# 	"Role": "home_page"
 # }
 
 # Generators
@@ -102,13 +103,17 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+    "File": {
+        "on_update": "pdf_signer.custom_events.doc_events.check_file_uploaded",
+        "on_trash": "pdf_signer.custom_events.doc_events.remove_file_signed",
+    }
+    # 	"*": {
+    # 		"on_update": "method",
+    # 		"on_cancel": "method",
+    # 		"on_trash": "method"
+    # 	}
+}
 
 # Scheduled Tasks
 # ---------------

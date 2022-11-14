@@ -13,7 +13,8 @@
   "column_break_4",
   "cert_container",
   "status",
-  "algorithm"
+  "algorithm",
+  "role_signer"
  ],
  "fields": [
   {
@@ -69,11 +70,18 @@
    "label": "Algorithm",
    "options": "XAdES\nPAdES",
    "reqd": 1
+  },
+  {
+   "fieldname": "role_signer",
+   "fieldtype": "Select",
+   "label": "Role",
+   "options": "Signer\nVerifier\nBoth",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-11-14 18:10:30.356041",
+ "modified": "2022-11-14 19:46:11.228506",
  "modified_by": "Administrator",
  "module": "Pdf Signer",
  "name": "Electronic Sign Setting",
