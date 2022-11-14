@@ -1,0 +1,69 @@
+{
+ "charts": [],
+ "content": "[{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">PDF Signer</span>\",\"col\":12}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Certificate Container\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Electronic Sign Setting\",\"col\":3}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Global Settings\",\"col\":4}}]",
+ "creation": "2022-11-14 18:27:15.885794",
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "quality",
+ "idx": 0,
+ "label": "PDF Signer",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Global Settings",
+   "link_count": 2,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Certificate Container",
+   "link_count": 0,
+   "link_to": "Certificate Container",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Electronic Sign Setting",
+   "link_count": 0,
+   "link_to": "Electronic Sign Setting",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2022-11-14 18:34:39.361697",
+ "modified_by": "Administrator",
+ "module": "Pdf Signer",
+ "name": "PDF Signer",
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 35.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Electronic Sign Setting",
+   "link_to": "Electronic Sign Setting",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Certificate Container",
+   "link_to": "Certificate Container",
+   "type": "DocType"
+  }
+ ],
+ "title": "PDF Signer"
+}
