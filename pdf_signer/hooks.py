@@ -13,7 +13,7 @@ app_version = app_version
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/pdf_signer/css/pdf_signer.css"
-# app_include_js = "/assets/pdf_signer/js/pdf_signer.js"
+app_include_js = ["pdf_signer.bundle.js"]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/pdf_signer/css/pdf_signer.css"
@@ -105,7 +105,8 @@ doctype_list_js = {"File": "public/js/file_list.js"}
 
 doc_events = {
     "File": {
-        "on_update": "pdf_signer.custom_events.doc_events.check_file_uploaded",
+        "after_insert": "pdf_signer.custom_events.doc_events.check_file_uploaded",
+        # "on_update": "pdf_signer.custom_events.doc_events.check_file_uploaded",
         "on_trash": "pdf_signer.custom_events.doc_events.remove_file_signed",
     }
     # 	"*": {

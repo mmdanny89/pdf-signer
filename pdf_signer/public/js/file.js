@@ -6,3 +6,7 @@ frappe.ui.form.on('File', {
 		console.log('desde el formulario');
 	}
 });
+
+frappe.realtime.on('ask_to_sign', (message) => {
+	console.log('************************');
+});
