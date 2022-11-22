@@ -10,11 +10,26 @@
   "sign_name",
   "company",
   "is_default",
+  "allow_add_signs",
   "column_break_4",
   "cert_container",
   "status",
   "algorithm",
-  "role_signer"
+  "role_signer",
+  "signature_style_section",
+  "postition",
+  "column_break_13",
+  "on_page",
+  "backgroud_of_sign_section",
+  "use_bg_image",
+  "bg_image",
+  "column_break_17",
+  "use_own_sign_bg_image",
+  "own_sign",
+  "additional_info_for_signature_section",
+  "use_qr_style",
+  "text_form",
+  "text_size"
  ],
  "fields": [
   {
@@ -68,7 +83,7 @@
    "fieldname": "algorithm",
    "fieldtype": "Select",
    "label": "Algorithm",
-   "options": "XAdES\nPAdES",
+   "options": "PAdES",
    "reqd": 1
   },
   {
@@ -77,11 +92,94 @@
    "label": "Role",
    "options": "Signer\nVerifier\nBoth",
    "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "allow_add_signs",
+   "fieldtype": "Check",
+   "label": "Allow Add Others Signs"
+  },
+  {
+   "fieldname": "signature_style_section",
+   "fieldtype": "Section Break",
+   "label": "Signature Position"
+  },
+  {
+   "default": "{\"x1\":10, \"y1\":20, \"x2\":300, \"y2\":90}",
+   "fieldname": "postition",
+   "fieldtype": "JSON",
+   "label": "Position"
+  },
+  {
+   "default": "first",
+   "fieldname": "on_page",
+   "fieldtype": "Data",
+   "label": "On Page"
+  },
+  {
+   "depends_on": "eval:doc.use_bg_image;",
+   "fieldname": "bg_image",
+   "fieldtype": "Attach Image",
+   "label": "Backgroud Image"
+  },
+  {
+   "default": "0",
+   "fieldname": "use_qr_style",
+   "fieldtype": "Check",
+   "label": "Add QR to Sign"
+  },
+  {
+   "depends_on": "eval:doc.use_own_sign_bg_image;",
+   "fieldname": "own_sign",
+   "fieldtype": "Signature",
+   "label": "Use my Own sign as backgroud of Sign Box"
+  },
+  {
+   "fieldname": "text_form",
+   "fieldtype": "Select",
+   "label": "Text Font",
+   "options": "None"
+  },
+  {
+   "fieldname": "column_break_13",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "backgroud_of_sign_section",
+   "fieldtype": "Section Break",
+   "label": "Sign Backgroud"
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "use_bg_image",
+   "fieldtype": "Check",
+   "label": "Use backgroud image for Sign Box"
+  },
+  {
+   "default": "0",
+   "fieldname": "use_own_sign_bg_image",
+   "fieldtype": "Check",
+   "label": "Use my own sign as backgroud of Sign Box"
+  },
+  {
+   "fieldname": "additional_info_for_signature_section",
+   "fieldtype": "Section Break",
+   "label": "Additional Info for Signature"
+  },
+  {
+   "default": "11",
+   "fieldname": "text_size",
+   "fieldtype": "Int",
+   "label": "Text Size"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-11-15 13:58:17.566786",
+ "modified": "2022-11-22 21:25:09.289037",
  "modified_by": "Administrator",
  "module": "Pdf Signer",
  "name": "Electronic Sign Setting",

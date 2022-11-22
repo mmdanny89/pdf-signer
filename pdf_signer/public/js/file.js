@@ -1,12 +1,27 @@
 // MIT 2022, Ing. Danny Molina Morales
 // For license information, please see license.txt
 
+let customize_pdf_signer = function(frm) {
+	if (!frm.doc.__islocal) {
+		frappe.call('pdf_signer.utils.api.check_pdf', {
+			file_name: frm.doc.file_name,
+			is_private: frm.doc.is_private
+		}).then(r => {
+			if (r.message.success) {
+				frm.add_custom_button('<i class="fa fa-pencil-square"></i> Sign PDF' , function(){
+
+				}).removeClass('btn-default').addClass("btn-warning");
+
+				frm.add_custom_button('<i class="fa fa-check-square"></i> Verify Sign PDF' , function(){
+
+				}).removeClass('btn-default').addClass("btn-warning");
+			}
+		})
+	}
+}
+
 frappe.ui.form.on('File', {
 	refresh: function(frm) {
-		console.log('desde el formulario');
+		customize_pdf_signer(frm);
 	}
-});
-
-frappe.realtime.on('ask_to_sign', (message) => {
-	console.log('************************');
 });

@@ -1,7 +1,18 @@
 // Copyright (c) 2022, Danny Molina Morales and contributors
 // For license information, please see license.txt
 
+let customize_fileds = function(frm) {
+	frappe.after_ajax(function () {
+		frm.$wrapper.find('div[data-fieldname="postition"]').find('.ace-editor-target.border.rounded.ace_editor.ace_hidpi.ace-tomorrow').attr('style', 'height: 70px');
+		frm.$wrapper.find('div[data-fieldname="postition"]').find('button').hide();
+	});
+		
+}
+
 frappe.ui.form.on('Electronic Sign Setting', {
+	onload_post_render: function(frm){
+		customize_fileds(frm);
+	},
 	refresh: function(frm) {
 		if (!frm.doc.__islocal) {
 			if (frm.doc.status === 'Enable') {
