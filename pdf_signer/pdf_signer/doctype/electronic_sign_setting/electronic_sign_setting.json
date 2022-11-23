@@ -28,6 +28,8 @@
   "own_sign",
   "additional_info_for_signature_section",
   "use_qr_style",
+  "url_qr",
+  "column_break_24",
   "text_form",
   "text_size"
  ],
@@ -175,11 +177,21 @@
    "fieldname": "text_size",
    "fieldtype": "Int",
    "label": "Text Size"
+  },
+  {
+   "depends_on": "eval: doc.use_qr_style",
+   "fieldname": "url_qr",
+   "fieldtype": "Data",
+   "label": "URL for QR"
+  },
+  {
+   "fieldname": "column_break_24",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-11-22 21:25:09.289037",
+ "modified": "2022-11-22 21:51:05.064918",
  "modified_by": "Administrator",
  "module": "Pdf Signer",
  "name": "Electronic Sign Setting",
