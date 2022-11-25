@@ -7,6 +7,14 @@ Version :   1.0
 E-mail  :   mmdanny89@gmail.com
 """
 
+import frappe
+
 
 def remove_file_signed(doc, method):
-    print("hello world")
+    # TODO: remove file for app register.!!
+    pass
+
+
+def check_file_uploaded(doc, method):
+    frappe.publish_realtime(event="ask_to_sign", message='alert("{0}")'.format("JAHJAGSJH"), user=frappe.session.user)
+    pass
