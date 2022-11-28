@@ -3,6 +3,6 @@ frappe.listview_settings['File'] = {
 
     },
     refresh: function(listview) {
-		console.log('desde el listview');
+		
     }
 }

@@ -39,7 +39,8 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Sign Name",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "company",
@@ -191,7 +192,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-11-22 21:51:05.064918",
+ "modified": "2022-11-28 20:48:39.767149",
  "modified_by": "Administrator",
  "module": "Pdf Signer",
  "name": "Electronic Sign Setting",

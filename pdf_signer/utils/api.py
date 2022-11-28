@@ -24,3 +24,13 @@ def check_pdf(file_name, is_private):
     if utils.get_mimetype_file(cert_file) == "application/pdf":
         return {"success": True}
     return {"success": False}
+
+
+@frappe.whitelist(allow_guest=False)
+def sign_pdf(file_name, sign_name):
+    return {"success": False}
+
+
+@frappe.whitelist(allow_guest=False)
+def verify_pdf(file_name, sign_name):
+    pass

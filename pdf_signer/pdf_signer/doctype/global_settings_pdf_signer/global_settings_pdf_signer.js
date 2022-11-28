@@ -13,10 +13,10 @@ frappe.ui.form.on('Global Settings PDF Signer', {
 	}, 
 	after_save: function(frm) {
 		if (frm.doc.always_ask) {
-			console.log('is called');
 			always_ask_when_pdf_uploaded();
 		} else {
 			disble_ask();
 		}
+		frm.reload_doc();
 	}
 });
