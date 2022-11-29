@@ -4,19 +4,21 @@ let template_ca = '<div class="card border-info mb-3">'+
 '<div class="card-header"><strong>Important...</strong></div>'+
 '<div class="card-body text-info">'+
   '<h5 class="card-title text-info">CA Root is Chain:</h5>'+
-  '<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card\'s content.</p>'+
+  '<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card content.</p>'+
   '<h5 class="card-title text-info">Allowed extensions and formats:</h5>'+
-  '<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card\'s content.</p>'+
+  '<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card content.</p>'+
 '</div>'+
 '</div>';
 
 let template_cert = '<div class="card border-info mb-3">'+
 '<div class="card-header"><strong>Important...</strong></div>'+
 '<div class="card-body text-info">'+
-  '<h5 class="card-title">Info card title</h5>'+
-  '<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card\'s content.</p>'+
-  '<h5 class="card-title">Info card title</h5>'+
-  '<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card\'s content.</p>'+
+  '<h5 class="card-title">P12/PFX Certificate Files</h5>'+
+  '<p class="card-text">Allowed file with extensions: <strong>(.p12, .pfx)</strong>. File contain Certificate and Key. File will be protected with password.</p>'+
+  '<h5 class="card-title">Ceritifcate File</h5>'+
+  '<p class="card-text">Allowed certificate files with extensions and format: <strong>.cer with format DER</strong> and <strong>.crt with format PEM</strong>.</p>'+
+  '<h5 class="card-title">Key File</h5>'+
+  '<p class="card-text">Allowed key files with extensions: <strong>.pem, .crt, .key</strong>. Key file will be protected with password</p>'+
 '</div>'+
 '</div>';
 
