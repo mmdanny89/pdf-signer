@@ -11,16 +11,12 @@
   "column_break_3",
   "container_name",
   "certificate_settings_tab",
-  "is_pfx",
   "cert_file",
-  "key_file",
   "column_break_7",
-  "is_pair",
   "passphrase",
   "section_break_12",
   "html_info_certs",
   "certificate_authority_ca_tab",
-  "caroot_is_chain",
   "ca_root",
   "column_break_15",
   "ca_interms",
@@ -61,31 +57,13 @@
    "label": "Certificate Settings"
   },
   {
-   "default": "1",
-   "fieldname": "is_pfx",
-   "fieldtype": "Check",
-   "label": "Is PFX or P12"
-  },
-  {
    "fieldname": "column_break_7",
    "fieldtype": "Column Break"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_pair",
-   "fieldtype": "Check",
-   "label": "Is Pair (Cert File and Key File)"
   },
   {
    "fieldname": "cert_file",
    "fieldtype": "Attach",
    "label": "Certificate File"
-  },
-  {
-   "depends_on": "eval: doc.is_pair === 1",
-   "fieldname": "key_file",
-   "fieldtype": "Attach",
-   "label": "Key File"
   },
   {
    "fieldname": "passphrase",
@@ -97,12 +75,6 @@
    "fieldname": "certificate_authority_ca_tab",
    "fieldtype": "Tab Break",
    "label": "Certificate Authority (CA)"
-  },
-  {
-   "default": "0",
-   "fieldname": "caroot_is_chain",
-   "fieldtype": "Check",
-   "label": "CA Root is Chain"
   },
   {
    "fieldname": "ca_root",
@@ -140,12 +112,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-11-14 18:00:11.780747",
+ "modified": "2023-10-03 20:58:09.900914",
  "modified_by": "Administrator",
  "module": "Pdf Signer",
  "name": "Certificate Container",
- "name_case": "Title Case",
- "naming_rule": "Expression (old style)",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

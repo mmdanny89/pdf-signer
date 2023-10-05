@@ -1,6 +1,6 @@
 {
  "actions": [],
- "autoname": "filed:sign_name",
+ "autoname": "field:sign_name",
  "creation": "2022-11-14 17:42:30.508863",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -93,7 +93,7 @@
    "fieldname": "role_signer",
    "fieldtype": "Select",
    "label": "Role",
-   "options": "Signer\nVerifier\nBoth",
+   "options": "Signer and Verifier",
    "reqd": 1
   },
   {
@@ -192,12 +192,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-11-28 20:48:39.767149",
+ "modified": "2023-10-03 21:05:16.147151",
  "modified_by": "Administrator",
  "module": "Pdf Signer",
  "name": "Electronic Sign Setting",
- "name_case": "Title Case",
- "naming_rule": "Expression (old style)",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

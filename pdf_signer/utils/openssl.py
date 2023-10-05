@@ -275,12 +275,3 @@ def convert_X509_crypto(list_certs_api_criptographic):
             result.append(crypto.load_certificate(crypto.FILETYPE_PEM, cert_.public_bytes(serialization.Encoding.PEM)))
     return result
 
-
-def get_public_bytes_from_memory_cert(cert_object):
-    cert_bytes = cert_object.public_bytes(serialization.Encoding.PEM)
-    return cert_bytes
-
-
-def get_private_bytes_from_memory_pkey(pkey_object):
-    key_bytes = pkey_object.private_bytes(encoding=serialization.Encoding.PEM, format=serialization.PrivateFormat.PKCS8, encryption_algorithm=serialization.NoEncryption())
-    return key_bytes

@@ -4,22 +4,7 @@
 
 let customize_fileds = function(frm) {
 	let class_ = "ace-editor-target border rounded ace_editor ace_hidpi ace-tomorrow";
-	let mutationObserver = new MutationObserver(function(mutations) {
-		mutations.forEach(function(mutation) {
-		  if (mutation.type === "attributes" && mutation.attributeName === "class") {
-			if (mutation.target.classList.toString() === class_){
-				if (String(mutation.target.style.height) === "300px") {
-					mutation.target.style.height = "70px";
-				}
-			}
-		  }	
-		});
-	  });
-	mutationObserver.observe(document.body, {
-		attributes: true,
-		childList: true,
-		subtree: true,
-	});
+	frm.$wrapper.find('div.ace-editor-target').css("height", "70px");
 	frm.$wrapper.find('div[data-fieldname="postition"]').find('button').hide();
 }
 

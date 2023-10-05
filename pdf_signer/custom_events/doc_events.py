@@ -28,12 +28,15 @@ def check_file_uploaded(doc, method):
 
 
 def validate_extension(doc, method):
-    if doc.attached_to_field == "cert_file" or doc.attached_to_field == "key_file":
+    if doc.attached_to_field == "cert_file":
         if doc.is_private == 0:
-            frappe.throw(_("Certificate and Key are private files."), title="Error")
+            frappe.throw(_("Certificates are private files."), title="Error")
         if doc.attached_to_field == "cert_file":
-            if not str(doc.file_name).endswith((".cer", ".crt", ".p12", ".pfx")):
-                frappe.throw(_("Invalid extension for certificate file. Allowed: (.cer, .crt, .p12, .pfx)"), "Error")
-        if doc.attached_to_field == "key_file":
-            if not str(doc.file_name).endswith((".pem", ".crt", ".key")):
-                frappe.throw(_("Invalid extension for key file. Allowed: (.pem, .crt, .key)"), "Error")
+            if not str(doc.file_name).endswith((".p12", ".pfx")):
+                frappe.throw(_("Invalid extension for certificate file. Allowed: (.p12, .pfx)"), "Error")
+        if doc.attached_to_field == "ca_root":
+            if not str(doc.file_name).endswith((".cer")):
+                frappe.throw(_("Invalid extension for CA Root file. Allowed: (.cer)"), "Error")
+        if doc.attached_to_field == "ca_interm":
+            if not str(doc.file_name).endswith((".cer")):
+                frappe.throw(_("Invalid extension for CA Intermediaries files. Allowed: (.cer)"), "Error")
