@@ -11,6 +11,10 @@ let customize_fileds = function(frm) {
 frappe.ui.form.on('Electronic Sign Setting', {
 	onload_post_render: function(frm){
 		customize_fileds(frm);
+		if (frm.doc.use_own_sign_bg_image || frm.doc.use_bg_image) {
+			frm.set_df_property('use_qr_style', 'read_only', 1);
+			frm.refresh_field('use_qr_style')
+		}
 	},
 	refresh: function(frm) {
 		customize_fileds(frm);
@@ -48,13 +52,32 @@ frappe.ui.form.on('Electronic Sign Setting', {
 	use_bg_image: function(frm) {
 		if (frm.doc.use_bg_image) {
 			frm.set_value('use_own_sign_bg_image', 0);
+			frm.set_df_property('use_qr_style', 'read_only', 1);
+		} else {
+			if (frm.doc.use_own_sign_bg_image == 0) {
+				frm.set_df_property('use_qr_style', 'read_only', 0);
+			}
 		}
 	},
 	use_own_sign_bg_image: function(frm) {
 		if (frm.doc.use_own_sign_bg_image) {
 			frm.set_value('use_bg_image', 0);
+			frm.set_df_property('use_qr_style', 'read_only', 1);
+		} else {
+			if (frm.doc.use_bg_image == 0) {
+				frm.set_df_property('use_qr_style', 'read_only', 0);
+			}
 		}
 	},
+	use_qr_style: function(frm) {
+		if (frm.doc.use_qr_style) {
+			frm.set_df_property('use_bg_image', 'read_only', 1);
+			frm.set_df_property('use_own_sign_bg_image', 'read_only', 1);
+		} else {
+			frm.set_df_property('use_bg_image', 'read_only', 0);
+			frm.set_df_property('use_own_sign_bg_image', 'read_only', 0);
+		}
+	}
 });
 
 
@@ -62,7 +85,8 @@ function customize_image(frm) {
 	frm.get_field('bg_image').df.options = {
 		restrictions: {
 			allowed_file_types: ['png'],
-			crop_image_aspect_ratio:NaN,
+			max_number_of_files: 1,
+			crop_image_aspect_ratio: 4/3,
 		},
 		
 	};
