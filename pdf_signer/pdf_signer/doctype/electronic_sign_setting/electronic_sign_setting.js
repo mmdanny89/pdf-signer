@@ -3,7 +3,6 @@
 
 
 let customize_fileds = function(frm) {
-	let class_ = "ace-editor-target border rounded ace_editor ace_hidpi ace-tomorrow";
 	frm.$wrapper.find('div.ace-editor-target').css("height", "70px");
 	frm.$wrapper.find('div[data-fieldname="postition"]').find('button').hide();
 }
@@ -42,6 +41,8 @@ frappe.ui.form.on('Electronic Sign Setting', {
 				}).removeClass('btn-default').addClass("btn-primary");
 			}
 		}
+		customize_image(frm)
+		
 
 	},
 	use_bg_image: function(frm) {
@@ -55,3 +56,15 @@ frappe.ui.form.on('Electronic Sign Setting', {
 		}
 	},
 });
+
+
+function customize_image(frm) {
+	frm.get_field('bg_image').df.options = {
+		restrictions: {
+			allowed_file_types: ['png'],
+			crop_image_aspect_ratio:NaN,
+		},
+		
+	};
+	console.log(frm.get_field('bg_image').df)
+}

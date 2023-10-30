@@ -12,7 +12,7 @@ import frappe
 
 from pdf_signer.utils import utils
 from pdf_signer.utils.openssl import get_realpath_by_name_file
-from pdf_signer.utils.sign import validate_sign
+from pdf_signer.utils.sign import validate_sign, sign_pdf_s
 
 
 @frappe.whitelist(allow_guest=False)
@@ -30,8 +30,11 @@ def check_pdf(file_name, is_private):
 
 @frappe.whitelist(allow_guest=False)
 def sign_pdf(file_name, sign_name):
-    real_path = get_realpath_by_name_file(file_name)
-    return {"success": False}
+    try:
+        settings = frappe.get_doc("Electronic Sign Setting", sign_name)
+        return sign_pdf_s(file_name=file_name, settings=settings)
+    except frappe.DoesNotExistError:
+        return {"success": False, "msg": "Sign Settings does not exist!."}
 
 
 @frappe.whitelist(allow_guest=False)

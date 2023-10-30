@@ -2,13 +2,20 @@
 // For license information, please see license.txt
 
 
-let visted = [];
-let current_ = [];
+let flag_protect = false;
+
 
 
 $(document).ready(function(){
 	frappe.realtime.on("ask_to_sign",function (file_reference) {
-		sign_pdf_dialog(file_reference.docname);	
+		if (flag_protect == false) {
+			sign_pdf_dialog(file_reference.docname);
+		}
+			
+	});
+	frappe.realtime.on("unfreeze_signer",function () {
+		frappe.dom.unfreeze();
+		flag_protect = false
 	});
 });
 
@@ -34,6 +41,8 @@ function sign_pdf_dialog(file_reference) {
 		],
 		primary_action_label: 'Sign Document',
 		primary_action(values) {
+			flag_protect = true
+			frappe.dom.freeze("Signing Document...");
 			frappe.call({
 				method: 'pdf_signer.utils.api.sign_pdf',
 				args: {
@@ -41,16 +50,20 @@ function sign_pdf_dialog(file_reference) {
 					sign_name: values.sign_field,
 				},
 				callback: function(r) {
+					frappe.dom.unfreeze();
 					if (r.message.success === true) {
 						frappe.show_alert({
-							message:__('Hi, you have a new message'),
+							message:__(r.message.msg),
 							indicator:'green'
 						}, 5);
+						flag_protect = false;
 					} else {
+						frappe.dom.unfreeze();
 						frappe.show_alert({
-							message:__('Hi, you have a new message'),
+							message:__(r.message.msg),
 							indicator:'red'
 						}, 5);
+						flag_protect = false
 					}											
 				}
 			});
