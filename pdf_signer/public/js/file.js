@@ -72,12 +72,6 @@ function verify_sign_pdf_dialog(file_reference) {
 							dialog.hide();
 						}
 					});
-					dialog.fields.forEach(f => {
-						if (f.fieldtype == "HTML") {
-							let field_html = dialog.get_field(f.fieldname)
-						}
-					})
-					
 					dialog.show();								
 				}
 			});
