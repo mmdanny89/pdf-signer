@@ -13,6 +13,9 @@ from pyhanko.sign.general import load_cert_from_pemder
 from pyhanko.pdf_utils.reader import PdfFileReader
 from pyhanko.sign.validation import validate_pdf_signature
 
+from PIL import Image
+import io
+import base64
 import re
 from pdf_signer.utils.openssl import get_realpath_by_name_file
 import json
@@ -61,6 +64,7 @@ def sign_pdf_s(file_name, settings):
 					name_info = signer.subject_name
 					stamp_style_ = None
 					if int(settings.use_bg_image) == 1 or int(settings.use_own_sign_bg_image) == 1:
+						background_ = None
 						if int(settings.use_bg_image) == 1:
 							bg_image_name = frappe.db.get_value(
 									"File",
@@ -72,14 +76,17 @@ def sign_pdf_s(file_name, settings):
 									"file_name",
 								)
 							bg_image = get_realpath_by_name_file(bg_image_name)
-							stamp_style_= stamp.TextStampStyle(
-								# the 'signer' and 'ts' parameters will be interpolated by pyHanko, if present
-								stamp_text='Signed by: %(name_info)s\nTime: %(ts)s\n%(url)s',
-								text_box_style=text.TextBoxStyle(
-									font_size=int(settings.text_size)
-								),
-								background=images.PdfImage(bg_image["full_path"])
-							)
+							background_ = bg_image["full_path"]
+						elif int(settings.use_own_sign_bg_image) == 1:
+							background_  = Image.open(io.BytesIO(base64.b64decode(str(settings.own_sign).replace("data:image/png;base64,", ""))))
+						stamp_style_= stamp.TextStampStyle(
+							# the 'signer' and 'ts' parameters will be interpolated by pyHanko, if present
+							stamp_text='Signed by: %(name_info)s\nTime: %(ts)s\n%(url)s',
+							text_box_style=text.TextBoxStyle(
+								font_size=int(settings.text_size)
+							),
+							background=images.PdfImage(background_)
+						)
 					else:
 						stamp_style_ = stamp.QRStampStyle(
 							border_width=0,
