@@ -1,0 +1,4 @@
+# frappe -- https://github.com/frappe/frappe is installed via 'bench init'
+
+python-magic~=0.4.27
+pyHanko[pkcs11,image-support,opentype,xmp]~=0.20.1

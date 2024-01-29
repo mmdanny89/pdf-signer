@@ -1,0 +1,139 @@
+{
+ "actions": [],
+ "autoname": "field:container_name",
+ "creation": "2022-11-11 20:34:12.090238",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "general_settings_tab",
+  "company",
+  "column_break_3",
+  "container_name",
+  "certificate_settings_tab",
+  "cert_file",
+  "column_break_7",
+  "passphrase",
+  "section_break_12",
+  "html_info_certs",
+  "certificate_authority_ca_tab",
+  "ca_root",
+  "column_break_15",
+  "ca_interms",
+  "section_break_19",
+  "html_info_ca"
+ ],
+ "fields": [
+  {
+   "fieldname": "general_settings_tab",
+   "fieldtype": "Tab Break",
+   "label": "General Settings"
+  },
+  {
+   "fieldname": "container_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Certificate Container Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval: doc.__islocal == undefined",
+   "fieldname": "certificate_settings_tab",
+   "fieldtype": "Tab Break",
+   "label": "Certificate Settings"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cert_file",
+   "fieldtype": "Attach",
+   "label": "Certificate File"
+  },
+  {
+   "fieldname": "passphrase",
+   "fieldtype": "Password",
+   "label": "Passphrase"
+  },
+  {
+   "depends_on": "eval:doc.__islocal == undefined",
+   "fieldname": "certificate_authority_ca_tab",
+   "fieldtype": "Tab Break",
+   "label": "Certificate Authority (CA)"
+  },
+  {
+   "fieldname": "ca_root",
+   "fieldtype": "Attach",
+   "label": "Certificate Authority File"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ca_interms",
+   "fieldtype": "Table",
+   "label": "Certificate Authority Intermediarie",
+   "options": "Certificate Authority Intermediarie"
+  },
+  {
+   "fieldname": "section_break_12",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "html_info_certs",
+   "fieldtype": "HTML",
+   "label": "Important..."
+  },
+  {
+   "fieldname": "section_break_19",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "html_info_ca",
+   "fieldtype": "HTML",
+   "label": "Important..."
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-10-03 20:58:09.900914",
+ "modified_by": "Administrator",
+ "module": "Pdf Signer",
+ "name": "Certificate Container",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "container_name"
+}
