@@ -24,7 +24,6 @@ def check_file_uploaded(doc, method):
         ask = frappe.db.get_single_value("Global Settings PDF Signer", "always_ask")
         if int(ask) == 1:
             frappe.publish_realtime(event="ask_to_sign", message={"docname": doc.name}, user=frappe.session.user)
-    pass
 
 
 def validate_extension(doc, method):

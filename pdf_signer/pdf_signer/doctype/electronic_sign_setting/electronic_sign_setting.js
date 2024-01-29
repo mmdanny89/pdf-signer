@@ -90,5 +90,4 @@ function customize_image(frm) {
 		},
 		
 	};
-	console.log(frm.get_field('bg_image').df)
 }

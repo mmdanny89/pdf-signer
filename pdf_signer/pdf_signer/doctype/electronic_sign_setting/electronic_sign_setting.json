@@ -28,7 +28,7 @@
   "own_sign",
   "additional_info_for_signature_section",
   "use_qr_style",
-  "url_qr",
+  "additional",
   "column_break_24",
   "text_form",
   "text_size"
@@ -114,9 +114,10 @@
    "label": "Position"
   },
   {
-   "default": "first",
+   "default": "0",
+   "description": "<strong>Page 0: </strong> Refer to first page of document.<br>\n<strong>Page -1: </strong> Refer to latest page of document.",
    "fieldname": "on_page",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "On Page"
   },
   {
@@ -182,20 +183,21 @@
    "label": "Text Size"
   },
   {
-   "depends_on": "eval: doc.use_qr_style",
-   "fieldname": "url_qr",
-   "fieldtype": "Data",
-   "label": "URL for QR",
-   "mandatory_depends_on": "eval: doc.use_qr_style"
-  },
-  {
    "fieldname": "column_break_24",
    "fieldtype": "Column Break"
+  },
+  {
+   "default": "My Company, Ltd.",
+   "description": "Additional Info that's include on Box Sign",
+   "fieldname": "additional",
+   "fieldtype": "Data",
+   "label": "Additional Info",
+   "length": 35
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-30 21:37:56.542218",
+ "modified": "2024-01-29 16:11:04.492516",
  "modified_by": "Administrator",
  "module": "Pdf Signer",
  "name": "Electronic Sign Setting",

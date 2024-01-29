@@ -15,6 +15,7 @@ let customize_pdf_signer = function(frm) {
 			if (r.message.success) {
 				frm.add_custom_button('<i class="fa fa-pencil-square"></i> Sign PDF' , function(){
 					sign_pdf_dialog(frm.docname);
+					frm.reload_doc();
 				}).removeClass('btn-default').addClass("btn-dark");
 
 				frm.add_custom_button('<i class="fa fa-check-square"></i> Verify Sign PDF' , function(){
@@ -61,7 +62,6 @@ function verify_sign_pdf_dialog(file_reference) {
 					sign_name: values.sign_field,
 				},
 				callback: function(r) {
-					console.log(r)
 					let fields_ = build_fields(r.message)
 					let dialog = new frappe.ui.Dialog({
 						title: 'Verification Result',
@@ -69,14 +69,12 @@ function verify_sign_pdf_dialog(file_reference) {
 						primary_action_label: 'Exit',
 						size: 'extra-large',
 						primary_action(values) {
-							console.log(values);
 							dialog.hide();
 						}
 					});
 					dialog.fields.forEach(f => {
 						if (f.fieldtype == "HTML") {
 							let field_html = dialog.get_field(f.fieldname)
-							console.log(field_html)
 						}
 					})
 					

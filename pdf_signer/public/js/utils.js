@@ -58,13 +58,12 @@ function sign_pdf_dialog(file_reference) {
 						}, 5);
 						flag_protect = false;
 					} else {
-						frappe.dom.unfreeze();
 						frappe.show_alert({
 							message:__(r.message.msg),
 							indicator:'red'
 						}, 5);
 						flag_protect = false
-					}											
+					}										
 				}
 			});
 			d.hide();

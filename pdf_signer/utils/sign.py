@@ -1,13 +1,11 @@
 
 from pyhanko import stamp
 from pyhanko.pdf_utils import text
-from pyhanko.pdf_utils.font import opentype
 from pyhanko.pdf_utils.incremental_writer import IncrementalPdfFileWriter
 from pyhanko.sign import signers
 from pyhanko.sign import fields
 import os
-from pyhanko.sign import signers, timestamps
-from pyhanko.sign.fields import SigSeedSubFilter
+from pyhanko.pdf_utils import text, images
 from pyhanko_certvalidator import ValidationContext
 from datetime import datetime
 
@@ -15,7 +13,6 @@ from pyhanko.sign.general import load_cert_from_pemder
 from pyhanko.pdf_utils.reader import PdfFileReader
 from pyhanko.sign.validation import validate_pdf_signature
 
-from pyhanko.pdf_utils import  writer
 import re
 from pdf_signer.utils.openssl import get_realpath_by_name_file
 import json
@@ -27,7 +24,6 @@ def sign_pdf_s(file_name, settings):
 	try: 
 		file_cl = frappe.get_doc("File", file_name)
 		real_path = get_realpath_by_name_file(file_cl.file_name)
-		
 		cert_name = frappe.db.get_value(
 				"File",
 				{
@@ -51,29 +47,56 @@ def sign_pdf_s(file_name, settings):
 				w, sig_field_spec=fields.SigFieldSpec(
 					signer_id, box=box_position,
 					# to allow other add your sign
-					doc_mdp_update_value=perms_
+					doc_mdp_update_value=perms_,
+					on_page=int(settings.on_page)
 				)
 			)
 			meta = signers.PdfSignatureMetadata(field_name=signer_id)
 			name_info = signer.subject_name
-			pdf_signer = signers.PdfSigner(
-				meta, signer=signer, stamp_style=stamp.QRStampStyle(
+			stamp_style_ = None
+			if int(settings.use_bg_image) == 1 or int(settings.use_own_sign_bg_image) == 1:
+				if int(settings.use_bg_image) == 1:
+					bg_image_name = frappe.db.get_value(
+							"File",
+							{
+								"attached_to_name": settings.name,
+								"attached_to_doctype": "Electronic Sign Setting ",
+								"attached_to_field": "bg_image",
+							},
+							"file_name",
+						)
+					bg_image = get_realpath_by_name_file(bg_image_name)
+					stamp_style_= stamp.TextStampStyle(
+						# the 'signer' and 'ts' parameters will be interpolated by pyHanko, if present
+						stamp_text='Signed by: %(name_info)s\nTime: %(ts)s\n%(url)s',
+						text_box_style=text.TextBoxStyle(
+							font_size=int(settings.text_size)
+						),
+						background=images.PdfImage(bg_image["full_path"])
+					)
+			else:
+				stamp_style_ = stamp.QRStampStyle(
 					border_width=0,
 					# Let's include the URL in the stamp text as well
-					stamp_text='Signed by: %(name_info)s\nTime: %(ts)s\nURL: %(url)s',
+					stamp_text='Signed by: %(name_info)s\nTime: %(ts)s\n%(url)s',
 					text_box_style=text.TextBoxStyle(
-						font_size=11
+						font_size=int(settings.text_size)
 					),
-				),
+				)
+			pdf_signer = signers.PdfSigner(
+				meta, signer=signer, stamp_style=stamp_style_,
 			)
 			result = real_path["full_path"] + '.tmp'
+			additional = ""
+			if settings.additional:
+				additional = str(settings.additional)
 			with open(result, 'wb') as outf:
 				# with QR stamps, the 'url' text parameter is special-cased and mandatory, even if it
 				# doesn't occur in the stamp text: this is because the value of the 'url' parameter is
 				# also used to render the QR code.
 				pdf_signer.sign_pdf(
 					w, output=outf,
-					appearance_text_params={'url': 'https://example.com', 'name_info': name_info}
+					appearance_text_params={'url': additional, 'name_info': name_info}
 				)
 		head, tail = os.path.split(real_path["full_path"])
 		os.remove(real_path["full_path"])
@@ -82,7 +105,7 @@ def sign_pdf_s(file_name, settings):
 		#TODO: update file content hash in table tabFile
 		file_cl.content_hash = None
 		file_cl.generate_content_hash()
-		file_cl.save()
+		frappe.db.set_value("File", file_cl.name, "content_hash", file_cl.content_hash)
 		return {"success": True, "msg": "Doc was signed.!"}
 	except Exception as e:
 		frappe.publish_realtime("unfreeze_signer", message="", user=frappe.session.user)
