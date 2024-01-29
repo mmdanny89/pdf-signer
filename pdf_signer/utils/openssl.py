@@ -23,10 +23,12 @@ from OpenSSL.crypto import X509Store, X509StoreContext
 
 
 def get_realpath_by_name_file(private_file):
-    file_dir_site = frappe.get_site_path("private", "files", private_file)
-    cert_file = os.path.abspath(file_dir_site)
-    dir_name = os.path.dirname(cert_file)
-    return {"full_path": cert_file, "file_path": dir_name}
+    if private_file:
+        file_dir_site = frappe.get_site_path("private", "files", private_file)
+        cert_file = os.path.abspath(file_dir_site)
+        dir_name = os.path.dirname(cert_file)
+        return {"full_path": cert_file, "file_path": dir_name}
+    return None
 
 
 def get_realpath_by_url_file(url_file):

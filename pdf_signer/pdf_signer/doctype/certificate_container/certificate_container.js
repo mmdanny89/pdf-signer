@@ -1,16 +1,16 @@
 // Copyright (c) 2022, Danny Molina Morales and contributors
 // For license information, please see license.txt
-let template_ca = '<div class="card border-info mb-3">'+
-'<div class="card-header text-info"><strong>Important...</strong></div>'+
-'<div class="card-body text-info">'+
-  '<h5 class="card-title text-info">Allowed extensions and formats:</h5>'+
+let template_ca = '<div class="card mb-3">'+
+'<div class="card-header "><strong>Important...</strong></div>'+
+'<div class="card-body ">'+
+  '<h5 class="card-title ">Allowed extensions and formats:</h5>'+
   '<p class="card-text">Only allowed .cer extensions with DER format.</p>'+
 '</div>'+
 '</div>';
 
-let template_cert = '<div class="card border-info mb-3">'+
-'<div class="card-header text-info"><strong>Important...</strong></div>'+
-'<div class="card-body text-info">'+
+let template_cert = '<div class="card mb-3">'+
+'<div class="card-header "><strong>Important...</strong></div>'+
+'<div class="card-body ">'+
   '<h5 class="card-title">P12/PFX Certificate Files</h5>'+
   '<p class="card-text">Allowed file with extensions: <strong>(.p12, .pfx)</strong>. File contain Certificate and Key. File will be protected with password.</p>'+
 '</div>'+
