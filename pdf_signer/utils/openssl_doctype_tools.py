@@ -14,7 +14,6 @@ def _verify_chain(name_container):
         field_password = "passphrase"
         file_ca_root_attached = "ca_root"
         pass_ = cert_container["passphrase"]
-        is_chain = cert_container["caroot_is_chain"]
         interm_ca = frappe.get_all(
             "Certificate Authority Intermediarie",
             {"parent": _name_cert, "parenttype": doctype_},
@@ -53,7 +52,6 @@ def _verify_chain(name_container):
                 passwd,
                 file_ca_root=file_ca,
                 ca_interm=interm_ca,
-                is_chain=is_chain,
             )
             if chain_["errno"] == 1:
                 if chain_["cert"] == 1:
