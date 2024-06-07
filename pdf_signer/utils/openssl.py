@@ -263,8 +263,16 @@ def cert_detail(file, password):
     except PermissionError:
         return {"errno": 3}
     else:
-        city = certificate[1].issuer.get_attributes_for_oid(x509.NameOID.ORGANIZATIONAL_UNIT_NAME)[0].value
-        country = certificate[1].issuer.get_attributes_for_oid(x509.NameOID.COUNTRY_NAME)[0].value
+        city = None
+        country = None
+        if certificate[1].issuer.get_attributes_for_oid(x509.NameOID.ORGANIZATIONAL_UNIT_NAME):
+            city = certificate[1].issuer.get_attributes_for_oid(x509.NameOID.ORGANIZATIONAL_UNIT_NAME)[0].value
+        elif certificate[1].subject.get_attributes_for_oid(x509.NameOID.STATE_OR_PROVINCE_NAME):
+            city = certificate[1].subject.get_attributes_for_oid(x509.NameOID.STATE_OR_PROVINCE_NAME)[0].value
+        if certificate[1].issuer.get_attributes_for_oid(x509.NameOID.COUNTRY_NAME):
+            country = certificate[1].issuer.get_attributes_for_oid(x509.NameOID.COUNTRY_NAME)[0].value
+        elif certificate[1].subject.get_attributes_for_oid(x509.NameOID.COUNTRY_NAME):
+            country = certificate[1].subject.get_attributes_for_oid(x509.NameOID.COUNTRY_NAME)[0].value
         common_name = certificate[1].subject.get_attributes_for_oid(x509.NameOID.COMMON_NAME)[0].value
         expire = certificate[1].not_valid_after.strftime("%d/%m/%Y")
         return {"city": city, "country": country, "name": common_name, "expire": expire, "errno": 0}
