@@ -18,7 +18,7 @@ let customize_pdf_signer = function(frm) {
 					frm.reload_doc();
 				}).removeClass('btn-default').addClass("btn-dark");
 
-				frm.add_custom_button('<i class="fa fa-check-square"></i> Verify Sign PDF' , function(){
+				frm.add_custom_button('<i class="fa fa-check-square"></i> Verify Signed PDF' , function(){
 					verify_sign_pdf_dialog(frm.doc.file_name)
 				}).removeClass('btn-default').addClass("btn-dark");
 			}
