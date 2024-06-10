@@ -10,7 +10,7 @@
 <h3 align="center">PDF Signer</h3>
 
   <p align="center">
-    Simple application for signing PDF files with Electronic Certificates.
+    Simple application for signing PDF files with Electronic Certificates in Frappe and Erpnext.
     <br />
     <a href="https://github.com/mmdanny89/pdf-signer"><strong>Explore the docs »</strong></a>
     <br />
@@ -28,7 +28,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">About PDF Signer</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -44,11 +44,18 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## About PDF Signer
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://github.com/mmdanny89/pdf-signer)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+PDF Signer is an application that allows you to apply electronic signatures to a PDF document. Among its main characteristics are:
+1. Allows you to apply multiple signatures using digital certificates on the same PDF document.
+2. Allows you to apply a single digital signature to a document. After this, if the PDF document is modified, they will not be valid.
+3. Validate the signatures applied to a PDF document with certificates of type `Certification Authority, (CA Root)`.
+4. Customize the signature: Use a background image, QR code, apply on one or more pages in the document, etc...
+5. When attaching a PDF document to any doctype in the system, automatically ask if you want to sign it.
+6. Multiple signature configuration environments.
+7. Manage multiple certificate chain.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -62,13 +69,13 @@ To get a local copy up and running follow these simple example steps.
 
 ### Installation
 
-## Install on Frappe Cloud
+### Install on Frappe Cloud
 
 1. Go to https://frappecloud.com/dashboard/#/sites and click the "New Site" button.
 2. In Step 2 ("Select apps to install"), select "PDF Signer".
 3. Complete the new site wizard.
 
-## Install on Self-Hosted
+### Install on Self-Hosted
 
 ```bash
 cd frappe-bench
