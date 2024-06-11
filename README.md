@@ -75,13 +75,13 @@ To get a local copy up and running follow these simple example steps.
 3. Complete the new site wizard.
 
 ### Install on Self-Hosted
-
+Version 14
 ```bash
 cd frappe-bench
 bench get-app https://github.com/mmdanny89/pdf-signer.git
 bench --site sitename install-app pdf_signer
 ```
-> Remeber to replace `sitename` with your site name.
+> Remeber to replace `sitename` with your site name.<br>
 > For Version 15 `bench get-app --branch verion-15 https://github.com/mmdanny89/pdf-signer.git`.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
