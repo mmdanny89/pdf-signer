@@ -5,7 +5,7 @@ from frappe import _
 
 from pdf_signer.utils import utils
 from pdf_signer.utils.permission import get_allowed_settings, get_setting
-from pdf_signer.utils.sign import CONTAINER, attachment_paths, sign_file, validate_sign
+from pdf_signer.utils.sign import CONTAINER, attachment_paths, sign_file, tsa_root, validate_sign
 
 
 def get_file(name, ptype):
@@ -55,7 +55,8 @@ def verify_pdf(file, sign_setting):
 	file_doc = get_file(file, "read")
 	if not is_pdf(file_doc):
 		frappe.throw(_("The file {0} is not a PDF.").format(file_doc.file_name))
-	container = get_setting(sign_setting, "verify").cert_container
+	setting = get_setting(sign_setting, "verify")
+	container = setting.cert_container
 	ca_roots = attachment_paths(CONTAINER, container, "ca_root")
 	if not ca_roots:
 		frappe.throw(
@@ -63,5 +64,8 @@ def verify_pdf(file, sign_setting):
 			title=_("Missing CA root"),
 		)
 	return validate_sign(
-		file_doc.get_full_path(), ca_roots[-1], attachment_paths(CONTAINER, container, "ca_interm")
+		file_doc.get_full_path(),
+		ca_roots[-1],
+		attachment_paths(CONTAINER, container, "ca_interm"),
+		tsa_root(setting),
 	)

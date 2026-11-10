@@ -21,6 +21,13 @@
   "reason",
   "location",
   "contact_info",
+  "timestamp_section",
+  "tsa_url",
+  "tsa_username",
+  "tsa_password",
+  "column_break_timestamp",
+  "tsa_certificate",
+  "long_term_validation",
   "access_tab",
   "sign_users",
   "sign_roles",
@@ -157,6 +164,51 @@
    "fieldname": "contact_info",
    "fieldtype": "Data",
    "label": "Contact Information"
+  },
+  {
+   "fieldname": "timestamp_section",
+   "fieldtype": "Section Break",
+   "label": "Time Stamp and Long-Term Validation"
+  },
+  {
+   "description": "Optional. The address of a time stamp authority (TSA), for example https://freetsa.org/tsr. The TSA adds a trusted date and time to the signature (PAdES B-T). If it is empty, the signature has the time of the server only.",
+   "fieldname": "tsa_url",
+   "fieldtype": "Data",
+   "label": "Time Stamp Authority URL",
+   "options": "URL"
+  },
+  {
+   "depends_on": "tsa_url",
+   "description": "Optional. The user, if the TSA needs one.",
+   "fieldname": "tsa_username",
+   "fieldtype": "Data",
+   "label": "TSA User"
+  },
+  {
+   "depends_on": "tsa_url",
+   "description": "Optional. The password, if the TSA needs one.",
+   "fieldname": "tsa_password",
+   "fieldtype": "Password",
+   "label": "TSA Password"
+  },
+  {
+   "fieldname": "column_break_timestamp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "tsa_url",
+   "description": "The root certificate of the TSA (.cer, .crt or .pem). The verification uses it to trust the time stamps. Get it from the website of the TSA.",
+   "fieldname": "tsa_certificate",
+   "fieldtype": "Attach",
+   "label": "TSA Root Certificate",
+   "mandatory_depends_on": "tsa_url"
+  },
+  {
+   "depends_on": "tsa_url",
+   "description": "Add to the PDF the revocation data (OCSP or CRL) of the certificates and a document time stamp (PAdES B-LTA). Then the signature can be validated after the certificate expires. The certificate must give OCSP or CRL addresses, and the server must reach them and the TSA.",
+   "fieldname": "long_term_validation",
+   "fieldtype": "Check",
+   "label": "Long-Term Validation"
   },
   {
    "fieldname": "access_tab",
@@ -414,7 +466,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-11-10 15:00:00.000000",
+ "modified": "2026-11-10 16:00:00.000000",
  "modified_by": "Administrator",
  "module": "Pdf Signer",
  "name": "Electronic Sign Setting",

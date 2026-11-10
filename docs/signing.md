@@ -11,7 +11,7 @@ The **Sign PDF** button shows only if you can change the file and you can sign w
 
 The app signs the file in place. The file keeps its name and its URL, and the app updates its content hash. A message shows "The PDF is signed." when the signature is complete.
 
-The signature is a PAdES signature that pyHanko makes.
+The signature is a PAdES signature (`ETSI.CAdES.detached`) that pyHanko makes. If the sign setting has a TSA, the signature also has a time stamp (PAdES B-T). With long-term validation, the PDF also gets the revocation data and a document time stamp (PAdES B-LTA).
 
 ### Signature field
 
@@ -56,10 +56,12 @@ The result shows one section for each signature, with these rows:
 | Coverage | The part of the file that the signature covers. |
 | Modifications | The changes to the file after the signature. |
 | Signing time | The time that the signer reported. |
-| Time stamp | The time of the time stamp, if the signature has one. |
+| Time stamp | The time of the time stamp, if the signature has one, and if the time stamp is trusted. |
 | Signer, Issuer, Serial number, Valid until | The data of the certificate of the signer. |
 | Trust anchor | The CA root that the chain of the certificate ends in. |
 | SHA-256 fingerprint | The fingerprint of the certificate of the signer. |
+
+A PDF with long-term validation also shows a section for the document time stamp. Its type is "Document time stamp (long-term validation)". The TSA signs it, so the verification uses the TSA Root Certificate of the sign setting.
 
 A signature is trusted only if its chain ends in the CA root of the sign setting. The intermediate CAs help to build the chain, but they are not trust anchors.
 

@@ -1,13 +1,15 @@
 # Copyright (c) 2022, Danny Molina Morales and contributors
 # For license information, please see license.txt
 
+import base64
+import json
 from datetime import datetime
 
 import frappe
 from frappe import _
 from frappe.model.document import Document
 
-from pdf_signer.utils.appearance import STAMP_TEXT_VARIABLES, hex_to_rgb
+from pdf_signer.utils.appearance import STAMP_TEXT_VARIABLES, hex_to_rgb, preview_pdf
 
 
 class ElectronicSignSetting(Document):
@@ -16,12 +18,22 @@ class ElectronicSignSetting(Document):
 			self.is_default = 1
 
 	def validate(self):
+		self.validate_timestamp()
 		if not self.visible_signature:
 			return
 		self.validate_box()
 		self.validate_text()
 		self.validate_colors()
 		self.validate_font()
+
+	def validate_timestamp(self):
+		if not self.tsa_url:
+			self.long_term_validation = 0
+			return
+		if not self.tsa_url.lower().startswith(("http://", "https://")):
+			frappe.throw(_("The Time Stamp Authority URL must start with http:// or https://."))
+		if self.tsa_certificate and not self.tsa_certificate.lower().endswith((".cer", ".crt", ".pem")):
+			frappe.throw(_("The TSA root certificate must be a .cer, .crt or .pem file."))
 
 	def validate_box(self):
 		if self.page == "Page Number" and (self.page_number or 0) < 1:
@@ -56,3 +68,16 @@ class ElectronicSignSetting(Document):
 	def validate_font(self):
 		if self.font_file and not self.font_file.lower().endswith((".ttf", ".otf")):
 			frappe.throw(_("The font file must be a TTF or OTF file."))
+
+
+@frappe.whitelist()
+def preview(doc):
+	"""Return a PDF (base64) with the signature box of the values of the form. Nothing is saved."""
+	setting = frappe.get_doc(json.loads(doc) if isinstance(doc, str) else doc)
+	if not frappe.has_permission("Electronic Sign Setting", "write"):
+		frappe.throw(_("You cannot change sign settings."), frappe.PermissionError)
+	if not setting.visible_signature:
+		frappe.throw(_("The signature is invisible. It does not have a box to show."), title=_("No preview"))
+	setting.validate()
+	pdf = preview_pdf(setting, frappe.utils.get_fullname(frappe.session.user))
+	return base64.b64encode(pdf).decode()

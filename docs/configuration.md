@@ -106,6 +106,25 @@ A PDF can have only one certification signature, and it must be the first signat
 
 **Reason**, **Location** and **Contact Information** are optional. PDF readers show them in the signature panel.
 
+### Time stamp and long-term validation
+
+These fields are in the tab **Signature Policy**. They are optional.
+
+| Field | Use |
+|---|---|
+| Time Stamp Authority URL | The address of a time stamp authority (TSA). The TSA adds a trusted date and time to the signature (PAdES B-T). Without a TSA, the signature has the time of the server only. |
+| TSA User, TSA Password | Only if the TSA asks for them. |
+| TSA Root Certificate | The root certificate of the TSA (.cer, .crt or .pem). It is necessary with a TSA. Get it from the website of the TSA. |
+| Long-Term Validation | Adds the revocation data (OCSP or CRL) of the certificates and a document time stamp (PAdES B-LTA). Then the signature can be validated after the certificate expires. |
+
+The verification uses the TSA Root Certificate of the sign setting that you select to trust the time stamps. Without it, the time stamp is not trusted, and the signature is not valid.
+
+For long-term validation:
+
+- The certificate container must have the CA root file.
+- The certificates of the signer, of the CA and of the TSA must give OCSP or CRL addresses.
+- The server must reach these addresses and the TSA. If it cannot, the app does not sign and shows the error.
+
 ### Access
 
 The tab **Access** decides who can use the sign setting.
@@ -121,6 +140,8 @@ If you add users, the Administrator can sign only if it is in the list.
 ### Appearance
 
 The tab **Appearance** sets the signature box: its page, its place, its style and its text. Each field has a description in the form.
+
+To see the box before you save, click **Preview Signature Box**. The preview shows the box on a blank A4 page with the current values of the form. It shows your user name in place of the name of the certificate holder.
 
 #### Signature box
 

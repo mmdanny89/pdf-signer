@@ -7,6 +7,11 @@ frappe.ui.form.on("Electronic Sign Setting", {
 		set_upload_restrictions(frm, "font_file", [".ttf", ".otf"]);
 	},
 	refresh(frm) {
+		frm.add_custom_button(__("Preview Signature Box"), () => preview_box(frm)).each(
+			function () {
+				frappe.ui.button.dress(this, { label: __("Preview Signature Box"), icon: "eye" });
+			}
+		);
 		if (frm.is_new()) return;
 		const enabled = frm.doc.status === "Enable";
 		frm.add_custom_button(
@@ -42,5 +47,34 @@ function set_status(frm, status) {
 function set_upload_restrictions(frm, fieldname, extensions) {
 	frm.set_df_property(fieldname, "options", {
 		restrictions: { allowed_file_types: extensions, max_number_of_files: 1 },
+	});
+}
+
+// Show the signature box of the values of the form on a blank A4 page. Nothing is saved.
+function preview_box(frm) {
+	frappe.call({
+		method: "pdf_signer.pdf_signer.doctype.electronic_sign_setting.electronic_sign_setting.preview",
+		args: { doc: frm.doc },
+		freeze: true,
+		freeze_message: __("Making the preview..."),
+		callback(r) {
+			const bytes = Uint8Array.from(atob(r.message), (c) => c.charCodeAt(0));
+			const url = URL.createObjectURL(new Blob([bytes], { type: "application/pdf" }));
+			const dialog = new frappe.ui.Dialog({
+				title: __("Preview Signature Box"),
+				size: "extra-large",
+				fields: [
+					{
+						fieldtype: "HTML",
+						fieldname: "preview",
+						options: `<p class="text-muted">${__(
+							"A blank A4 page with the signature box. The preview shows your user name in place of the name of the certificate holder."
+						)}</p><iframe src="${url}#view=FitH" style="width: 100%; height: 70vh; border: 0;"></iframe>`,
+					},
+				],
+			});
+			dialog.onhide = () => URL.revokeObjectURL(url);
+			dialog.show();
+		},
 	});
 }

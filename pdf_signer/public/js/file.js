@@ -141,11 +141,27 @@ function signature_result_html(signature) {
 				? yes_no(false, "", __("Revoked certificate"))
 				: yes_no(signature.trusted, __("Trusted"), __("Not trusted")),
 		],
-		[__("Type"), esc(CERTIFICATION_LABELS[signature.certification] || __("Approval"))],
+		[
+			__("Type"),
+			esc(
+				signature.document_timestamp
+					? __("Document time stamp (long-term validation)")
+					: CERTIFICATION_LABELS[signature.certification] || __("Approval")
+			),
+		],
 		[__("Coverage"), esc(COVERAGE_LABELS[signature.coverage])],
 		[__("Modifications"), esc(MODIFICATION_LABELS[signature.modification_level])],
 		[__("Signing time"), esc(signature.signing_time)],
-		[__("Time stamp"), esc(signature.timestamp || __("None"))],
+		[
+			__("Time stamp"),
+			signature.timestamp
+				? `${esc(signature.timestamp)} ${yes_no(
+						signature.timestamp_trusted,
+						__("Trusted"),
+						__("Not trusted")
+				  )}`
+				: esc(__("None")),
+		],
 		[__("Signer"), esc(signature.signer)],
 		[__("Issuer"), esc(signature.issuer)],
 		[__("Serial number"), esc(signature.serial_number)],

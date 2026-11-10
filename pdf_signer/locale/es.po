@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PDF Signer 16\n"
 "Report-Msgid-Bugs-To: mmdanny89@gmail.com\n"
-"POT-Creation-Date: 2026-11-10 09:49-0831\n"
-"PO-Revision-Date: 2026-11-10 09:48-0929\n"
+"POT-Creation-Date: 2026-11-10 09:56-0831\n"
+"PO-Revision-Date: 2026-11-10 09:48-1129\n"
 "Last-Translator: mmdanny89@gmail.com\n"
 "Language: es\n"
 "Language-Team: es-ES\n"
@@ -40,6 +40,14 @@ msgstr "<span class=\"h4\">PDF Signer</span>"
 msgid "A PNG or JPG image behind the text, for example a stamp of the company."
 msgstr "Imagen PNG o JPG detrás del texto, por ejemplo el sello de la empresa."
 
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:70
+msgid ""
+"A blank A4 page with the signature box. The preview shows your user name in "
+"place of the name of the certificate holder."
+msgstr ""
+"Una página A4 en blanco con el recuadro de firma. La vista previa muestra su"
+" nombre de usuario en lugar del nombre del titular del certificado."
+
 #. Description of the 'Additional Text' (Data) field in DocType 'Electronic
 #. Sign Setting'
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
@@ -58,6 +66,20 @@ msgstr "Encima del texto"
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
 msgid "Access"
 msgstr "Acceso"
+
+#. Description of the 'Long-Term Validation' (Check) field in DocType
+#. 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"Add to the PDF the revocation data (OCSP or CRL) of the certificates and a "
+"document time stamp (PAdES B-LTA). Then the signature can be validated after"
+" the certificate expires. The certificate must give OCSP or CRL addresses, "
+"and the server must reach them and the TSA."
+msgstr ""
+"Añade al PDF los datos de revocación (OCSP o CRL) de los certificados y un "
+"sello de tiempo del documento (PAdES B-LTA). Así la firma se puede validar "
+"después de que caduque el certificado. El certificado debe indicar "
+"direcciones OCSP o CRL, y el servidor debe poder acceder a ellas y a la TSA."
 
 #. Label of the additional (Data) field in DocType 'Electronic Sign Setting'
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
@@ -87,7 +109,7 @@ msgstr ""
 "Correo electrónico o teléfono de contacto del firmante. Los lectores de PDF "
 "lo muestran en el panel de firmas."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:76
+#: pdf_signer/utils/openssl_doctype_tools.py:93
 msgid ""
 "An intermediate CA cannot be read. Use DER format with the extension .cer, "
 "or PEM format with the extension .crt."
@@ -95,7 +117,7 @@ msgstr ""
 "No se puede leer una CA intermedia. Use el formato DER con la extensión .cer"
 " o el formato PEM con la extensión .crt."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:78
+#: pdf_signer/utils/openssl_doctype_tools.py:100
 msgid "An intermediate CA file was not found. Contact the administrator."
 msgstr ""
 "No se ha encontrado el fichero de una CA intermedia. Póngase en contacto con"
@@ -110,7 +132,7 @@ msgstr "Apariencia"
 #. Option for the 'Signature Type' (Select) field in DocType 'Electronic Sign
 #. Setting'
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
-#: pdf_signer/public/js/file.js:144
+#: pdf_signer/public/js/file.js:149
 msgid "Approval"
 msgstr "Aprobación"
 
@@ -131,7 +153,7 @@ msgstr ""
 "campos del formulario y firmar. Un PDF solo puede tener una firma de "
 "certificación, y debe ser la primera."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:48
+#: pdf_signer/utils/openssl_doctype_tools.py:49
 msgid "Attach the CA root or the intermediate CAs to verify the certificate chain."
 msgstr ""
 "Adjunte la CA raíz o las CA intermedias para verificar la cadena del "
@@ -188,7 +210,7 @@ msgstr "Abajo a la izquierda"
 msgid "Bottom Right"
 msgstr "Abajo a la derecha"
 
-#: pdf_signer/utils/appearance.py:104
+#: pdf_signer/utils/appearance.py:105
 msgid "Box outside the page"
 msgstr "Recuadro fuera de la página"
 
@@ -239,7 +261,7 @@ msgstr "Nombre del contenedor"
 msgid "Certificate File"
 msgstr "Fichero del certificado"
 
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:80
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:82
 msgid "Certificate Info"
 msgstr "Datos del certificado"
 
@@ -262,7 +284,7 @@ msgstr "Certificados"
 msgid "Certificates of the certificate authority"
 msgstr "Certificados de la autoridad de certificación"
 
-#: pdf_signer/utils/sign.py:78
+#: pdf_signer/utils/sign.py:80
 msgid "Certification not possible"
 msgstr "Certificación no posible"
 
@@ -322,7 +344,7 @@ msgstr "Correcta"
 msgid "Country"
 msgstr "País"
 
-#: pdf_signer/public/js/file.js:145
+#: pdf_signer/public/js/file.js:152
 msgid "Coverage"
 msgstr "Cobertura"
 
@@ -348,8 +370,8 @@ msgstr "Fecha"
 msgid "Date Format"
 msgstr "Formato de fecha"
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:13
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:17
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:18
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:22
 msgid "Disable Sign Setting"
 msgstr "Desactivar perfil de firma"
 
@@ -370,6 +392,10 @@ msgstr "Distancia desde abajo (mm)"
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
 msgid "Distance from the Left (mm)"
 msgstr "Distancia desde la izquierda (mm)"
+
+#: pdf_signer/public/js/file.js:148
+msgid "Document time stamp (long-term validation)"
+msgstr "Sello de tiempo del documento (validación a largo plazo)"
 
 #. Description of the 'Handwritten Signature' (Signature) field in DocType
 #. 'Electronic Sign Setting'
@@ -397,8 +423,8 @@ msgstr "Perfil de firma electrónica"
 msgid "Electronic Sign Setting User"
 msgstr "Usuario del perfil de firma electrónica"
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:13
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:17
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:18
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:22
 msgid "Enable Sign Setting"
 msgstr "Activar perfil de firma"
 
@@ -406,21 +432,21 @@ msgstr "Activar perfil de firma"
 msgid "Enabled"
 msgstr "Activado"
 
-#: pdf_signer/utils/openssl_doctype_tools.py:48
-#: pdf_signer/utils/openssl_doctype_tools.py:58
-#: pdf_signer/utils/openssl_doctype_tools.py:60
-#: pdf_signer/utils/openssl_doctype_tools.py:63
-#: pdf_signer/utils/openssl_doctype_tools.py:67
-#: pdf_signer/utils/openssl_doctype_tools.py:69
-#: pdf_signer/utils/openssl_doctype_tools.py:72
-#: pdf_signer/utils/openssl_doctype_tools.py:76
-#: pdf_signer/utils/openssl_doctype_tools.py:78
-#: pdf_signer/utils/openssl_doctype_tools.py:81
-#: pdf_signer/utils/openssl_doctype_tools.py:85
-#: pdf_signer/utils/openssl_doctype_tools.py:87
-#: pdf_signer/utils/openssl_doctype_tools.py:115
-#: pdf_signer/utils/openssl_doctype_tools.py:117
-#: pdf_signer/utils/openssl_doctype_tools.py:120
+#: pdf_signer/utils/openssl_doctype_tools.py:50
+#: pdf_signer/utils/openssl_doctype_tools.py:62
+#: pdf_signer/utils/openssl_doctype_tools.py:66
+#: pdf_signer/utils/openssl_doctype_tools.py:71
+#: pdf_signer/utils/openssl_doctype_tools.py:79
+#: pdf_signer/utils/openssl_doctype_tools.py:83
+#: pdf_signer/utils/openssl_doctype_tools.py:88
+#: pdf_signer/utils/openssl_doctype_tools.py:96
+#: pdf_signer/utils/openssl_doctype_tools.py:101
+#: pdf_signer/utils/openssl_doctype_tools.py:106
+#: pdf_signer/utils/openssl_doctype_tools.py:111
+#: pdf_signer/utils/openssl_doctype_tools.py:113
+#: pdf_signer/utils/openssl_doctype_tools.py:142
+#: pdf_signer/utils/openssl_doctype_tools.py:146
+#: pdf_signer/utils/openssl_doctype_tools.py:150
 msgid "Error"
 msgstr "Error"
 
@@ -467,7 +493,7 @@ msgstr "General"
 msgid "General Settings"
 msgstr "Configuración general"
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:32
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:44
 msgid "Give the distance from the left and from the bottom for a custom position."
 msgstr ""
 "Indique la distancia desde la izquierda y desde abajo para una posición "
@@ -527,7 +553,7 @@ msgstr "Intacto"
 msgid "Integrity"
 msgstr "Integridad"
 
-#: pdf_signer/utils/sign.py:61
+#: pdf_signer/utils/sign.py:63
 msgid "Invalid certificate"
 msgstr "Certificado no válido"
 
@@ -536,7 +562,7 @@ msgstr "Certificado no válido"
 msgid "Is Default"
 msgstr "Predeterminado"
 
-#: pdf_signer/public/js/file.js:150
+#: pdf_signer/public/js/file.js:166
 msgid "Issuer"
 msgstr "Emisor"
 
@@ -556,20 +582,36 @@ msgstr "A la izquierda del texto"
 msgid "Location"
 msgstr "Lugar"
 
+#. Label of the long_term_validation (Check) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Long-Term Validation"
+msgstr "Validación a largo plazo"
+
+#: pdf_signer/utils/sign.py:115
+msgid "Long-term validation needs the CA root file in the certificate container {0}."
+msgstr ""
+"La validación a largo plazo necesita el fichero de la CA raíz en el "
+"contenedor de certificados {0}."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:59
+msgid "Making the preview..."
+msgstr "Generando la vista previa..."
+
 #. Label of the margin (Float) field in DocType 'Electronic Sign Setting'
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
 msgid "Margin (mm)"
 msgstr "Margen (mm)"
 
-#: pdf_signer/utils/api.py:63
+#: pdf_signer/utils/api.py:64 pdf_signer/utils/sign.py:118
 msgid "Missing CA root"
 msgstr "Falta la CA raíz"
 
-#: pdf_signer/utils/sign.py:45
+#: pdf_signer/utils/sign.py:47
 msgid "Missing certificate"
 msgstr "Falta el certificado"
 
-#: pdf_signer/public/js/file.js:146
+#: pdf_signer/public/js/file.js:153
 msgid "Modifications"
 msgstr "Modificaciones"
 
@@ -581,7 +623,11 @@ msgstr "Nombre"
 msgid "No changes after the signature."
 msgstr "Sin cambios después de la firma."
 
-#: pdf_signer/public/js/file.js:148 pdf_signer/public/js/file.js:153
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:80
+msgid "No preview"
+msgstr "Sin vista previa"
+
+#: pdf_signer/public/js/file.js:163 pdf_signer/public/js/file.js:169
 msgid "None"
 msgstr "Ninguno"
 
@@ -593,7 +639,7 @@ msgstr "Incorrecta"
 msgid "Not permitted"
 msgstr "No permitido"
 
-#: pdf_signer/public/js/file.js:142
+#: pdf_signer/public/js/file.js:142 pdf_signer/public/js/file.js:161
 msgid "Not trusted"
 msgstr "No es de confianza"
 
@@ -638,6 +684,32 @@ msgstr ""
 "Opcional. Fuente TTF u OTF para el texto. Si se deja vacío, la aplicación "
 "usa una fuente estándar de PDF. Esa fuente muestra las letras con tilde y la"
 " ñ, pero no otros caracteres especiales."
+
+#. Description of the 'Time Stamp Authority URL' (Data) field in DocType
+#. 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"Optional. The address of a time stamp authority (TSA), for example "
+"https://freetsa.org/tsr. The TSA adds a trusted date and time to the "
+"signature (PAdES B-T). If it is empty, the signature has the time of the "
+"server only."
+msgstr ""
+"Opcional. Dirección de una autoridad de sellado de tiempo (TSA), por ejemplo"
+" https://freetsa.org/tsr. La TSA añade a la firma una fecha y hora de "
+"confianza (PAdES B-T). Si se deja vacío, la firma solo tiene la hora del "
+"servidor."
+
+#. Description of the 'TSA Password' (Password) field in DocType 'Electronic
+#. Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Optional. The password, if the TSA needs one."
+msgstr "Opcional. La contraseña, si la TSA la pide."
+
+#. Description of the 'TSA User' (Data) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Optional. The user, if the TSA needs one."
+msgstr "Opcional. El usuario, si la TSA lo pide."
 
 #: pdf_signer/public/js/file.js:109
 msgid "Other changes after the signature."
@@ -685,7 +757,7 @@ msgstr "Gestor de PDF Signer"
 msgid "PDF Signer User"
 msgstr "Usuario de PDF Signer"
 
-#: pdf_signer/utils/sign.py:140
+#: pdf_signer/utils/sign.py:192
 msgid "PDF Signer: the PDF could not be signed"
 msgstr "PDF Signer: no se ha podido firmar el PDF"
 
@@ -700,11 +772,11 @@ msgstr "Página"
 msgid "Page Number"
 msgstr "Número de página"
 
-#: pdf_signer/utils/appearance.py:66
+#: pdf_signer/utils/appearance.py:67
 msgid "Page not found"
 msgstr "Página no encontrada"
 
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:96
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:100
 msgid "Partial Chain"
 msgstr "Cadena incompleta"
 
@@ -717,6 +789,12 @@ msgstr "Contraseña"
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
 msgid "Position"
 msgstr "Posición"
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:10
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:12
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:64
+msgid "Preview Signature Box"
+msgstr "Vista previa del recuadro de firma"
 
 #: pdf_signer/custom_events/doc_events.py:33
 msgid "Public certificate"
@@ -764,7 +842,7 @@ msgstr "Roles que pueden firmar"
 msgid "Roles That Can Verify"
 msgstr "Roles que pueden verificar"
 
-#: pdf_signer/public/js/file.js:154
+#: pdf_signer/public/js/file.js:170
 msgid "SHA-256 fingerprint"
 msgstr "Huella SHA-256"
 
@@ -776,7 +854,7 @@ msgstr ""
 "Guarde primero el contenedor. Después podrá adjuntar el certificado y los "
 "certificados de la CA."
 
-#: pdf_signer/public/js/file.js:151
+#: pdf_signer/public/js/file.js:167
 msgid "Serial number"
 msgstr "Número de serie"
 
@@ -837,15 +915,15 @@ msgstr "Política de firma"
 msgid "Signature Type"
 msgstr "Tipo de firma"
 
-#: pdf_signer/utils/sign.py:141
+#: pdf_signer/utils/sign.py:195
 msgid "Signature error"
 msgstr "Error de firma"
 
-#: pdf_signer/utils/sign.py:71
+#: pdf_signer/utils/sign.py:73
 msgid "Signature not possible"
 msgstr "Firma no posible"
 
-#: pdf_signer/public/js/file.js:149
+#: pdf_signer/public/js/file.js:165
 msgid "Signer"
 msgstr "Firmante"
 
@@ -863,7 +941,7 @@ msgstr "Firma"
 msgid "Signing the document..."
 msgstr "Firmando el documento..."
 
-#: pdf_signer/public/js/file.js:147
+#: pdf_signer/public/js/file.js:154
 msgid "Signing time"
 msgstr "Fecha de la firma"
 
@@ -886,6 +964,23 @@ msgstr "Estilo"
 #: pdf_signer/pdf_signer/doctype/pdf_signer_documents_signed/pdf_signer_documents_signed.json
 msgid "System Manager"
 msgstr "Administrador del sistema"
+
+#. Label of the tsa_password (Password) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "TSA Password"
+msgstr "Contraseña de la TSA"
+
+#. Label of the tsa_certificate (Attach) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "TSA Root Certificate"
+msgstr "Certificado raíz de la TSA"
+
+#. Label of the tsa_username (Data) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "TSA User"
+msgstr "Usuario de la TSA"
 
 #. Option for the 'Style' (Select) field in DocType 'Electronic Sign Setting'
 #. Label of the text_section (Section Break) field in DocType 'Electronic Sign
@@ -922,7 +1017,7 @@ msgstr ""
 "fondo: el texto sobre una imagen. Firma manuscrita: el texto sobre una firma"
 " que usted dibuja."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:67
+#: pdf_signer/utils/openssl_doctype_tools.py:76
 msgid ""
 "The CA root cannot be read. Use DER format with the extension .cer, or PEM "
 "format with the extension .crt."
@@ -930,13 +1025,13 @@ msgstr ""
 "No se puede leer la CA raíz. Use el formato DER con la extensión .cer o el "
 "formato PEM con la extensión .crt."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:69
+#: pdf_signer/utils/openssl_doctype_tools.py:83
 msgid "The CA root file was not found. Contact the administrator."
 msgstr ""
 "No se ha encontrado el fichero de la CA raíz. Póngase en contacto con el "
 "administrador."
 
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:95
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:97
 msgid ""
 "The CA root is correct, but the chain is not complete. Add the missing "
 "intermediate CAs."
@@ -944,7 +1039,7 @@ msgstr ""
 "La CA raíz es correcta, pero la cadena no está completa. Añada las CA "
 "intermedias que faltan."
 
-#: pdf_signer/utils/sign.py:75
+#: pdf_signer/utils/sign.py:77
 msgid ""
 "The PDF already has signatures. A certification signature must be the first "
 "signature of the PDF. Use a sign setting with the Approval signature type."
@@ -952,11 +1047,11 @@ msgstr ""
 "El PDF ya tiene firmas. Una firma de certificación debe ser la primera firma"
 " del PDF. Use un perfil de firma con el tipo Aprobación."
 
-#: pdf_signer/utils/sign.py:141
+#: pdf_signer/utils/sign.py:194
 msgid "The PDF could not be signed: {0}"
 msgstr "No se ha podido firmar el PDF: {0}"
 
-#: pdf_signer/utils/sign.py:70
+#: pdf_signer/utils/sign.py:72
 msgid ""
 "The PDF has a certification signature that does not allow changes. You "
 "cannot sign it again."
@@ -964,7 +1059,7 @@ msgstr ""
 "El PDF tiene una firma de certificación que no permite cambios. No se puede "
 "volver a firmar."
 
-#: pdf_signer/utils/sign.py:114
+#: pdf_signer/utils/sign.py:163
 msgid ""
 "The PDF has a certification signature. The new signature is invisible, so "
 "that the certification stays valid."
@@ -972,24 +1067,34 @@ msgstr ""
 "El PDF tiene una firma de certificación. La nueva firma es invisible para "
 "que la certificación siga siendo válida."
 
-#: pdf_signer/utils/sign.py:149
+#: pdf_signer/utils/sign.py:204
 msgid "The PDF is signed."
 msgstr "El PDF se ha firmado."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:81
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:36
+msgid "The TSA root certificate must be a .cer, .crt or .pem file."
+msgstr "El certificado raíz de la TSA debe ser un fichero .cer, .crt o .pem."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:34
+msgid "The Time Stamp Authority URL must start with http:// or https://."
+msgstr ""
+"La URL de la autoridad de sellado de tiempo debe empezar por http:// o "
+"https://."
+
+#: pdf_signer/utils/openssl_doctype_tools.py:105
 msgid "The app cannot open an intermediate CA file. Contact the administrator."
 msgstr ""
 "La aplicación no puede abrir el fichero de una CA intermedia. Póngase en "
 "contacto con el administrador."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:72
+#: pdf_signer/utils/openssl_doctype_tools.py:87
 msgid "The app cannot open the CA root file. Contact the administrator."
 msgstr ""
 "La aplicación no puede abrir el fichero de la CA raíz. Póngase en contacto "
 "con el administrador."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:63
-#: pdf_signer/utils/openssl_doctype_tools.py:120
+#: pdf_signer/utils/openssl_doctype_tools.py:70
+#: pdf_signer/utils/openssl_doctype_tools.py:150
 msgid "The app cannot open the certificate file. Contact the administrator."
 msgstr ""
 "La aplicación no puede abrir el fichero del certificado. Póngase en contacto"
@@ -1001,8 +1106,8 @@ msgstr ""
 msgid "The app makes PAdES signatures, the standard for signed PDF files."
 msgstr "La aplicación genera firmas PAdES, el estándar de firma de ficheros PDF."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:58
-#: pdf_signer/utils/openssl_doctype_tools.py:115
+#: pdf_signer/utils/openssl_doctype_tools.py:61
+#: pdf_signer/utils/openssl_doctype_tools.py:141
 msgid ""
 "The certificate cannot be read. Check the certificate file and the "
 "passphrase."
@@ -1010,26 +1115,26 @@ msgstr ""
 "No se puede leer el certificado. Compruebe el fichero del certificado y la "
 "contraseña."
 
-#: pdf_signer/utils/api.py:62
+#: pdf_signer/utils/api.py:63
 msgid "The certificate container {0} does not have a CA root file."
 msgstr "El contenedor de certificados {0} no tiene fichero de CA raíz."
 
-#: pdf_signer/utils/sign.py:44
+#: pdf_signer/utils/sign.py:46
 msgid "The certificate container {0} does not have a certificate file."
 msgstr "El contenedor de certificados {0} no tiene fichero de certificado."
 
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:101
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:105
 msgid "The certificate does not come from this CA. Correct the chain."
 msgstr "El certificado no procede de esta CA. Corrija la cadena."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:60
-#: pdf_signer/utils/openssl_doctype_tools.py:117
+#: pdf_signer/utils/openssl_doctype_tools.py:66
+#: pdf_signer/utils/openssl_doctype_tools.py:146
 msgid "The certificate file was not found. Contact the administrator."
 msgstr ""
 "No se ha encontrado el fichero del certificado. Póngase en contacto con el "
 "administrador."
 
-#: pdf_signer/utils/sign.py:58
+#: pdf_signer/utils/sign.py:60
 msgid ""
 "The certificate of {0} cannot be opened. Check the certificate file and the "
 "passphrase."
@@ -1037,7 +1142,7 @@ msgstr ""
 "No se puede abrir el certificado de {0}. Compruebe el fichero del "
 "certificado y la contraseña."
 
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:92
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:94
 msgid "The chain is correct."
 msgstr "La cadena es correcta."
 
@@ -1067,7 +1172,7 @@ msgstr "Color del texto."
 msgid "The coverage of the signature is not clear."
 msgstr "La cobertura de la firma no está clara."
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:48
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:60
 msgid "The date format {0} is not correct."
 msgstr "El formato de fecha {0} no es correcto."
 
@@ -1099,7 +1204,7 @@ msgstr ""
 "Distancia en milímetros desde el borde izquierdo de la página hasta el lado "
 "izquierdo del recuadro."
 
-#: pdf_signer/utils/appearance.py:51
+#: pdf_signer/utils/appearance.py:52
 msgid "The file {0} does not exist."
 msgstr "El fichero {0} no existe."
 
@@ -1111,7 +1216,7 @@ msgstr "El fichero {0} tiene una extensión no válida. Extensiones permitidas: 
 msgid "The file {0} is not a PDF."
 msgstr "El fichero {0} no es un PDF."
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:58
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:70
 msgid "The font file must be a TTF or OTF file."
 msgstr "El fichero de fuente debe ser TTF u OTF."
 
@@ -1142,7 +1247,7 @@ msgstr ""
 "Número de la página. La primera es la 1. Si el PDF tiene menos páginas, la "
 "aplicación no firma."
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:28
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:40
 msgid "The page number must be 1 or more."
 msgstr "El número de página debe ser 1 o mayor."
 
@@ -1168,15 +1273,25 @@ msgstr ""
 "Posición del recuadro de firma en la página. Con «Personalizada», usted "
 "indica la distancia desde la esquina inferior izquierda de la página."
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:34
+#. Description of the 'TSA Root Certificate' (Attach) field in DocType
+#. 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"The root certificate of the TSA (.cer, .crt or .pem). The verification uses "
+"it to trust the time stamps. Get it from the website of the TSA."
+msgstr ""
+"Certificado raíz de la TSA (.cer, .crt o .pem). La verificación lo usa para "
+"confiar en los sellos de tiempo. Descárguelo de la web de la TSA."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:39
 msgid "The sign setting is disabled."
 msgstr "Se ha desactivado el perfil de firma."
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:33
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:38
 msgid "The sign setting is enabled."
 msgstr "Se ha activado el perfil de firma."
 
-#: pdf_signer/utils/appearance.py:63
+#: pdf_signer/utils/appearance.py:64
 msgid "The sign setting puts the signature on page {0}, but the PDF has {1} pages."
 msgstr ""
 "El perfil de firma coloca la firma en la página {0}, pero el PDF tiene {1} "
@@ -1186,7 +1301,7 @@ msgstr ""
 msgid "The sign setting {0} is disabled."
 msgstr "El perfil de firma {0} está desactivado."
 
-#: pdf_signer/utils/appearance.py:103
+#: pdf_signer/utils/appearance.py:104
 msgid ""
 "The signature box does not fit on the page. Make it smaller, or change its "
 "position."
@@ -1206,6 +1321,10 @@ msgstr "La firma solo cubre una parte del fichero."
 msgid "The signature covers the entire file."
 msgstr "La firma cubre todo el fichero."
 
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:80
+msgid "The signature is invisible. It does not have a box to show."
+msgstr "La firma es invisible. No tiene recuadro que mostrar."
+
 #: pdf_signer/public/js/file.js:130
 msgid "The signature is not valid"
 msgstr "La firma no es válida"
@@ -1214,7 +1333,7 @@ msgstr "La firma no es válida"
 msgid "The signature is valid"
 msgstr "La firma es válida"
 
-#: pdf_signer/utils/sign.py:104
+#: pdf_signer/utils/sign.py:151
 msgid "The signature uses the empty signature field {0} of the PDF."
 msgstr "La firma usa el campo de firma vacío {0} del PDF."
 
@@ -1224,14 +1343,14 @@ msgstr "La firma usa el campo de firma vacío {0} del PDF."
 msgid "The size of the text in points."
 msgstr "Tamaño del texto en puntos."
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:44
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:56
 #, python-format
 msgid "The text has a % sign that is not a variable. Write %% to show a % sign."
 msgstr ""
 "El texto tiene un signo % que no es una variable. Escriba %% para mostrar un"
 " signo %."
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:39
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:51
 msgid "The text has an unknown variable: {0}. Use only {1}."
 msgstr "El texto tiene una variable desconocida: {0}. Use solo {1}."
 
@@ -1258,7 +1377,7 @@ msgstr ""
 "Texto o dirección web del código QR. Si se deja vacío, el código QR contiene"
 " el texto adicional o, si tampoco hay, la dirección de este sitio."
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:30
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:42
 msgid "The width and the height of the signature box must be more than 0."
 msgstr "El ancho y el alto del recuadro de firma deben ser mayores que 0."
 
@@ -1278,15 +1397,26 @@ msgstr "Ancho del recuadro de firma en milímetros."
 msgid "This PDF does not have signatures."
 msgstr "Este PDF no tiene firmas."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:87
+#: pdf_signer/utils/openssl_doctype_tools.py:113
 msgid "This container does not exist."
 msgstr "Este contenedor no existe."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:85
+#: pdf_signer/utils/openssl_doctype_tools.py:111
 msgid "This container does not have a certificate file."
 msgstr "Este contenedor no tiene fichero de certificado."
 
-#: pdf_signer/public/js/file.js:148
+#. Label of the tsa_url (Data) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Time Stamp Authority URL"
+msgstr "URL de la autoridad de sellado de tiempo"
+
+#. Label of the timestamp_section (Section Break) field in DocType 'Electronic
+#. Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Time Stamp and Long-Term Validation"
+msgstr "Sello de tiempo y validación a largo plazo"
+
+#: pdf_signer/public/js/file.js:156
 msgid "Time stamp"
 msgstr "Sello de tiempo"
 
@@ -1312,15 +1442,15 @@ msgstr "Arriba a la derecha"
 msgid "Trust"
 msgstr "Confianza"
 
-#: pdf_signer/public/js/file.js:153
+#: pdf_signer/public/js/file.js:169
 msgid "Trust anchor"
 msgstr "Ancla de confianza"
 
-#: pdf_signer/public/js/file.js:142
+#: pdf_signer/public/js/file.js:142 pdf_signer/public/js/file.js:160
 msgid "Trusted"
 msgstr "De confianza"
 
-#: pdf_signer/public/js/file.js:144
+#: pdf_signer/public/js/file.js:145
 msgid "Type"
 msgstr "Tipo"
 
@@ -1380,11 +1510,11 @@ msgstr ""
 "perfil. Si se deja vacío, puede verificar cualquier usuario que pueda leer "
 "el PDF."
 
-#: pdf_signer/public/js/file.js:152
+#: pdf_signer/public/js/file.js:168
 msgid "Valid until"
 msgstr "Válido hasta"
 
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:102
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:106
 msgid "Verification Error"
 msgstr "Error de verificación"
 
@@ -1392,7 +1522,7 @@ msgstr "Error de verificación"
 msgid "Verification Result"
 msgstr "Resultado de la verificación"
 
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:92
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:94
 msgid "Verification Success"
 msgstr "Verificación correcta"
 
@@ -1454,6 +1584,10 @@ msgstr "Ancho (mm)"
 msgid "Wrong extension"
 msgstr "Extensión no válida"
 
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:78
+msgid "You cannot change sign settings."
+msgstr "No puede modificar perfiles de firma."
+
 #: pdf_signer/utils/permission.py:64
 msgid "You cannot sign with the sign setting {0}."
 msgstr "No puede firmar con el perfil de firma {0}."
@@ -1466,7 +1600,7 @@ msgstr "No puede verificar con el perfil de firma {0}."
 msgid "You do not have the permission to use the file {0}."
 msgstr "No tiene permiso para usar el fichero {0}."
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:54
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:66
 msgid "{0} must be a color like #1F3A93."
 msgstr "{0} debe ser un color como #1F3A93."
 

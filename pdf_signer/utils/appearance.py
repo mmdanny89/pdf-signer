@@ -9,8 +9,9 @@ from frappe import _
 from frappe.utils import get_url
 from PIL import Image, ImageOps
 from pyhanko import stamp
-from pyhanko.pdf_utils import images, text
+from pyhanko.pdf_utils import generic, images, layout, text
 from pyhanko.pdf_utils.font.opentype import GlyphAccumulatorFactory
+from pyhanko.pdf_utils.writer import PdfFileWriter
 
 MM = 72 / 25.4  # PDF points in one millimeter
 
@@ -134,9 +135,11 @@ def text_box_style(setting):
 
 
 def stamp_style(setting, signer):
-	"""Return the stamp style of the signature box and the values of its text variables."""
+	"""Return the stamp style of the signature box and the values of its text variables.
+
+	signer is the name that the variable %(signer)s shows."""
 	text_params = {
-		"signer": signer_name(signer),
+		"signer": signer,
 		"reason": setting.reason or "",
 		"location": setting.location or "",
 		"additional": setting.additional or "",
@@ -160,3 +163,36 @@ def stamp_style(setting, signer):
 		return stamp.TextStampStyle(**common), text_params
 	opacity = (setting.background_opacity if setting.background_opacity is not None else 60) / 100
 	return stamp.TextStampStyle(background=background, background_opacity=opacity, **common), text_params
+
+
+def preview_pdf(setting, signer):
+	"""Return a PDF of one blank A4 page with the signature box of the sign setting.
+
+	It uses the same box and style as a signature, but it does not sign. pyHanko fills %(ts)s
+	with the current time."""
+	writer = PdfFileWriter()
+	writer.insert_page(
+		generic.DictionaryObject(
+			{
+				generic.NameObject("/Type"): generic.NameObject("/Page"),
+				generic.NameObject("/MediaBox"): generic.ArrayObject(
+					[generic.NumberObject(value) for value in (0, 0, 595, 842)]
+				),
+				generic.NameObject("/Resources"): generic.DictionaryObject(),
+				generic.NameObject("/Contents"): writer.add_object(generic.StreamObject(stream_data=b"")),
+			}
+		)
+	)
+	preview_setting = frappe._dict(setting.as_dict())
+	preview_setting.page = "First Page"
+	index, (x1, y1, x2, y2) = signature_box(writer, preview_setting)
+	style, text_params = stamp_style(preview_setting, signer)
+	box = layout.BoxConstraints(width=x2 - x1, height=y2 - y1)
+	if isinstance(style, stamp.QRStampStyle):
+		box_stamp = stamp.QRStamp(writer, text_params["url"], style, text_params=text_params, box=box)
+	else:
+		box_stamp = stamp.TextStamp(writer, style, text_params=text_params, box=box)
+	box_stamp.apply(index, x1, y1)
+	output = io.BytesIO()
+	writer.write(output)
+	return output.getvalue()
