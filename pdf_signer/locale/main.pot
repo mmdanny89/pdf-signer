@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PDF Signer VERSION\n"
 "Report-Msgid-Bugs-To: mmdanny89@gmail.com\n"
-"POT-Creation-Date: 2026-11-10 10:21-0631\n"
-"PO-Revision-Date: 2026-11-10 10:21-0631\n"
+"POT-Creation-Date: 2026-11-10 10:59-0631\n"
+"PO-Revision-Date: 2026-11-10 10:59-0631\n"
 "Last-Translator: mmdanny89@gmail.com\n"
 "Language-Team: mmdanny89@gmail.com\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. 'Electronic Sign Setting'
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
 #, python-format
-msgid "100% shows the image or the drawn signature with full color. A lower value makes it lighter, so that the text is easier to read."
+msgid "100% shows the image or the drawn signature with full color. A lower value makes it lighter, so that the text is easier to read. Without text, use 100%."
 msgstr ""
 
 #. Header text in the PDF Signer Workspace
@@ -94,7 +94,7 @@ msgstr ""
 #. Option for the 'Signature Type' (Select) field in DocType 'Electronic Sign
 #. Setting'
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
-#: pdf_signer/public/js/file.js:149
+#: pdf_signer/public/js/file.js:147
 msgid "Approval"
 msgstr ""
 
@@ -163,7 +163,7 @@ msgstr ""
 msgid "Bottom Right"
 msgstr ""
 
-#: pdf_signer/utils/appearance.py:105
+#: pdf_signer/utils/appearance.py:109
 msgid "Box outside the page"
 msgstr ""
 
@@ -265,15 +265,15 @@ msgstr ""
 msgid "Certification: No Changes"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:114
+#: pdf_signer/public/js/file.js:112
 msgid "Certification: form filling and signing allowed"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:115
+#: pdf_signer/public/js/file.js:113
 msgid "Certification: form filling, signing and comments allowed"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:113
+#: pdf_signer/public/js/file.js:111
 msgid "Certification: no changes allowed"
 msgstr ""
 
@@ -281,11 +281,11 @@ msgstr ""
 msgid "Chain of trust"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:133
+#: pdf_signer/public/js/file.js:131
 msgid "Changed after signing"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:59
+#: pdf_signer/public/js/file.js:57
 msgid "Close"
 msgstr ""
 
@@ -294,15 +294,15 @@ msgstr ""
 msgid "Contact Information"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:136
+#: pdf_signer/public/js/file.js:134
 msgid "Correct"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:152
+#: pdf_signer/public/js/file.js:150
 msgid "Coverage"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:135
+#: pdf_signer/public/js/file.js:133
 msgid "Cryptographic check"
 msgstr ""
 
@@ -347,7 +347,7 @@ msgstr ""
 msgid "Distance from the Left (mm)"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:148
+#: pdf_signer/public/js/file.js:146
 msgid "Document time stamp (long-term validation)"
 msgstr ""
 
@@ -423,7 +423,7 @@ msgstr ""
 msgid "Font File"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:108
+#: pdf_signer/public/js/file.js:106
 msgid "Form filling, new signatures and comments after the signature."
 msgstr ""
 
@@ -501,11 +501,11 @@ msgstr ""
 msgid "Important..."
 msgstr ""
 
-#: pdf_signer/public/js/file.js:133
+#: pdf_signer/public/js/file.js:131
 msgid "Intact"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:133
+#: pdf_signer/public/js/file.js:131
 msgid "Integrity"
 msgstr ""
 
@@ -523,7 +523,7 @@ msgid "Is Default"
 msgstr ""
 
 #: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:121
-#: pdf_signer/public/js/file.js:166
+#: pdf_signer/public/js/file.js:164
 msgid "Issuer"
 msgstr ""
 
@@ -570,7 +570,11 @@ msgstr ""
 msgid "Missing certificate"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:153
+#: pdf_signer/utils/appearance.py:189
+msgid "Missing text"
+msgstr ""
+
+#: pdf_signer/public/js/file.js:151
 msgid "Modifications"
 msgstr ""
 
@@ -578,15 +582,15 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:105
+#: pdf_signer/public/js/file.js:103
 msgid "No changes after the signature."
 msgstr ""
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:80
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:84
 msgid "No preview"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:163 pdf_signer/public/js/file.js:169
+#: pdf_signer/public/js/file.js:161 pdf_signer/public/js/file.js:167
 msgid "None"
 msgstr ""
 
@@ -594,7 +598,7 @@ msgstr ""
 msgid "Not checked"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:136
+#: pdf_signer/public/js/file.js:134
 msgid "Not correct"
 msgstr ""
 
@@ -602,7 +606,7 @@ msgstr ""
 msgid "Not permitted"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:142 pdf_signer/public/js/file.js:161
+#: pdf_signer/public/js/file.js:140 pdf_signer/public/js/file.js:159
 msgid "Not trusted"
 msgstr ""
 
@@ -616,7 +620,7 @@ msgstr ""
 msgid "Only enabled settings show in the sign and verify dialogs. Use the buttons of the form to change it."
 msgstr ""
 
-#: pdf_signer/public/js/file.js:107
+#: pdf_signer/public/js/file.js:105
 msgid "Only form filling and new signatures after the signature."
 msgstr ""
 
@@ -626,7 +630,7 @@ msgstr ""
 msgid "Only these users can sign with this setting. Use it for a personal certificate. If you add users, the roles below are not used for signing."
 msgstr ""
 
-#: pdf_signer/public/js/file.js:106
+#: pdf_signer/public/js/file.js:104
 msgid "Only validation data and time stamps were added after the signature."
 msgstr ""
 
@@ -659,7 +663,7 @@ msgstr ""
 msgid "Organization"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:109
+#: pdf_signer/public/js/file.js:107
 msgid "Other changes after the signature."
 msgstr ""
 
@@ -720,7 +724,7 @@ msgstr ""
 msgid "Page Number"
 msgstr ""
 
-#: pdf_signer/utils/appearance.py:67
+#: pdf_signer/utils/appearance.py:71
 msgid "Page not found"
 msgstr ""
 
@@ -764,11 +768,11 @@ msgstr ""
 msgid "Reason"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:126
+#: pdf_signer/public/js/file.js:124
 msgid "Result"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:141
+#: pdf_signer/public/js/file.js:139
 msgid "Revoked certificate"
 msgstr ""
 
@@ -791,7 +795,7 @@ msgid "Roles That Can Verify"
 msgstr ""
 
 #: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:154
-#: pdf_signer/public/js/file.js:170
+#: pdf_signer/public/js/file.js:168
 msgid "SHA-256 fingerprint"
 msgstr ""
 
@@ -800,7 +804,7 @@ msgid "Save the container first. After the save, you can attach the certificate 
 msgstr ""
 
 #: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:153
-#: pdf_signer/public/js/file.js:167
+#: pdf_signer/public/js/file.js:165
 msgid "Serial number"
 msgstr ""
 
@@ -815,7 +819,7 @@ msgstr ""
 msgid "Show a box with the signature on a page. If it is off, the signature is invisible: PDF readers show it only in the signature panel."
 msgstr ""
 
-#: pdf_signer/public/js/utils.js:33
+#: pdf_signer/public/js/utils.js:37
 msgid "Sign Document"
 msgstr ""
 
@@ -824,12 +828,12 @@ msgstr ""
 msgid "Sign Name"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:11 pdf_signer/public/js/file.js:15
-#: pdf_signer/public/js/utils.js:31
+#: pdf_signer/public/js/file.js:9 pdf_signer/public/js/file.js:13
+#: pdf_signer/public/js/utils.js:35
 msgid "Sign PDF"
 msgstr ""
 
-#: pdf_signer/public/js/utils.js:17
+#: pdf_signer/public/js/utils.js:21
 msgid "Sign Setting"
 msgstr ""
 
@@ -865,7 +869,7 @@ msgstr ""
 msgid "Signature not possible"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:165
+#: pdf_signer/public/js/file.js:163
 msgid "Signer"
 msgstr ""
 
@@ -879,11 +883,11 @@ msgstr ""
 msgid "Signing"
 msgstr ""
 
-#: pdf_signer/public/js/utils.js:37
+#: pdf_signer/public/js/utils.js:41
 msgid "Signing the document..."
 msgstr ""
 
-#: pdf_signer/public/js/file.js:154
+#: pdf_signer/public/js/file.js:152
 msgid "Signing time"
 msgstr ""
 
@@ -1046,11 +1050,11 @@ msgstr ""
 msgid "The color of the text."
 msgstr ""
 
-#: pdf_signer/public/js/file.js:101
+#: pdf_signer/public/js/file.js:99
 msgid "The coverage of the signature is not clear."
 msgstr ""
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:60
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:64
 msgid "The date format {0} is not correct."
 msgstr ""
 
@@ -1072,7 +1076,7 @@ msgstr ""
 msgid "The distance in millimeters from the left edge of the page to the left side of the box."
 msgstr ""
 
-#: pdf_signer/utils/appearance.py:52
+#: pdf_signer/utils/appearance.py:56
 msgid "The file {0} does not exist."
 msgstr ""
 
@@ -1084,7 +1088,7 @@ msgstr ""
 msgid "The file {0} is not a PDF."
 msgstr ""
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:70
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:74
 msgid "The font file must be a TTF or OTF file."
 msgstr ""
 
@@ -1143,7 +1147,7 @@ msgstr ""
 msgid "The sign setting is enabled."
 msgstr ""
 
-#: pdf_signer/utils/appearance.py:64
+#: pdf_signer/utils/appearance.py:68
 msgid "The sign setting puts the signature on page {0}, but the PDF has {1} pages."
 msgstr ""
 
@@ -1151,31 +1155,31 @@ msgstr ""
 msgid "The sign setting {0} is disabled."
 msgstr ""
 
-#: pdf_signer/utils/appearance.py:104
+#: pdf_signer/utils/appearance.py:108
 msgid "The signature box does not fit on the page. Make it smaller, or change its position."
 msgstr ""
 
-#: pdf_signer/public/js/file.js:99
+#: pdf_signer/public/js/file.js:97
 msgid "The signature covers its revision. The file has later revisions."
 msgstr ""
 
-#: pdf_signer/public/js/file.js:100
+#: pdf_signer/public/js/file.js:98
 msgid "The signature covers only a part of the file."
 msgstr ""
 
-#: pdf_signer/public/js/file.js:98
+#: pdf_signer/public/js/file.js:96
 msgid "The signature covers the entire file."
 msgstr ""
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:80
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:84
 msgid "The signature is invisible. It does not have a box to show."
 msgstr ""
 
-#: pdf_signer/public/js/file.js:130
+#: pdf_signer/public/js/file.js:128
 msgid "The signature is not valid"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:129
+#: pdf_signer/public/js/file.js:127
 msgid "The signature is valid"
 msgstr ""
 
@@ -1189,12 +1193,20 @@ msgstr ""
 msgid "The size of the text in points."
 msgstr ""
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:56
+#: pdf_signer/utils/appearance.py:189
+msgid "The style Text needs a text."
+msgstr ""
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:49
+msgid "The style Text needs a text. Write the Text, or select another style."
+msgstr ""
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:60
 #, python-format
 msgid "The text has a % sign that is not a variable. Write %% to show a % sign."
 msgstr ""
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:51
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:55
 msgid "The text has an unknown variable: {0}. Use only {1}."
 msgstr ""
 
@@ -1202,7 +1214,7 @@ msgstr ""
 #. Setting'
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
 #, python-format
-msgid "The text of the signature box. You can use these variables: %(signer)s the name of the certificate holder, %(ts)s the date and time of the signature, %(reason)s, %(location)s and %(additional)s."
+msgid "The text of the signature box. You can use these variables: %(signer)s the name of the certificate holder, %(ts)s the date and time of the signature, %(reason)s, %(location)s and %(additional)s. Leave it empty to show only the QR code, the image or the drawn signature."
 msgstr ""
 
 #. Description of the 'QR Code Content' (Small Text) field in DocType
@@ -1227,7 +1239,7 @@ msgstr ""
 msgid "The width of the signature box in millimeters."
 msgstr ""
 
-#: pdf_signer/public/js/file.js:79
+#: pdf_signer/public/js/file.js:77
 msgid "This PDF does not have signatures."
 msgstr ""
 
@@ -1242,7 +1254,7 @@ msgstr ""
 msgid "Time Stamp and Long-Term Validation"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:156
+#: pdf_signer/public/js/file.js:154
 msgid "Time stamp"
 msgstr ""
 
@@ -1264,19 +1276,19 @@ msgstr ""
 msgid "Top Right"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:139
+#: pdf_signer/public/js/file.js:137
 msgid "Trust"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:169
+#: pdf_signer/public/js/file.js:167
 msgid "Trust anchor"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:142 pdf_signer/public/js/file.js:160
+#: pdf_signer/public/js/file.js:140 pdf_signer/public/js/file.js:158
 msgid "Trusted"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:145
+#: pdf_signer/public/js/file.js:143
 msgid "Type"
 msgstr ""
 
@@ -1334,24 +1346,24 @@ msgid "Valid from"
 msgstr ""
 
 #: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:125
-#: pdf_signer/public/js/file.js:168
+#: pdf_signer/public/js/file.js:166
 msgid "Valid until"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:57
+#: pdf_signer/public/js/file.js:55
 msgid "Verification Result"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:44
+#: pdf_signer/public/js/file.js:42
 msgid "Verify Signatures"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:22 pdf_signer/public/js/file.js:26
-#: pdf_signer/public/js/file.js:42
+#: pdf_signer/public/js/file.js:20 pdf_signer/public/js/file.js:24
+#: pdf_signer/public/js/file.js:40
 msgid "Verify Signed PDF"
 msgstr ""
 
-#: pdf_signer/public/js/file.js:54
+#: pdf_signer/public/js/file.js:52
 msgid "Verifying the signatures..."
 msgstr ""
 
@@ -1382,7 +1394,7 @@ msgstr ""
 msgid "Wrong extension"
 msgstr ""
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:78
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:82
 msgid "You cannot change sign settings."
 msgstr ""
 
@@ -1402,7 +1414,7 @@ msgstr ""
 msgid "{0} days left"
 msgstr ""
 
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:66
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:70
 msgid "{0} must be a color like #1F3A93."
 msgstr ""
 

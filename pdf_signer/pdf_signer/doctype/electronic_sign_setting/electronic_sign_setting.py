@@ -44,6 +44,10 @@ class ElectronicSignSetting(Document):
 			frappe.throw(_("Give the distance from the left and from the bottom for a custom position."))
 
 	def validate_text(self):
+		if not (self.stamp_text or "").strip():
+			if self.stamp_style == "Text":
+				frappe.throw(_("The style Text needs a text. Write the Text, or select another style."))
+			return
 		try:
 			self.stamp_text % {name: "" for name in (*STAMP_TEXT_VARIABLES, "ts")}
 		except KeyError as e:

@@ -28,6 +28,10 @@ POSITIONS = {
 	"Top Right": ("right", "top"),
 }
 
+CENTERED = layout.SimpleBoxLayoutRule(
+	x_align=layout.AxisAlignment.ALIGN_MID, y_align=layout.AxisAlignment.ALIGN_MID
+)
+
 QR_POSITIONS = {
 	"Left of Text": stamp.QRPosition.LEFT_OF_TEXT,
 	"Right of Text": stamp.QRPosition.RIGHT_OF_TEXT,
@@ -124,6 +128,20 @@ def handwritten_image(setting):
 	red, green, blue = (round(v * 255) for v in hex_to_rgb(setting.handwritten_color) or (0, 0, 0))
 	colored = Image.new("RGBA", drawing.size, (red, green, blue, 255))
 	colored.putalpha(alpha)
+	# The PNG is the whole drawing pad. Keep only the lines, with a small margin, so that
+	# the signature fills the box.
+	bbox = alpha.getbbox()
+	if bbox:
+		margin = 4
+		left, top, right, bottom = bbox
+		colored = colored.crop(
+			(
+				max(left - margin, 0),
+				max(top - margin, 0),
+				min(right + margin, drawing.width),
+				min(bottom + margin, drawing.height),
+			)
+		)
 	return colored
 
 
@@ -145,23 +163,37 @@ def stamp_style(setting, signer):
 		"additional": setting.additional or "",
 		"url": setting.qr_content or setting.additional or get_url(),
 	}
-	common = {
-		"stamp_text": setting.stamp_text,
-		"timestamp_format": setting.timestamp_format or "%d/%m/%Y %H:%M:%S %Z",
-		"text_box_style": text_box_style(setting),
+	has_text = bool((setting.stamp_text or "").strip())
+	border = {
 		"border_width": int(setting.border_width or 0),
 		"border_color": hex_to_rgb(setting.border_color),
 	}
+	common = {
+		"stamp_text": setting.stamp_text if has_text else "",
+		"timestamp_format": setting.timestamp_format or "%d/%m/%Y %H:%M:%S %Z",
+		"text_box_style": text_box_style(setting),
+		**border,
+	}
 	if setting.stamp_style == "Text and QR Code":
-		# pyHanko puts the "url" text parameter in the QR code.
-		return stamp.QRStampStyle(qr_position=QR_POSITIONS[setting.qr_position], **common), text_params
+		# pyHanko puts the "url" text parameter in the QR code. Without text, the QR code is centered.
+		layout_rule = None if has_text else CENTERED
+		return stamp.QRStampStyle(
+			qr_position=QR_POSITIONS[setting.qr_position], inner_content_layout=layout_rule, **common
+		), text_params
 	if setting.stamp_style == "Background Image":
 		background = images.PdfImage(file_url_path(setting.bg_image))
 	elif setting.stamp_style == "Handwritten Signature":
 		background = images.PdfImage(handwritten_image(setting))
 	else:
+		if not has_text:
+			frappe.throw(_("The style Text needs a text."), title=_("Missing text"))
 		return stamp.TextStampStyle(**common), text_params
 	opacity = (setting.background_opacity if setting.background_opacity is not None else 60) / 100
+	if not has_text:
+		# Only the image or the drawn signature, centered in the box.
+		return stamp.StaticStampStyle(
+			background=background, background_opacity=opacity, **border
+		), text_params
 	return stamp.TextStampStyle(background=background, background_opacity=opacity, **common), text_params
 
 
@@ -188,11 +220,7 @@ def preview_pdf(setting, signer):
 	index, (x1, y1, x2, y2) = signature_box(writer, preview_setting)
 	style, text_params = stamp_style(preview_setting, signer)
 	box = layout.BoxConstraints(width=x2 - x1, height=y2 - y1)
-	if isinstance(style, stamp.QRStampStyle):
-		box_stamp = stamp.QRStamp(writer, text_params["url"], style, text_params=text_params, box=box)
-	else:
-		box_stamp = stamp.TextStamp(writer, style, text_params=text_params, box=box)
-	box_stamp.apply(index, x1, y1)
+	style.create_stamp(writer, box, dict(text_params)).apply(index, x1, y1)
 	output = io.BytesIO()
 	writer.write(output)
 	return output.getvalue()

@@ -181,13 +181,13 @@ For a drawn signature, **Handwritten Signature Color** sets its color in the PDF
 
 | Field | Default | Use |
 |---|---|---|
-| Text | `Signed by: %(signer)s` / `Date: %(ts)s` / `%(additional)s` | The text of the box, one line for each line of the field. |
+| Text | `Signed by: %(signer)s` / `Date: %(ts)s` / `%(additional)s` | The text of the box, one line for each line of the field. Optional, except with the style Text. |
 | Additional Text | | The value of `%(additional)s`, for example the name of the company. |
 | Date Format | `%d/%m/%Y %H:%M:%S %Z` | The format of `%(ts)s`. |
 | Font File | | Optional. A TTF or OTF font. |
 | Text Size | 11 | The size of the text in points. |
 | Text Color | #000000 | The color of the text. |
-| Border Width | 0 | The width of the line around the box, in points. 0 gives no border. |
+| Border Width | 0 | The width of the line around the box, in points. 0 gives no border, so the box is not visible. |
 | Border Color | #000000 | The color of the line around the box. |
 
 These variables are available in **Text**:
@@ -199,6 +199,8 @@ These variables are available in **Text**:
 | `%(reason)s`, `%(location)s` | The Reason and the Location of the tab Signature Policy. |
 | `%(additional)s` | The Additional Text. |
 | `%(url)s` | The content of the QR code. |
+
+**Text** is optional, except with the style Text. If it is empty, the box shows only the QR code, the image or the drawn signature, centered. For an image or a drawn signature without text, set **Background Opacity** to 100%. The app cuts the empty area around a drawn signature, so that the signature fills the box.
 
 The default text is in English. To have the text in Spanish, change it, for example to `Firmado por: %(signer)s`. To show a % sign, write `%%`. The form stops the save if the text has an unknown variable.
 

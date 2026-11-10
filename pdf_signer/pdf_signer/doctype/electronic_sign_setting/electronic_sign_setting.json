@@ -383,7 +383,7 @@
   {
    "default": "60",
    "depends_on": "eval:[\"Background Image\", \"Handwritten Signature\"].includes(doc.stamp_style)",
-   "description": "100% shows the image or the drawn signature with full color. A lower value makes it lighter, so that the text is easier to read.",
+   "description": "100% shows the image or the drawn signature with full color. A lower value makes it lighter, so that the text is easier to read. Without text, use 100%.",
    "fieldname": "background_opacity",
    "fieldtype": "Percent",
    "label": "Background Opacity"
@@ -396,11 +396,11 @@
   },
   {
    "default": "Signed by: %(signer)s\nDate: %(ts)s\n%(additional)s",
-   "description": "The text of the signature box. You can use these variables: %(signer)s the name of the certificate holder, %(ts)s the date and time of the signature, %(reason)s, %(location)s and %(additional)s.",
+   "description": "The text of the signature box. You can use these variables: %(signer)s the name of the certificate holder, %(ts)s the date and time of the signature, %(reason)s, %(location)s and %(additional)s. Leave it empty to show only the QR code, the image or the drawn signature.",
    "fieldname": "stamp_text",
    "fieldtype": "Small Text",
    "label": "Text",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.visible_signature && doc.stamp_style == \"Text\""
   },
   {
    "description": "A text for the variable %(additional)s, for example the name of the company.",
@@ -457,7 +457,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-11-10 17:00:00.000000",
+ "modified": "2026-11-10 19:00:00.000000",
  "modified_by": "Administrator",
  "module": "Pdf Signer",
  "name": "Electronic Sign Setting",

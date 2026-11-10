@@ -68,6 +68,10 @@ The preview uses the same code as the signature to calculate the box and the sty
 
 After a change in `utils.js`, run `bench build --app pdf_signer`. `bench migrate` does not build the bundle, and the browser keeps the old bundle until the build.
 
+## Box without text
+
+A signature box can show only the QR code, the image or the drawn signature. Without text, the app uses `StaticStampStyle` of pyHanko for an image or a drawn signature, and a `QRStampStyle` with an empty text and a centered layout for the QR code. The style Text needs a text, because the box is empty without it. The preview uses `create_stamp` of the style, so it shows every style as the signature does.
+
 ## Translations
 
 All the texts of the app are in English, and `pdf_signer/locale/es.po` has their translation to Spanish of Spain (es-ES), with usted. The default text of the signature box is in English, because a field default cannot be translated. The user changes the text in the sign setting.
