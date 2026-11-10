@@ -63,18 +63,24 @@ The signature includes the CA root and the intermediate CAs of the container. Th
 
 ### Check the certificate
 
-After you save the container, the form shows two buttons:
+After you save the container, the form checks the certificate each time that you open it.
 
-- **View Certificate Info** shows the name, the country, the city and the expiration date of the certificate.
-- **Verify Chain** checks the certificate against the CA root and the intermediate CAs.
+The header of the form shows the state of the chain:
 
-**Verify Chain** gives one of these results:
-
-| Result | Meaning |
+| Color | Meaning |
 |---|---|
-| This chain match! | The full chain is correct. |
-| This chain match partial! | The CA root is correct, but the chain is not complete. Add the missing intermediate CAs. |
-| This chain not match! | The certificate does not come from this CA. |
+| Green | The chain is valid. It ends in the CA root of the container, and every certificate is valid now. |
+| Orange | The container has no CA root, so the app cannot check the chain. |
+| Red | The chain is not valid, or the app cannot read the certificate. The header tells you why, for example a wrong passphrase, a missing intermediate CA or an expired certificate. |
+
+The first tab shows the data of the certificate:
+
+- **Holder**: the name, the organization, the unit, the identifier, the place and the email.
+- **Issuer**: the certificate authority, and the dates from which and until which the certificate is valid.
+- **Chain of trust**: the state of the chain, and its certificates from the certificate to the CA root.
+- **Identification**: the serial number and the SHA-256 fingerprint.
+
+A badge shows if the certificate is valid, expires in 30 days or less, has expired, or is not valid yet.
 
 ## Create a sign setting
 

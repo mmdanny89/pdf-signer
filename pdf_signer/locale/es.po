@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PDF Signer 16\n"
 "Report-Msgid-Bugs-To: mmdanny89@gmail.com\n"
-"POT-Creation-Date: 2026-11-10 10:02-0831\n"
-"PO-Revision-Date: 2026-11-10 09:48-1329\n"
+"POT-Creation-Date: 2026-11-10 10:14-0831\n"
+"PO-Revision-Date: 2026-11-10 09:48-1529\n"
 "Last-Translator: mmdanny89@gmail.com\n"
 "Language: es\n"
 "Language-Team: es-ES\n"
@@ -109,20 +109,6 @@ msgstr ""
 "Correo electrónico o teléfono de contacto del firmante. Los lectores de PDF "
 "lo muestran en el panel de firmas."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:93
-msgid ""
-"An intermediate CA cannot be read. Use DER format with the extension .cer, "
-"or PEM format with the extension .crt."
-msgstr ""
-"No se puede leer una CA intermedia. Use el formato DER con la extensión .cer"
-" o el formato PEM con la extensión .crt."
-
-#: pdf_signer/utils/openssl_doctype_tools.py:100
-msgid "An intermediate CA file was not found. Contact the administrator."
-msgstr ""
-"No se ha encontrado el fichero de una CA intermedia. Póngase en contacto con"
-" el administrador."
-
 #. Label of the appearance_tab (Tab Break) field in DocType 'Electronic Sign
 #. Setting'
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
@@ -153,11 +139,19 @@ msgstr ""
 "campos del formulario y firmar. Un PDF solo puede tener una firma de "
 "certificación, y debe ser la primera."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:49
-msgid "Attach the CA root or the intermediate CAs to verify the certificate chain."
+#: pdf_signer/utils/certificate.py:91
+msgid "Attach the CA root in the tab Certificate Authority (CA) to check the chain."
 msgstr ""
-"Adjunte la CA raíz o las CA intermedias para verificar la cadena del "
-"certificado."
+"Adjunte la CA raíz en la pestaña Autoridad de certificación (CA) para "
+"comprobar la cadena."
+
+#: pdf_signer/utils/certificate.py:65
+msgid "Attach the certificate file in the tab Certificate Settings."
+msgstr "Adjunte el fichero del certificado en la pestaña Certificado."
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:122
+msgid "Authority"
+msgstr "Autoridad"
 
 #. Option for the 'Style' (Select) field in DocType 'Electronic Sign Setting'
 #. Label of the bg_image (Attach Image) field in DocType 'Electronic Sign
@@ -171,10 +165,6 @@ msgstr "Imagen de fondo"
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
 msgid "Background Opacity"
 msgstr "Opacidad del fondo"
-
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:40
-msgid "Before you add a certificate"
-msgstr "Antes de añadir un certificado"
 
 #. Option for the 'QR Code Position' (Select) field in DocType 'Electronic Sign
 #. Setting'
@@ -214,11 +204,22 @@ msgstr "Abajo a la derecha"
 msgid "Box outside the page"
 msgstr "Recuadro fuera de la página"
 
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:144
+msgid "CA"
+msgstr "CA"
+
 #. Label of the ca_interm (Attach) field in DocType 'Certificate Authority
 #. Intermediarie'
 #: pdf_signer/pdf_signer/doctype/certificate_authority_intermediarie/certificate_authority_intermediarie.json
 msgid "CA Intermediarie"
 msgstr "CA intermedia"
+
+#. Label of the cert_info_section (Section Break) field in DocType 'Certificate
+#. Container'
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:144
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
+msgid "Certificate"
+msgstr "Certificado"
 
 #. Label of the certificate_authority_ca_tab (Tab Break) field in DocType
 #. 'Certificate Container'
@@ -261,7 +262,8 @@ msgstr "Nombre del contenedor"
 msgid "Certificate File"
 msgstr "Fichero del certificado"
 
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:82
+#. Label of the cert_info (HTML) field in DocType 'Certificate Container'
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
 msgid "Certificate Info"
 msgstr "Datos del certificado"
 
@@ -312,13 +314,13 @@ msgstr "Certificación: se permite rellenar formularios, firmar y comentar"
 msgid "Certification: no changes allowed"
 msgstr "Certificación: no se permiten cambios"
 
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:129
+msgid "Chain of trust"
+msgstr "Cadena de confianza"
+
 #: pdf_signer/public/js/file.js:133
 msgid "Changed after signing"
 msgstr "Modificado después de firmar"
-
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:70
-msgid "City"
-msgstr "Ciudad"
 
 #: pdf_signer/public/js/file.js:59
 msgid "Close"
@@ -332,10 +334,6 @@ msgstr "Información de contacto"
 #: pdf_signer/public/js/file.js:136
 msgid "Correct"
 msgstr "Correcta"
-
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:69
-msgid "Country"
-msgstr "País"
 
 #: pdf_signer/public/js/file.js:152
 msgid "Coverage"
@@ -416,6 +414,10 @@ msgstr "Perfil de firma electrónica"
 msgid "Electronic Sign Setting User"
 msgstr "Usuario del perfil de firma electrónica"
 
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:117
+msgid "Email"
+msgstr "Correo electrónico"
+
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:18
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:22
 msgid "Enable Sign Setting"
@@ -425,27 +427,17 @@ msgstr "Activar perfil de firma"
 msgid "Enabled"
 msgstr "Activado"
 
-#: pdf_signer/utils/openssl_doctype_tools.py:50
-#: pdf_signer/utils/openssl_doctype_tools.py:62
-#: pdf_signer/utils/openssl_doctype_tools.py:66
-#: pdf_signer/utils/openssl_doctype_tools.py:71
-#: pdf_signer/utils/openssl_doctype_tools.py:79
-#: pdf_signer/utils/openssl_doctype_tools.py:83
-#: pdf_signer/utils/openssl_doctype_tools.py:88
-#: pdf_signer/utils/openssl_doctype_tools.py:96
-#: pdf_signer/utils/openssl_doctype_tools.py:101
-#: pdf_signer/utils/openssl_doctype_tools.py:106
-#: pdf_signer/utils/openssl_doctype_tools.py:111
-#: pdf_signer/utils/openssl_doctype_tools.py:113
-#: pdf_signer/utils/openssl_doctype_tools.py:142
-#: pdf_signer/utils/openssl_doctype_tools.py:146
-#: pdf_signer/utils/openssl_doctype_tools.py:150
-msgid "Error"
-msgstr "Error"
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:66
+msgid "Expired"
+msgstr "Caducado"
 
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:71
-msgid "Expiration Date"
-msgstr "Fecha de caducidad"
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:106
+msgid "Expired {0} days ago"
+msgstr "Caducó hace {0} días"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:65
+msgid "Expires soon"
+msgstr "Caduca pronto"
 
 #. Label of the file_signed (Link) field in DocType 'PDF Signer Documents
 #. Signed'
@@ -523,10 +515,22 @@ msgstr "Color de la firma manuscrita"
 msgid "Height (mm)"
 msgstr "Alto (mm)"
 
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:111
+msgid "Holder"
+msgstr "Titular"
+
 #. Label of a Sidebar Item
 #: pdf_signer/pdf_signer/sidebar/pdf_signer/pdf_signer.json
 msgid "Home"
 msgstr "Inicio"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:152
+msgid "Identification"
+msgstr "Identificación"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:115
+msgid "Identifier"
+msgstr "Identificador"
 
 #: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:6
 msgid "Important"
@@ -550,11 +554,16 @@ msgstr "Integridad"
 msgid "Invalid certificate"
 msgstr "Certificado no válido"
 
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:73
+msgid "Invalid chain"
+msgstr "Cadena no válida"
+
 #. Label of the is_default (Check) field in DocType 'Electronic Sign Setting'
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
 msgid "Is Default"
 msgstr "Predeterminado"
 
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:121
 #: pdf_signer/public/js/file.js:166
 msgid "Issuer"
 msgstr "Emisor"
@@ -608,7 +617,7 @@ msgstr "Falta el certificado"
 msgid "Modifications"
 msgstr "Modificaciones"
 
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:68
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:112
 msgid "Name"
 msgstr "Nombre"
 
@@ -624,6 +633,10 @@ msgstr "Sin vista previa"
 msgid "None"
 msgstr "Ninguno"
 
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:72
+msgid "Not checked"
+msgstr "Sin comprobar"
+
 #: pdf_signer/public/js/file.js:136
 msgid "Not correct"
 msgstr "Incorrecta"
@@ -635,6 +648,10 @@ msgstr "No permitido"
 #: pdf_signer/public/js/file.js:142 pdf_signer/public/js/file.js:161
 msgid "Not trusted"
 msgstr "No es de confianza"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:67
+msgid "Not valid yet"
+msgstr "Aún no es válido"
 
 #. Description of the 'Status' (Data) field in DocType 'Electronic Sign
 #. Setting'
@@ -704,6 +721,11 @@ msgstr "Opcional. La contraseña, si la TSA la pide."
 msgid "Optional. The user, if the TSA needs one."
 msgstr "Opcional. El usuario, si la TSA lo pide."
 
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:113
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:123
+msgid "Organization"
+msgstr "Organización"
+
 #: pdf_signer/public/js/file.js:109
 msgid "Other changes after the signature."
 msgstr "Hay otros cambios después de la firma."
@@ -769,14 +791,14 @@ msgstr "Número de página"
 msgid "Page not found"
 msgstr "Página no encontrada"
 
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:100
-msgid "Partial Chain"
-msgstr "Cadena incompleta"
-
 #. Label of the passphrase (Password) field in DocType 'Certificate Container'
 #: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
 msgid "Passphrase"
 msgstr "Contraseña"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:116
+msgid "Place"
+msgstr "Lugar"
 
 #. Label of the position (Select) field in DocType 'Electronic Sign Setting'
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
@@ -835,11 +857,12 @@ msgstr "Roles que pueden firmar"
 msgid "Roles That Can Verify"
 msgstr "Roles que pueden verificar"
 
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:154
 #: pdf_signer/public/js/file.js:170
 msgid "SHA-256 fingerprint"
 msgstr "Huella SHA-256"
 
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:42
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:41
 msgid ""
 "Save the container first. After the save, you can attach the certificate and"
 " the certificates of the CA."
@@ -847,6 +870,7 @@ msgstr ""
 "Guarde primero el contenedor. Después podrá adjuntar el certificado y los "
 "certificados de la CA."
 
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:153
 #: pdf_signer/public/js/file.js:167
 msgid "Serial number"
 msgstr "Número de serie"
@@ -1010,27 +1034,11 @@ msgstr ""
 "fondo: el texto sobre una imagen. Firma manuscrita: el texto sobre una firma"
 " que usted dibuja."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:76
-msgid ""
-"The CA root cannot be read. Use DER format with the extension .cer, or PEM "
-"format with the extension .crt."
+#: pdf_signer/utils/certificate.py:115
+msgid "The CA files cannot be read. Use DER (.cer) or PEM (.crt) files."
 msgstr ""
-"No se puede leer la CA raíz. Use el formato DER con la extensión .cer o el "
-"formato PEM con la extensión .crt."
-
-#: pdf_signer/utils/openssl_doctype_tools.py:83
-msgid "The CA root file was not found. Contact the administrator."
-msgstr ""
-"No se ha encontrado el fichero de la CA raíz. Póngase en contacto con el "
-"administrador."
-
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:97
-msgid ""
-"The CA root is correct, but the chain is not complete. Add the missing "
-"intermediate CAs."
-msgstr ""
-"La CA raíz es correcta, pero la cadena no está completa. Añada las CA "
-"intermedias que faltan."
+"No se pueden leer los ficheros de la CA. Use ficheros DER (.cer) o PEM "
+"(.crt)."
 
 #: pdf_signer/utils/sign.py:77
 msgid ""
@@ -1074,39 +1082,23 @@ msgstr ""
 "La URL de la autoridad de sellado de tiempo debe empezar por http:// o "
 "https://."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:105
-msgid "The app cannot open an intermediate CA file. Contact the administrator."
-msgstr ""
-"La aplicación no puede abrir el fichero de una CA intermedia. Póngase en "
-"contacto con el administrador."
-
-#: pdf_signer/utils/openssl_doctype_tools.py:87
-msgid "The app cannot open the CA root file. Contact the administrator."
-msgstr ""
-"La aplicación no puede abrir el fichero de la CA raíz. Póngase en contacto "
-"con el administrador."
-
-#: pdf_signer/utils/openssl_doctype_tools.py:70
-#: pdf_signer/utils/openssl_doctype_tools.py:150
-msgid "The app cannot open the certificate file. Contact the administrator."
-msgstr ""
-"La aplicación no puede abrir el fichero del certificado. Póngase en contacto"
-" con el administrador."
-
 #. Description of the 'Algorithm' (Select) field in DocType 'Electronic Sign
 #. Setting'
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
 msgid "The app makes PAdES signatures, the standard for signed PDF files."
 msgstr "La aplicación genera firmas PAdES, el estándar de firma de ficheros PDF."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:61
-#: pdf_signer/utils/openssl_doctype_tools.py:141
+#: pdf_signer/utils/certificate.py:74
 msgid ""
 "The certificate cannot be read. Check the certificate file and the "
 "passphrase."
 msgstr ""
 "No se puede leer el certificado. Compruebe el fichero del certificado y la "
 "contraseña."
+
+#: pdf_signer/utils/certificate.py:119
+msgid "The certificate chain is valid."
+msgstr "La cadena del certificado es válida."
 
 #: pdf_signer/utils/api.py:63
 msgid "The certificate container {0} does not have a CA root file."
@@ -1116,16 +1108,9 @@ msgstr "El contenedor de certificados {0} no tiene fichero de CA raíz."
 msgid "The certificate container {0} does not have a certificate file."
 msgstr "El contenedor de certificados {0} no tiene fichero de certificado."
 
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:105
-msgid "The certificate does not come from this CA. Correct the chain."
-msgstr "El certificado no procede de esta CA. Corrija la cadena."
-
-#: pdf_signer/utils/openssl_doctype_tools.py:66
-#: pdf_signer/utils/openssl_doctype_tools.py:146
-msgid "The certificate file was not found. Contact the administrator."
-msgstr ""
-"No se ha encontrado el fichero del certificado. Póngase en contacto con el "
-"administrador."
+#: pdf_signer/utils/certificate.py:77
+msgid "The certificate file does not contain a certificate."
+msgstr "El fichero no contiene ningún certificado."
 
 #: pdf_signer/utils/sign.py:60
 msgid ""
@@ -1135,9 +1120,17 @@ msgstr ""
 "No se puede abrir el certificado de {0}. Compruebe el fichero del "
 "certificado y la contraseña."
 
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:94
-msgid "The chain is correct."
-msgstr "La cadena es correcta."
+#: pdf_signer/utils/certificate.py:106
+msgid ""
+"The chain is not valid: the certificate does not come from the CA root of "
+"the container, or an intermediate CA is missing."
+msgstr ""
+"La cadena no es válida: el certificado no procede de la CA raíz del "
+"contenedor o falta una CA intermedia."
+
+#: pdf_signer/utils/certificate.py:111
+msgid "The chain is not valid: {0}"
+msgstr "La cadena no es válida: {0}"
 
 #. Description of the 'Handwritten Signature Color' (Color) field in DocType
 #. 'Electronic Sign Setting'
@@ -1390,14 +1383,6 @@ msgstr "Ancho del recuadro de firma en milímetros."
 msgid "This PDF does not have signatures."
 msgstr "Este PDF no tiene firmas."
 
-#: pdf_signer/utils/openssl_doctype_tools.py:113
-msgid "This container does not exist."
-msgstr "Este contenedor no existe."
-
-#: pdf_signer/utils/openssl_doctype_tools.py:111
-msgid "This container does not have a certificate file."
-msgstr "Este contenedor no tiene fichero de certificado."
-
 #. Label of the tsa_url (Data) field in DocType 'Electronic Sign Setting'
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
 msgid "Time Stamp Authority URL"
@@ -1446,6 +1431,10 @@ msgstr "De confianza"
 #: pdf_signer/public/js/file.js:145
 msgid "Type"
 msgstr "Tipo"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:114
+msgid "Unit"
+msgstr "Unidad"
 
 #: pdf_signer/utils/permission.py:77
 msgid "Unknown purpose: {0}"
@@ -1503,26 +1492,26 @@ msgstr ""
 "perfil. Si se deja vacío, puede verificar cualquier usuario que pueda leer "
 "el PDF."
 
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:64
+msgid "Valid"
+msgstr "Vigente"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:71
+msgid "Valid chain"
+msgstr "Cadena válida"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:124
+msgid "Valid from"
+msgstr "Válido desde"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:125
 #: pdf_signer/public/js/file.js:168
 msgid "Valid until"
 msgstr "Válido hasta"
 
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:106
-msgid "Verification Error"
-msgstr "Error de verificación"
-
 #: pdf_signer/public/js/file.js:57
 msgid "Verification Result"
 msgstr "Resultado de la verificación"
-
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:94
-msgid "Verification Success"
-msgstr "Verificación correcta"
-
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:54
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:55
-msgid "Verify Chain"
-msgstr "Verificar cadena"
 
 #: pdf_signer/public/js/file.js:44
 msgid "Verify Signatures"
@@ -1536,11 +1525,6 @@ msgstr "Verificar PDF firmado"
 #: pdf_signer/public/js/file.js:54
 msgid "Verifying the signatures..."
 msgstr "Verificando las firmas..."
-
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:49
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:51
-msgid "View Certificate Info"
-msgstr "Ver datos del certificado"
 
 #. Label of the visible_signature (Check) field in DocType 'Electronic Sign
 #. Setting'
@@ -1592,6 +1576,10 @@ msgstr "No puede verificar con el perfil de firma {0}."
 #: pdf_signer/utils/api.py:16
 msgid "You do not have the permission to use the file {0}."
 msgstr "No tiene permiso para usar el fichero {0}."
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:105
+msgid "{0} days left"
+msgstr "Quedan {0} días"
 
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:66
 msgid "{0} must be a color like #1F3A93."

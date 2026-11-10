@@ -10,8 +10,7 @@
 | `pdf_signer/utils/api.py` | Whitelisted methods to check, sign and verify a PDF |
 | `pdf_signer/utils/sign.py` | Signature, signature policy and validation with pyHanko |
 | `pdf_signer/utils/appearance.py` | Signature box: page, position, style, QR code, colors and font |
-| `pdf_signer/utils/openssl.py` | Certificate load, chain check and certificate details |
-| `pdf_signer/utils/openssl_doctype_tools.py` | Error messages of the chain check and of the certificate details |
+| `pdf_signer/utils/certificate.py` | Data of the certificate of a container and the state of its chain, for the form of the container |
 | `pdf_signer/utils/permission.py` | Access of the sign settings, the query of the dialogs and the permission of the apps screen |
 | `pdf_signer/patches/v16_0/` | Patches that move the old fields of the sign settings to the new fields |
 | `pdf_signer/public/js/file.js` | Buttons and dialogs of the File form |

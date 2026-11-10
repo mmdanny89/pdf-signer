@@ -34,84 +34,160 @@ frappe.ui.form.on("Certificate Container", {
 			)
 		);
 	},
-	refresh(frm) {
+	async refresh(frm) {
+		frm.set_intro("");
 		if (frm.is_new()) {
-			frappe.msgprint({
-				title: __("Before you add a certificate"),
-				indicator: "blue",
-				message: __(
+			frm.set_intro(
+				__(
 					"Save the container first. After the save, you can attach the certificate and the certificates of the CA."
 				),
-			});
+				"blue"
+			);
 			return;
 		}
-		if (!frm.doc.cert_file) return;
-		frm.add_custom_button(__("View Certificate Info"), () => show_certificate_info(frm)).each(
-			function () {
-				frappe.ui.button.dress(this, { label: __("View Certificate Info"), icon: "info" });
-			}
-		);
-		frm.add_custom_button(__("Verify Chain"), () => verify_chain(frm)).each(function () {
-			frappe.ui.button.dress(this, { label: __("Verify Chain"), icon: "link" });
+		const r = await frappe.call({
+			method: "pdf_signer.utils.certificate.certificate_summary",
+			args: { name: frm.docname },
 		});
+		const info = r.message || {};
+		const chain = info.chain || {};
+		const header = info.success
+			? { valid: "green", no_ca: "orange", invalid: "red" }[chain.state]
+			: "red";
+		frm.set_intro("");
+		frm.set_intro(frappe.utils.escape_html(info.success ? chain.message : info.error), header);
+		frm.set_df_property("cert_info", "options", certificate_html(info));
 	},
 });
 
-function show_certificate_info(frm) {
-	frappe.call({
-		method: "pdf_signer.pdf_signer.doctype.certificate_container.api.cert_details",
-		args: { name: frm.docname },
-		callback(r) {
-			if (r.message.errno !== 0) return;
-			const esc = (value) => frappe.utils.escape_html(value || "");
-			const rows = [
-				["user", __("Name"), r.message.name],
-				["flag", __("Country"), r.message.country],
-				["map-pin", __("City"), r.message.city],
-				["calendar", __("Expiration Date"), r.message.expire],
-			];
-			frappe.msgprint(
-				rows
-					.map(
-						([icon, label, value]) =>
-							`${frappe.utils.icon(icon, "sm")} ${label}: <strong>${esc(
-								value
-							)}</strong>`
-					)
-					.join("<br>"),
-				__("Certificate Info")
-			);
-		},
-	});
+const CERT_VALIDITY = {
+	valid: { label: __("Valid"), theme: "green", icon: "badge-check" },
+	expiring: { label: __("Expires soon"), theme: "orange", icon: "clock-alert" },
+	expired: { label: __("Expired"), theme: "red", icon: "badge-x" },
+	not_yet_valid: { label: __("Not valid yet"), theme: "orange", icon: "clock" },
+};
+
+const CHAIN_STATES = {
+	valid: { label: __("Valid chain"), theme: "green", icon: "circle-check" },
+	no_ca: { label: __("Not checked"), theme: "orange", icon: "triangle-alert" },
+	invalid: { label: __("Invalid chain"), theme: "red", icon: "circle-x" },
+};
+
+function cert_row(label, value, mono = false) {
+	if (!value) return "";
+	return `<div class="ps-cert-row">
+		<div class="ps-cert-label">${frappe.utils.escape_html(label)}</div>
+		<div class="ps-cert-value ${mono ? "ps-cert-mono" : ""}">${frappe.utils.escape_html(value)}</div>
+	</div>`;
 }
 
-function verify_chain(frm) {
-	frappe.call({
-		method: "pdf_signer.pdf_signer.doctype.certificate_container.api.verify_chain",
-		args: { name_container: frm.docname },
-		callback(r) {
-			const results = {
-				0: ["circle-check", __("The chain is correct."), __("Verification Success")],
-				1: [
-					"triangle-alert",
-					__(
-						"The CA root is correct, but the chain is not complete. Add the missing intermediate CAs."
-					),
-					__("Partial Chain"),
-				],
-			};
-			const [icon, message, title] = results[r.message.code] || [
-				"circle-x",
-				__("The certificate does not come from this CA. Correct the chain."),
-				__("Verification Error"),
-			];
-			frappe.msgprint(
-				`<p class="text-center">${frappe.utils.icon(
-					icon,
+function cert_card(icon, title, body, wide = false) {
+	return `<div class="ps-cert-card ${wide ? "ps-cert-wide" : ""}">
+		<div class="ps-cert-card-title">${frappe.utils.icon(icon, "sm")} ${title}</div>
+		${body}
+	</div>`;
+}
+
+function certificate_html(info) {
+	if (!info.success) {
+		return `<div class="text-muted text-center p-4">${frappe.utils.icon(
+			"triangle-alert",
+			"lg"
+		)}
+			<p class="mt-2 mb-0">${frappe.utils.escape_html(info.error || "")}</p></div>`;
+	}
+	const e = frappe.utils.escape_html;
+	const subject = info.subject;
+	const validity = CERT_VALIDITY[info.validity.state] || CERT_VALIDITY.valid;
+	const chain = CHAIN_STATES[info.chain.state] || CHAIN_STATES.invalid;
+	const days =
+		info.validity.days_left >= 0
+			? __("{0} days left", [info.validity.days_left])
+			: __("Expired {0} days ago", [-info.validity.days_left]);
+	const place = [subject.locality, subject.state, subject.country].filter(Boolean).join(", ");
+
+	const holder_card = cert_card(
+		"user-round",
+		__("Holder"),
+		cert_row(__("Name"), subject.common_name) +
+			cert_row(__("Organization"), subject.organization) +
+			cert_row(__("Unit"), subject.organizational_unit) +
+			cert_row(__("Identifier"), subject.serial_number, true) +
+			cert_row(__("Place"), place) +
+			cert_row(__("Email"), subject.email)
+	);
+	const issuer_card = cert_card(
+		"landmark",
+		__("Issuer"),
+		cert_row(__("Authority"), info.issuer.common_name) +
+			cert_row(__("Organization"), info.issuer.organization) +
+			cert_row(__("Valid from"), frappe.datetime.str_to_user(info.validity.not_before)) +
+			cert_row(__("Valid until"), frappe.datetime.str_to_user(info.validity.not_after))
+	);
+	const chain_card = cert_card(
+		"link",
+		__("Chain of trust"),
+		`<div class="mb-2">${frappe.ui.badge.html({
+			label: chain.label,
+			theme: chain.theme,
+		})}</div>
+		<div class="small ${info.chain.state === "invalid" ? "text-danger" : "text-muted"}">${e(
+			info.chain.message
+		)}</div>
+		${(info.chain.chain || [])
+			.map(
+				(name, index) => `<div class="ps-cert-link">${frappe.utils.icon(
+					"circle-check",
 					"sm"
-				)} <strong>${message}</strong></p>`,
-				title
-			);
-		},
-	});
+				)}
+					<span>${e(name)}</span> ${frappe.ui.badge.html({
+					label: index === 0 ? __("Certificate") : __("CA"),
+				})}</div>`
+			)
+			.join("")}`,
+		true
+	);
+	const id_card = cert_card(
+		"fingerprint-pattern",
+		__("Identification"),
+		cert_row(__("Serial number"), info.serial, true) +
+			cert_row(__("SHA-256 fingerprint"), info.sha256, true),
+		true
+	);
+
+	return `<style>
+		.ps-cert .icon { margin: 0; flex: none; }
+		.ps-cert-header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between;
+			padding: var(--padding-md, 15px); border: 1px solid var(--border-color); border-radius: var(--border-radius-md, 8px);
+			background: var(--card-bg); margin-bottom: 12px; }
+		.ps-cert-holder { display: flex; gap: 10px; align-items: center; min-width: 0; }
+		.ps-cert-name { font-size: var(--text-lg, 16px); font-weight: 600; overflow-wrap: anywhere; }
+		.ps-cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+		.ps-cert-card { border: 1px solid var(--border-color); border-radius: var(--border-radius-md, 8px);
+			background: var(--card-bg); padding: var(--padding-md, 15px); min-width: 0; }
+		.ps-cert-card-title { display: flex; gap: 6px; align-items: center; font-weight: 600; margin-bottom: 10px; }
+		.ps-cert-row { display: grid; grid-template-columns: minmax(100px, 150px) 1fr; gap: 8px; padding: 3px 0; }
+		.ps-cert-label { color: var(--text-muted); }
+		.ps-cert-value { min-width: 0; overflow-wrap: anywhere; }
+		.ps-cert-mono { font-family: var(--font-family-monospace, monospace); font-size: var(--text-xs, 11px); }
+		.ps-cert-link { display: flex; gap: 6px; align-items: center; padding: 3px 0; }
+		.ps-cert-wide { grid-column: 1 / -1; }
+	</style>
+	<div class="ps-cert">
+		<div class="ps-cert-header">
+			<div class="ps-cert-holder">
+				${frappe.utils.icon(validity.icon, "lg")}
+				<div>
+					<div class="ps-cert-name">${e(subject.common_name || subject.dn)}</div>
+					<div class="text-muted small">${e(info.issuer.common_name || info.issuer.dn)}</div>
+				</div>
+			</div>
+			<div class="text-right">
+				${frappe.ui.badge.html({ label: validity.label, theme: validity.theme })}
+				${frappe.ui.badge.html({ label: chain.label, theme: chain.theme })}
+				<div class="text-muted small mt-1">${e(days)}</div>
+			</div>
+		</div>
+		<div class="ps-cert-grid">${holder_card}${issuer_card}${chain_card}${id_card}</div>
+	</div>`;
 }
