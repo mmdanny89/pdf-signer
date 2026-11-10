@@ -103,16 +103,16 @@ doctype_list_js = {"File": "public/js/file_list.js"}
 # Hook on document methods and events
 
 doc_events = {
-    "File": {
-        "on_update": "pdf_signer.custom_events.doc_events.check_file_uploaded",
-        "on_trash": "pdf_signer.custom_events.doc_events.remove_file_signed",
-        "before_save": "pdf_signer.custom_events.doc_events.validate_extension",
-    }
-    # 	"*": {
-    # 		"on_update": "method",
-    # 		"on_cancel": "method",
-    # 		"on_trash": "method"
-    # 	}
+	"File": {
+		"on_update": "pdf_signer.custom_events.doc_events.check_file_uploaded",
+		"on_trash": "pdf_signer.custom_events.doc_events.remove_file_signed",
+		"before_save": "pdf_signer.custom_events.doc_events.validate_extension",
+	}
+	# 	"*": {
+	# 		"on_update": "method",
+	# 		"on_cancel": "method",
+	# 		"on_trash": "method"
+	# 	}
 }
 
 # Scheduled Tasks

@@ -6,6 +6,6 @@ from frappe.model.document import Document
 
 
 class ElectronicSignSetting(Document):
-    def before_save(self):
-        if len(frappe.db.get_list("Electronic Sign Setting")) == 0:
-            self.is_default = 1
+	def before_save(self):
+		if len(frappe.db.get_list("Electronic Sign Setting")) == 0:
+			self.is_default = 1

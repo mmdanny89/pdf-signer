@@ -6,4 +6,4 @@ from frappe.tests.utils import FrappeTestCase
 
 
 class TestCertificateContainer(FrappeTestCase):
-    pass
+	pass

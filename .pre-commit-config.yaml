@@ -1,19 +1,69 @@
-default_stages: [commit]
+exclude: 'node_modules|.git'
+default_stages: [pre-commit]
 fail_fast: false
 
+
 repos:
--   repo: https://github.com/timothycrosley/isort
-    rev: 5.9.1
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
     hooks:
-      - id: isort
-        entry: bash -c 'isort "$@"; git add -u' --
--   repo: https://github.com/psf/black
-    rev: 22.3.0
+      - id: trailing-whitespace
+        files: "pdf_signer.*"
+        exclude: ".*json$|.*txt$|.*csv|.*md|.*svg"
+      - id: check-merge-conflict
+      - id: check-ast
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+      - id: debug-statements
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.10
     hooks:
-    - id: black
-      language_version: python3.8.10
-      entry: bash -c 'black "$@"; git add -u' --
--   repo: https://gitlab.com/pycqa/flake8
-    rev: 3.9.2
+      - id: ruff
+        name: "Run ruff import sorter"
+        args: ["--select=I", "--fix"]
+
+      - id: ruff
+        name: "Run ruff linter"
+
+      - id: ruff-format
+        name: "Run ruff formatter"
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v2.7.1
     hooks:
-    - id: flake8
+      - id: prettier
+        types_or: [javascript, vue, scss]
+        # Ignore any files that might contain jinja / bundles
+        exclude: |
+            (?x)^(
+                pdf_signer/public/dist/.*|
+                .*node_modules.*|
+                .*boilerplate.*|
+                pdf_signer/templates/includes/.*|
+                pdf_signer/public/js/lib/.*
+            )$
+
+
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.44.0
+    hooks:
+      - id: eslint
+        types_or: [javascript]
+        args: ['--quiet']
+        # Ignore any files that might contain jinja / bundles
+        exclude: |
+            (?x)^(
+                pdf_signer/public/dist/.*|
+                cypress/.*|
+                .*node_modules.*|
+                .*boilerplate.*|
+                pdf_signer/templates/includes/.*|
+                pdf_signer/public/js/lib/.*
+            )$
+
+ci:
+    autoupdate_schedule: weekly
+    skip: []
+    submodules: false
