@@ -107,7 +107,15 @@ Pre-commit uses these tools to check and format the code:
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-_Please refer to the [Wiki Usage](https://github.com/mmdanny89/pdf-signer/wiki/Usage)_
+| Guide | Content |
+|---|---|
+| [Configuration](docs/configuration.md) | Install, certificate containers, sign settings, signature box, global settings |
+| [Signing and verifying](docs/signing.md) | Sign a PDF, sign when you attach a PDF, verify the signatures |
+| [Desk](docs/desk.md) | Apps screen, desktop, dock, sidebar, workspace and icons |
+| [Development](docs/development.md) | Structure, pre-commit, linters, tests and branches |
+| [Decisions](docs/decisions.md) | The decisions of the version for Frappe 16, and the known limits |
+
+For Frappe 14 and 15, refer to the [Wiki Usage](https://github.com/mmdanny89/pdf-signer/wiki/Usage).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
