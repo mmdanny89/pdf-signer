@@ -51,9 +51,9 @@ Use these files:
 
 | Field | Extensions | Format | Privacy |
 |---|---|---|---|
-| Certificate File | .p12, .pfx | PKCS#12 | Private file |
-| Certificate Authority File | .cer, .crt | DER (.cer) or PEM (.crt) | Private file |
-| Intermediate CA | .cer, .crt | DER (.cer) or PEM (.crt) | Private file |
+| Certificate File | .p12, .pfx | PKCS#12 with the certificate and its private key | Private file |
+| Certificate Authority File | .cer, .crt | DER or PEM | Private file |
+| Intermediate CA | .cer, .crt | DER or PEM | Private file |
 
 The app stops the upload if a file is public or if its extension is not in the list.
 

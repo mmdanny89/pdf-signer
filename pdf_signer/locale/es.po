@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PDF Signer 16\n"
 "Report-Msgid-Bugs-To: mmdanny89@gmail.com\n"
-"POT-Creation-Date: 2026-11-10 10:14-0831\n"
-"PO-Revision-Date: 2026-11-10 09:48-1529\n"
+"POT-Creation-Date: 2026-11-10 10:21-0831\n"
+"PO-Revision-Date: 2026-11-10 09:48-1729\n"
 "Last-Translator: mmdanny89@gmail.com\n"
 "Language: es\n"
 "Language-Team: es-ES\n"
@@ -139,7 +139,7 @@ msgstr ""
 "campos del formulario y firmar. Un PDF solo puede tener una firma de "
 "certificación, y debe ser la primera."
 
-#: pdf_signer/utils/certificate.py:91
+#: pdf_signer/utils/certificate.py:96
 msgid "Attach the CA root in the tab Certificate Authority (CA) to check the chain."
 msgstr ""
 "Adjunte la CA raíz en la pestaña Autoridad de certificación (CA) para "
@@ -609,7 +609,7 @@ msgstr "Margen (mm)"
 msgid "Missing CA root"
 msgstr "Falta la CA raíz"
 
-#: pdf_signer/utils/sign.py:47
+#: pdf_signer/utils/sign.py:49
 msgid "Missing certificate"
 msgstr "Falta el certificado"
 
@@ -772,7 +772,7 @@ msgstr "Gestor de PDF Signer"
 msgid "PDF Signer User"
 msgstr "Usuario de PDF Signer"
 
-#: pdf_signer/utils/sign.py:192
+#: pdf_signer/utils/sign.py:190
 msgid "PDF Signer: the PDF could not be signed"
 msgstr "PDF Signer: no se ha podido firmar el PDF"
 
@@ -932,7 +932,7 @@ msgstr "Política de firma"
 msgid "Signature Type"
 msgstr "Tipo de firma"
 
-#: pdf_signer/utils/sign.py:195
+#: pdf_signer/utils/sign.py:193
 msgid "Signature error"
 msgstr "Error de firma"
 
@@ -1034,7 +1034,7 @@ msgstr ""
 "fondo: el texto sobre una imagen. Firma manuscrita: el texto sobre una firma"
 " que usted dibuja."
 
-#: pdf_signer/utils/certificate.py:115
+#: pdf_signer/utils/certificate.py:118
 msgid "The CA files cannot be read. Use DER (.cer) or PEM (.crt) files."
 msgstr ""
 "No se pueden leer los ficheros de la CA. Use ficheros DER (.cer) o PEM "
@@ -1048,7 +1048,7 @@ msgstr ""
 "El PDF ya tiene firmas. Una firma de certificación debe ser la primera firma"
 " del PDF. Use un perfil de firma con el tipo Aprobación."
 
-#: pdf_signer/utils/sign.py:194
+#: pdf_signer/utils/sign.py:192
 msgid "The PDF could not be signed: {0}"
 msgstr "No se ha podido firmar el PDF: {0}"
 
@@ -1060,7 +1060,7 @@ msgstr ""
 "El PDF tiene una firma de certificación que no permite cambios. No se puede "
 "volver a firmar."
 
-#: pdf_signer/utils/sign.py:163
+#: pdf_signer/utils/sign.py:161
 msgid ""
 "The PDF has a certification signature. The new signature is invisible, so "
 "that the certification stays valid."
@@ -1068,7 +1068,7 @@ msgstr ""
 "El PDF tiene una firma de certificación. La nueva firma es invisible para "
 "que la certificación siga siendo válida."
 
-#: pdf_signer/utils/sign.py:204
+#: pdf_signer/utils/sign.py:202
 msgid "The PDF is signed."
 msgstr "El PDF se ha firmado."
 
@@ -1096,7 +1096,7 @@ msgstr ""
 "No se puede leer el certificado. Compruebe el fichero del certificado y la "
 "contraseña."
 
-#: pdf_signer/utils/certificate.py:119
+#: pdf_signer/utils/certificate.py:122
 msgid "The certificate chain is valid."
 msgstr "La cadena del certificado es válida."
 
@@ -1104,13 +1104,21 @@ msgstr "La cadena del certificado es válida."
 msgid "The certificate container {0} does not have a CA root file."
 msgstr "El contenedor de certificados {0} no tiene fichero de CA raíz."
 
-#: pdf_signer/utils/sign.py:46
+#: pdf_signer/utils/sign.py:48
 msgid "The certificate container {0} does not have a certificate file."
 msgstr "El contenedor de certificados {0} no tiene fichero de certificado."
 
-#: pdf_signer/utils/certificate.py:77
+#: pdf_signer/utils/certificate.py:82
 msgid "The certificate file does not contain a certificate."
 msgstr "El fichero no contiene ningún certificado."
+
+#: pdf_signer/utils/certificate.py:79
+msgid ""
+"The certificate file does not contain the private key. The app needs it to "
+"sign."
+msgstr ""
+"El fichero del certificado no contiene la clave privada. La aplicación la "
+"necesita para firmar."
 
 #: pdf_signer/utils/sign.py:60
 msgid ""
@@ -1120,7 +1128,7 @@ msgstr ""
 "No se puede abrir el certificado de {0}. Compruebe el fichero del "
 "certificado y la contraseña."
 
-#: pdf_signer/utils/certificate.py:106
+#: pdf_signer/utils/certificate.py:109
 msgid ""
 "The chain is not valid: the certificate does not come from the CA root of "
 "the container, or an intermediate CA is missing."
@@ -1128,7 +1136,7 @@ msgstr ""
 "La cadena no es válida: el certificado no procede de la CA raíz del "
 "contenedor o falta una CA intermedia."
 
-#: pdf_signer/utils/certificate.py:111
+#: pdf_signer/utils/certificate.py:114
 msgid "The chain is not valid: {0}"
 msgstr "La cadena no es válida: {0}"
 
@@ -1319,7 +1327,7 @@ msgstr "La firma no es válida"
 msgid "The signature is valid"
 msgstr "La firma es válida"
 
-#: pdf_signer/utils/sign.py:151
+#: pdf_signer/utils/sign.py:149
 msgid "The signature uses the empty signature field {0} of the PDF."
 msgstr "La firma usa el campo de firma vacío {0} del PDF."
 
@@ -1442,19 +1450,25 @@ msgstr "Uso desconocido: {0}"
 
 #: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:21
 msgid ""
-"Use a private file with the extension .p12 or .pfx. The file contains the "
-"certificate and its key. Type its passphrase below, if it has one."
+"Use a private file with the extension .p12 or .pfx. The file must contain "
+"the certificate and its private key. If the file has a passphrase, type it "
+"in Passphrase."
 msgstr ""
-"Use un fichero privado con la extensión .p12 o .pfx. El fichero contiene el "
-"certificado y su clave. Escriba su contraseña abajo, si la tiene."
+"Use un fichero privado con la extensión .p12 o .pfx. El fichero debe "
+"contener el certificado y su clave privada. Si el fichero tiene contraseña, "
+"escríbala en Contraseña."
 
 #: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:31
 msgid ""
-"Use private files with the extension .cer (DER format) or .crt (PEM format)."
-" The CA root is necessary to verify signatures."
+"Use private files with the extension .cer or .crt, in DER or PEM format. "
+"Attach the CA root, and add a row for each intermediate CA. The app uses "
+"them to check the chain, to add the chain to the signatures and to verify "
+"signatures."
 msgstr ""
-"Use ficheros privados con la extensión .cer (formato DER) o .crt (formato "
-"PEM). La CA raíz es necesaria para verificar firmas."
+"Use ficheros privados con la extensión .cer o .crt, en formato DER o PEM. "
+"Adjunte la CA raíz y añada una fila por cada CA intermedia. La aplicación "
+"los usa para comprobar la cadena, para incluirla en las firmas y para "
+"verificar firmas."
 
 #. Label of the user (Link) field in DocType 'Electronic Sign Setting User'
 #. Label of the username (Data) field in DocType 'PDF Signer Documents Signed'

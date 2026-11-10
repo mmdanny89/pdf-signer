@@ -26,32 +26,32 @@ CERTIFICATION_LEVELS = {
 }
 
 
-def attachment_paths(doctype, name, fieldname):
-	"""Return the paths on disk of the files attached to a field of a document."""
-	files = frappe.get_all(
-		"File",
-		filters={"attached_to_doctype": doctype, "attached_to_name": name, "attached_to_field": fieldname},
-		pluck="name",
-		order_by="creation asc",
+def container_files(container):
+	"""Return the paths on disk of the files of a certificate container: cert, root and interms.
+
+	The values of the fields decide, not the attachments: a file of a deleted row of the
+	intermediate CAs stays attached to the container, but the app must not use it."""
+	doc = frappe.get_doc(CONTAINER, container)
+	return frappe._dict(
+		cert=file_url_path(doc.cert_file) if doc.cert_file else None,
+		root=file_url_path(doc.ca_root) if doc.ca_root else None,
+		interms=[file_url_path(row.ca_interm) for row in doc.ca_interms if row.ca_interm],
 	)
-	return [frappe.get_doc("File", file).get_full_path() for file in files]
 
 
 def load_signer(setting):
 	"""Load the certificate and the key of the certificate container of the sign setting."""
 	container = setting.cert_container
-	cert_files = attachment_paths(CONTAINER, container, "cert_file")
-	if not cert_files:
+	files = container_files(container)
+	if not files.cert:
 		frappe.throw(
 			_("The certificate container {0} does not have a certificate file.").format(container),
 			title=_("Missing certificate"),
 		)
 	passphrase = get_decrypted_password(CONTAINER, container, "passphrase", raise_exception=False)
-	ca_files = attachment_paths(CONTAINER, container, "ca_root") + attachment_paths(
-		CONTAINER, container, "ca_interm"
-	)
+	ca_files = ([files.root] if files.root else []) + files.interms
 	signer = signers.SimpleSigner.load_pkcs12(
-		pfx_file=cert_files[-1],
+		pfx_file=files.cert,
 		ca_chain_files=ca_files or None,
 		passphrase=passphrase.encode() if passphrase else None,
 	)
@@ -109,20 +109,18 @@ def signing_validation_context(setting):
 	"""Validation context for the long-term validation data: it trusts the CA of the container
 	and the TSA, and it can get the OCSP and CRL data from the addresses in the certificates."""
 	container = setting.cert_container
-	roots = attachment_paths(CONTAINER, container, "ca_root")
-	if not roots:
+	files = container_files(container)
+	if not files.root:
 		frappe.throw(
 			_("Long-term validation needs the CA root file in the certificate container {0}.").format(
 				container
 			),
 			title=_("Missing CA root"),
 		)
-	trust_roots = [load_cert_from_pemder(roots[-1])]
+	trust_roots = [load_cert_from_pemder(files.root)]
 	if tsa_root(setting):
 		trust_roots.append(load_cert_from_pemder(tsa_root(setting)))
-	other_certs = [
-		load_cert_from_pemder(path) for path in attachment_paths(CONTAINER, container, "ca_interm")
-	]
+	other_certs = [load_cert_from_pemder(path) for path in files.interms]
 	return ValidationContext(trust_roots=trust_roots, other_certs=other_certs, allow_fetching=True)
 
 

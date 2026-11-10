@@ -13,7 +13,7 @@ from pyhanko.keys import load_cert_from_pemder
 from pyhanko_certvalidator import CertificateValidator, ValidationContext
 from pyhanko_certvalidator.errors import PathBuildingError, PathValidationError, ValidationError
 
-from pdf_signer.utils.sign import CONTAINER, attachment_paths
+from pdf_signer.utils.sign import CONTAINER, container_files
 
 EXPIRING_DAYS = 30
 
@@ -60,18 +60,23 @@ def load_certificate(container):
 
 	It stops with a clear message if the container has no certificate file, or if the file
 	or the passphrase is not correct."""
-	cert_files = attachment_paths(CONTAINER, container, "cert_file")
-	if not cert_files:
+	files = container_files(container)
+	if not files.cert:
 		raise frappe.ValidationError(_("Attach the certificate file in the tab Certificate Settings."))
 	passphrase = get_decrypted_password(CONTAINER, container, "passphrase", raise_exception=False)
 	try:
-		with open(cert_files[-1], "rb") as f:
-			_key, cert, _others = pkcs12.load_key_and_certificates(
+		with open(files.cert, "rb") as f:
+			key, cert, _others = pkcs12.load_key_and_certificates(
 				f.read(), passphrase.encode() if passphrase else None
 			)
 	except (ValueError, TypeError):
 		raise frappe.ValidationError(
 			_("The certificate cannot be read. Check the certificate file and the passphrase.")
+		)
+	# Without the private key, cryptography gives the certificate in the other certificates.
+	if key is None:
+		raise frappe.ValidationError(
+			_("The certificate file does not contain the private key. The app needs it to sign.")
 		)
 	if cert is None:
 		raise frappe.ValidationError(_("The certificate file does not contain a certificate."))
@@ -84,18 +89,16 @@ def chain_status(cert, container):
 	valid: the chain ends in the CA root, and every certificate is valid now.
 	no_ca: the container has no CA root, so the chain cannot be checked.
 	invalid: the chain does not end in the CA root, or a certificate is not valid."""
-	roots = attachment_paths(CONTAINER, container, "ca_root")
-	if not roots:
+	files = container_files(container)
+	if not files.root:
 		return {
 			"state": "no_ca",
 			"message": _("Attach the CA root in the tab Certificate Authority (CA) to check the chain."),
 		}
 	try:
 		context = ValidationContext(
-			trust_roots=[load_cert_from_pemder(roots[-1])],
-			other_certs=[
-				load_cert_from_pemder(path) for path in attachment_paths(CONTAINER, container, "ca_interm")
-			],
+			trust_roots=[load_cert_from_pemder(files.root)],
+			other_certs=[load_cert_from_pemder(path) for path in files.interms],
 		)
 		path = asyncio.run(
 			CertificateValidator(cert, validation_context=context).async_validate_usage(key_usage=set())

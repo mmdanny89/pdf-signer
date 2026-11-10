@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PDF Signer VERSION\n"
 "Report-Msgid-Bugs-To: mmdanny89@gmail.com\n"
-"POT-Creation-Date: 2026-11-10 10:14-0631\n"
-"PO-Revision-Date: 2026-11-10 10:14-0631\n"
+"POT-Creation-Date: 2026-11-10 10:21-0631\n"
+"PO-Revision-Date: 2026-11-10 10:21-0631\n"
 "Last-Translator: mmdanny89@gmail.com\n"
 "Language-Team: mmdanny89@gmail.com\n"
 "MIME-Version: 1.0\n"
@@ -104,7 +104,7 @@ msgstr ""
 msgid "Approval: other people can sign the PDF after you. Certification: the first signature of the PDF. It sets which changes are allowed after it. With No Changes, any later change makes the signature not valid. With Form Filling and Signing, other people can fill the form fields and sign. A PDF can have only one certification signature, and it must be the first."
 msgstr ""
 
-#: pdf_signer/utils/certificate.py:91
+#: pdf_signer/utils/certificate.py:96
 msgid "Attach the CA root in the tab Certificate Authority (CA) to check the chain."
 msgstr ""
 
@@ -566,7 +566,7 @@ msgstr ""
 msgid "Missing CA root"
 msgstr ""
 
-#: pdf_signer/utils/sign.py:47
+#: pdf_signer/utils/sign.py:49
 msgid "Missing certificate"
 msgstr ""
 
@@ -705,7 +705,7 @@ msgstr ""
 msgid "PDF Signer User"
 msgstr ""
 
-#: pdf_signer/utils/sign.py:192
+#: pdf_signer/utils/sign.py:190
 msgid "PDF Signer: the PDF could not be signed"
 msgstr ""
 
@@ -857,7 +857,7 @@ msgstr ""
 msgid "Signature Type"
 msgstr ""
 
-#: pdf_signer/utils/sign.py:195
+#: pdf_signer/utils/sign.py:193
 msgid "Signature error"
 msgstr ""
 
@@ -954,7 +954,7 @@ msgstr ""
 msgid "Text: only the text. Text and QR Code: the text and a QR code. Background Image: the text on an image. Handwritten Signature: the text on a signature that you draw."
 msgstr ""
 
-#: pdf_signer/utils/certificate.py:115
+#: pdf_signer/utils/certificate.py:118
 msgid "The CA files cannot be read. Use DER (.cer) or PEM (.crt) files."
 msgstr ""
 
@@ -962,7 +962,7 @@ msgstr ""
 msgid "The PDF already has signatures. A certification signature must be the first signature of the PDF. Use a sign setting with the Approval signature type."
 msgstr ""
 
-#: pdf_signer/utils/sign.py:194
+#: pdf_signer/utils/sign.py:192
 msgid "The PDF could not be signed: {0}"
 msgstr ""
 
@@ -970,11 +970,11 @@ msgstr ""
 msgid "The PDF has a certification signature that does not allow changes. You cannot sign it again."
 msgstr ""
 
-#: pdf_signer/utils/sign.py:163
+#: pdf_signer/utils/sign.py:161
 msgid "The PDF has a certification signature. The new signature is invisible, so that the certification stays valid."
 msgstr ""
 
-#: pdf_signer/utils/sign.py:204
+#: pdf_signer/utils/sign.py:202
 msgid "The PDF is signed."
 msgstr ""
 
@@ -996,7 +996,7 @@ msgstr ""
 msgid "The certificate cannot be read. Check the certificate file and the passphrase."
 msgstr ""
 
-#: pdf_signer/utils/certificate.py:119
+#: pdf_signer/utils/certificate.py:122
 msgid "The certificate chain is valid."
 msgstr ""
 
@@ -1004,23 +1004,27 @@ msgstr ""
 msgid "The certificate container {0} does not have a CA root file."
 msgstr ""
 
-#: pdf_signer/utils/sign.py:46
+#: pdf_signer/utils/sign.py:48
 msgid "The certificate container {0} does not have a certificate file."
 msgstr ""
 
-#: pdf_signer/utils/certificate.py:77
+#: pdf_signer/utils/certificate.py:82
 msgid "The certificate file does not contain a certificate."
+msgstr ""
+
+#: pdf_signer/utils/certificate.py:79
+msgid "The certificate file does not contain the private key. The app needs it to sign."
 msgstr ""
 
 #: pdf_signer/utils/sign.py:60
 msgid "The certificate of {0} cannot be opened. Check the certificate file and the passphrase."
 msgstr ""
 
-#: pdf_signer/utils/certificate.py:106
+#: pdf_signer/utils/certificate.py:109
 msgid "The chain is not valid: the certificate does not come from the CA root of the container, or an intermediate CA is missing."
 msgstr ""
 
-#: pdf_signer/utils/certificate.py:111
+#: pdf_signer/utils/certificate.py:114
 msgid "The chain is not valid: {0}"
 msgstr ""
 
@@ -1175,7 +1179,7 @@ msgstr ""
 msgid "The signature is valid"
 msgstr ""
 
-#: pdf_signer/utils/sign.py:151
+#: pdf_signer/utils/sign.py:149
 msgid "The signature uses the empty signature field {0} of the PDF."
 msgstr ""
 
@@ -1285,11 +1289,11 @@ msgid "Unknown purpose: {0}"
 msgstr ""
 
 #: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:21
-msgid "Use a private file with the extension .p12 or .pfx. The file contains the certificate and its key. Type its passphrase below, if it has one."
+msgid "Use a private file with the extension .p12 or .pfx. The file must contain the certificate and its private key. If the file has a passphrase, type it in Passphrase."
 msgstr ""
 
 #: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:31
-msgid "Use private files with the extension .cer (DER format) or .crt (PEM format). The CA root is necessary to verify signatures."
+msgid "Use private files with the extension .cer or .crt, in DER or PEM format. Attach the CA root, and add a row for each intermediate CA. The app uses them to check the chain, to add the chain to the signatures and to verify signatures."
 msgstr ""
 
 #. Label of the user (Link) field in DocType 'Electronic Sign Setting User'

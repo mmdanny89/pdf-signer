@@ -19,7 +19,7 @@ frappe.ui.form.on("Certificate Container", {
 			info_card(
 				__("P12 or PFX certificate file"),
 				__(
-					"Use a private file with the extension .p12 or .pfx. The file contains the certificate and its key. Type its passphrase below, if it has one."
+					"Use a private file with the extension .p12 or .pfx. The file must contain the certificate and its private key. If the file has a passphrase, type it in Passphrase."
 				)
 			)
 		);
@@ -29,7 +29,7 @@ frappe.ui.form.on("Certificate Container", {
 			info_card(
 				__("Certificates of the certificate authority"),
 				__(
-					"Use private files with the extension .cer (DER format) or .crt (PEM format). The CA root is necessary to verify signatures."
+					"Use private files with the extension .cer or .crt, in DER or PEM format. Attach the CA root, and add a row for each intermediate CA. The app uses them to check the chain, to add the chain to the signatures and to verify signatures."
 				)
 			)
 		);
