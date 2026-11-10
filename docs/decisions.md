@@ -19,6 +19,8 @@ The app uses `pyproject.toml` with flit, like a new Frappe 16 app. The app does 
 
 The app uses pyHanko 0.38 with the extras `opentype` and `qr`. pyHanko 0.20.1 was too old: it had no text color and no border color, and it did not get security fixes.
 
+`[tool.bench.frappe-dependencies]` declares `frappe = ">=16.0.0-dev,<17.0.0"`, as the documentation of Frappe Cloud asks. A bench of Frappe 16 can report a development version, for example `16.0.0-dev`, and `>=16.0.0` does not accept it. Frappe Cloud refused to add the version 16 of the app with `>=16.0.0`.
+
 The app does not use the extra `image-support`. That extra needs `python-barcode==0.16.1`, and the xpos app needs `python-barcode` 0.15.1 in the same bench. The app uses Pillow from Frappe for the images.
 
 The verification reads the status object of pyHanko. It does not parse the text of `pretty_print_details`, because that text changes between versions and cannot be translated.
