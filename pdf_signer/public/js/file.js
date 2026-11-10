@@ -4,36 +4,31 @@
 frappe.require(["/assets/pdf_signer/js/utils.js"]);
 
 let customize_pdf_signer = function (frm) {
-	if (!frm.doc.__islocal) {
-		frappe
-			.call("pdf_signer.utils.api.check_pdf", {
-				file_name: frm.doc.file_name,
-				is_private: frm.doc.is_private,
-			})
-			.then((r) => {
-				if (r.message.success) {
-					frm.add_custom_button(__("Sign PDF"), function () {
-						sign_pdf_dialog(frm.docname);
-						frm.reload_doc();
-					}).each(function () {
-						frappe.ui.button.dress(this, {
-							label: __("Sign PDF"),
-							variant: "solid",
-							icon: "signature",
-						});
-					});
-
-					frm.add_custom_button(__("Verify Signed PDF"), function () {
-						verify_sign_pdf_dialog(frm.doc.file_name);
-					}).each(function () {
-						frappe.ui.button.dress(this, {
-							label: __("Verify Signed PDF"),
-							icon: "badge-check",
-						});
-					});
-				}
+	if (frm.doc.__islocal) return;
+	frappe.call("pdf_signer.utils.api.check_pdf", { file: frm.docname }).then((r) => {
+		if (!r.message.success) return;
+		if (r.message.can_sign) {
+			frm.add_custom_button(__("Sign PDF"), function () {
+				sign_pdf_dialog(frm.docname, () => frm.reload_doc());
+			}).each(function () {
+				frappe.ui.button.dress(this, {
+					label: __("Sign PDF"),
+					variant: "solid",
+					icon: "signature",
+				});
 			});
-	}
+		}
+		if (r.message.can_verify) {
+			frm.add_custom_button(__("Verify Signed PDF"), function () {
+				verify_sign_pdf_dialog(frm.docname);
+			}).each(function () {
+				frappe.ui.button.dress(this, {
+					label: __("Verify Signed PDF"),
+					icon: "badge-check",
+				});
+			});
+		}
+	});
 };
 
 frappe.ui.form.on("File", {
@@ -44,32 +39,19 @@ frappe.ui.form.on("File", {
 
 function verify_sign_pdf_dialog(file_reference) {
 	let d = new frappe.ui.Dialog({
-		title: __("Select Electronic Sign Setting"),
-		fields: [
-			{
-				label: __("Setting"),
-				fieldname: "sign_field",
-				fieldtype: "Link",
-				options: "Electronic Sign Setting",
-				reqd: 1,
-				get_query: function () {
-					return {
-						filters: {
-							status: "Enable",
-						},
-					};
-				},
-				req: 1,
-			},
-		],
+		title: __("Verify Signed PDF"),
+		fields: [sign_setting_field("verify")],
 		primary_action_label: __("Verify Signatures"),
 		primary_action(values) {
+			d.hide();
 			frappe.call({
 				method: "pdf_signer.utils.api.verify_pdf",
 				args: {
-					file_name: file_reference,
-					sign_name: values.sign_field,
+					file: file_reference,
+					sign_setting: values.sign_setting,
 				},
+				freeze: true,
+				freeze_message: __("Verifying the signatures..."),
 				callback: function (r) {
 					let dialog = new frappe.ui.Dialog({
 						title: __("Verification Result"),
@@ -83,7 +65,6 @@ function verify_sign_pdf_dialog(file_reference) {
 					dialog.show();
 				},
 			});
-			d.hide();
 		},
 	});
 	d.show();

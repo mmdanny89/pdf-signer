@@ -27,6 +27,7 @@
 	"globals": {
 		"frappe": true,
 		"sign_pdf_dialog": true,
+		"sign_setting_field": true,
 		"Vue": true,
 		"SetVueGlobals": true,
 		"__": true,

@@ -6,16 +6,27 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "general_tab",
   "sign_settings_section",
   "sign_name",
   "company",
   "is_default",
-  "allow_add_signs",
   "column_break_4",
   "cert_container",
   "status",
   "algorithm",
-  "role_signer",
+  "policy_tab",
+  "signature_type",
+  "column_break_policy",
+  "reason",
+  "location",
+  "contact_info",
+  "access_tab",
+  "sign_users",
+  "sign_roles",
+  "column_break_access",
+  "verify_roles",
+  "appearance_tab",
   "signature_style_section",
   "postition",
   "column_break_13",
@@ -35,6 +46,16 @@
  ],
  "fields": [
   {
+   "fieldname": "general_tab",
+   "fieldtype": "Tab Break",
+   "label": "General"
+  },
+  {
+   "fieldname": "sign_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Sign Settings"
+  },
+  {
    "fieldname": "sign_name",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -51,6 +72,16 @@
    "reqd": 1
   },
   {
+   "default": "0",
+   "fieldname": "is_default",
+   "fieldtype": "Check",
+   "label": "Is Default"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "cert_container",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -59,28 +90,14 @@
    "reqd": 1
   },
   {
-   "default": "0",
-   "fieldname": "is_default",
-   "fieldtype": "Check",
-   "label": "Is Default"
-  },
-  {
    "default": "Disabled",
+   "description": "Only enabled settings show in the sign and verify dialogs. Use the buttons of the form to change it.",
    "fieldname": "status",
    "fieldtype": "Data",
    "hidden": 1,
    "in_list_view": 1,
    "label": "Status",
    "read_only": 1
-  },
-  {
-   "fieldname": "sign_settings_section",
-   "fieldtype": "Section Break",
-   "label": "Sign Settings"
-  },
-  {
-   "fieldname": "column_break_4",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "algorithm",
@@ -90,17 +107,75 @@
    "reqd": 1
   },
   {
-   "fieldname": "role_signer",
+   "fieldname": "policy_tab",
+   "fieldtype": "Tab Break",
+   "label": "Signature Policy"
+  },
+  {
+   "default": "Approval",
+   "description": "Approval: other people can sign the PDF after you. Certification: the first signature of the PDF. It sets which changes are allowed after it. With No Changes, any later change makes the signature not valid. With Form Filling and Signing, other people can fill the form fields and sign. A PDF can have only one certification signature, and it must be the first.",
+   "fieldname": "signature_type",
    "fieldtype": "Select",
-   "label": "Role",
-   "options": "Signer and Verifier",
+   "label": "Signature Type",
+   "options": "Approval\nCertification: No Changes\nCertification: Form Filling and Signing",
    "reqd": 1
   },
   {
-   "default": "1",
-   "fieldname": "allow_add_signs",
-   "fieldtype": "Check",
-   "label": "Allow Add Others Signs"
+   "fieldname": "column_break_policy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Why you sign, for example \"I approve this document\". PDF readers show it in the signature panel.",
+   "fieldname": "reason",
+   "fieldtype": "Data",
+   "label": "Reason"
+  },
+  {
+   "description": "Where you sign, for example the city. PDF readers show it in the signature panel.",
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "label": "Location"
+  },
+  {
+   "description": "An email or a phone to contact the signer. PDF readers show it in the signature panel.",
+   "fieldname": "contact_info",
+   "fieldtype": "Data",
+   "label": "Contact Information"
+  },
+  {
+   "fieldname": "access_tab",
+   "fieldtype": "Tab Break",
+   "label": "Access"
+  },
+  {
+   "description": "Only these users can sign with this setting. Use it for a personal certificate. If you add users, the roles below are not used for signing.",
+   "fieldname": "sign_users",
+   "fieldtype": "Table MultiSelect",
+   "label": "Users That Can Sign",
+   "options": "Electronic Sign Setting User"
+  },
+  {
+   "description": "Users with one of these roles can sign with this setting. If it is empty and there are no users, only the PDF Signer Manager and the System Manager can sign.",
+   "fieldname": "sign_roles",
+   "fieldtype": "Table MultiSelect",
+   "label": "Roles That Can Sign",
+   "options": "Has Role"
+  },
+  {
+   "fieldname": "column_break_access",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Users with one of these roles can verify signatures with this setting. If it is empty, all the users that can read the PDF can verify.",
+   "fieldname": "verify_roles",
+   "fieldtype": "Table MultiSelect",
+   "label": "Roles That Can Verify",
+   "options": "Has Role"
+  },
+  {
+   "fieldname": "appearance_tab",
+   "fieldtype": "Tab Break",
+   "label": "Appearance"
   },
   {
    "fieldname": "signature_style_section",
@@ -114,11 +189,26 @@
    "label": "Position"
   },
   {
+   "fieldname": "column_break_13",
+   "fieldtype": "Column Break"
+  },
+  {
    "default": "0",
    "description": "<strong>Page 0: </strong> Refer to first page of document.<br>\n<strong>Page -1: </strong> Refer to latest page of document.",
    "fieldname": "on_page",
    "fieldtype": "Int",
    "label": "On Page"
+  },
+  {
+   "fieldname": "backgroud_of_sign_section",
+   "fieldtype": "Section Break",
+   "label": "Sign Backgroud"
+  },
+  {
+   "default": "0",
+   "fieldname": "use_bg_image",
+   "fieldtype": "Check",
+   "label": "Use backgroud image for Sign Box"
   },
   {
    "depends_on": "eval:doc.use_bg_image;",
@@ -128,10 +218,14 @@
    "mandatory_depends_on": "eval:doc.use_bg_image;"
   },
   {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
    "default": "0",
-   "fieldname": "use_qr_style",
+   "fieldname": "use_own_sign_bg_image",
    "fieldtype": "Check",
-   "label": "Add QR to Sign"
+   "label": "Use my own sign as backgroud of Sign Box"
   },
   {
    "depends_on": "eval:doc.use_own_sign_bg_image;",
@@ -141,50 +235,15 @@
    "mandatory_depends_on": "eval:doc.use_own_sign_bg_image;"
   },
   {
-   "fieldname": "text_form",
-   "fieldtype": "Select",
-   "label": "Text Font",
-   "options": "None"
-  },
-  {
-   "fieldname": "column_break_13",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "backgroud_of_sign_section",
-   "fieldtype": "Section Break",
-   "label": "Sign Backgroud"
-  },
-  {
-   "fieldname": "column_break_17",
-   "fieldtype": "Column Break"
-  },
-  {
-   "default": "0",
-   "fieldname": "use_bg_image",
-   "fieldtype": "Check",
-   "label": "Use backgroud image for Sign Box"
-  },
-  {
-   "default": "0",
-   "fieldname": "use_own_sign_bg_image",
-   "fieldtype": "Check",
-   "label": "Use my own sign as backgroud of Sign Box"
-  },
-  {
    "fieldname": "additional_info_for_signature_section",
    "fieldtype": "Section Break",
    "label": "Additional Info for Signature"
   },
   {
-   "default": "11",
-   "fieldname": "text_size",
-   "fieldtype": "Int",
-   "label": "Text Size"
-  },
-  {
-   "fieldname": "column_break_24",
-   "fieldtype": "Column Break"
+   "default": "0",
+   "fieldname": "use_qr_style",
+   "fieldtype": "Check",
+   "label": "Add QR to Sign"
   },
   {
    "default": "My Company, Ltd.",
@@ -193,11 +252,27 @@
    "fieldtype": "Data",
    "label": "Additional Info",
    "length": 35
+  },
+  {
+   "fieldname": "column_break_24",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "text_form",
+   "fieldtype": "Select",
+   "label": "Text Font",
+   "options": "None"
+  },
+  {
+   "default": "11",
+   "fieldname": "text_size",
+   "fieldtype": "Int",
+   "label": "Text Size"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-29 16:11:04.492516",
+ "modified": "2026-11-10 14:00:00.000000",
  "modified_by": "Administrator",
  "module": "Pdf Signer",
  "name": "Electronic Sign Setting",
@@ -215,6 +290,22 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "PDF Signer Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "role": "PDF Signer User",
+   "select": 1
   }
  ],
  "sort_field": "modified",

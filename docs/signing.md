@@ -4,14 +4,32 @@
 
 1. Open the PDF file in the **File** form. To find the PDF files, use **PDF Signer > Signing > PDF Files**.
 2. Click **Sign PDF**.
-3. Select an enabled sign setting.
+3. Select a sign setting. The list shows only the enabled sign settings that you can sign with.
 4. Click **Sign Document**.
 
-The app signs the file in place. The file keeps its name and its URL, and the app updates its content hash. A message shows "Doc was signed.!" when the signature is complete.
+The **Sign PDF** button shows only if you can change the file and you can sign with at least one sign setting. The app signs private and public PDF files.
 
-The signature is a PAdES signature that pyHanko makes. Each signature adds a field with the name `Signature-<timestamp>` to the PDF.
+The app signs the file in place. The file keeps its name and its URL, and the app updates its content hash. A message shows "The PDF is signed." when the signature is complete.
 
-If **Allow Add Others Signs** is on, you can sign the same file again with the same or another sign setting. If it is off, the first signature does not allow changes, and a new signature is a change.
+The signature is a PAdES signature that pyHanko makes.
+
+### Signature field
+
+The app selects the signature field in this order:
+
+1. The first empty signature field of the PDF. For example, a contract that has a field for your signature.
+2. A new field with the name `Signature-<random code>`, in the box of the sign setting.
+
+After a certification signature of the type **Certification: Form Filling and Signing**, a new field is invisible. A new visible field changes the page, and that makes the certification not valid. The message of the app tells you when the signature is invisible. To have a visible signature after a certification, prepare the empty signature fields in the PDF before the certification.
+
+### When the app does not sign
+
+| Case | Message |
+|---|---|
+| The PDF has a certification signature of the type No Changes. | The PDF has a certification signature that does not allow changes. |
+| The sign setting makes a certification signature and the PDF already has signatures. | A certification signature must be the first signature of the PDF. |
+| You cannot sign with the sign setting. | You cannot sign with the sign setting. |
+| You cannot change the file. | You do not have the permission to use the file. |
 
 ## Sign a PDF when you attach it
 
@@ -23,7 +41,7 @@ The dialog opens only if the browser has loaded the File form one time in the se
 
 1. Open the PDF file in the **File** form.
 2. Click **Verify Signed PDF**.
-3. Select an enabled sign setting. The app uses the CA root and the intermediate CAs of its certificate container.
+3. Select a sign setting. The list shows only the enabled sign settings that you can verify with. The app uses the CA root and the intermediate CAs of its certificate container.
 4. Click **Verify Sign**.
 
 The result shows one section for each signature, with these rows:

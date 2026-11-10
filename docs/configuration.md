@@ -24,7 +24,15 @@ bench --site example.local install-app pdf_signer
 bench --site example.local migrate
 ```
 
-Only the System Manager role can read and change the DocTypes of the app.
+## Roles
+
+| Role | What it can do |
+|---|---|
+| PDF Signer Manager | Configure the app: certificate containers, sign settings and global settings. Sign and verify with the settings that do not limit the users. |
+| PDF Signer User | Select a sign setting in the sign and verify dialogs. The Access tab of each sign setting decides if the user can sign or verify with it. |
+| System Manager | The same as PDF Signer Manager. |
+
+To sign a PDF, a user also needs the permission to change the file. For an attached file, this is the permission to change the document that the file is attached to.
 
 ## Create a certificate container
 
@@ -45,10 +53,14 @@ Use these files:
 | Field | Extensions | Format | Privacy |
 |---|---|---|---|
 | Certificate File | .p12, .pfx | PKCS#12 | Private file |
-| Certificate Authority File | .cer | DER | Private file |
-| Intermediate CA | .cer | DER | Private file |
+| Certificate Authority File | .cer, .crt | DER (.cer) or PEM (.crt) | Private file |
+| Intermediate CA | .cer, .crt | DER (.cer) or PEM (.crt) | Private file |
 
-The app checks only the Certificate File. It stops the save if the file is public or if the extension is not .p12 or .pfx. The app does not check the CA files, but it reads them from the private files folder.
+The app stops the upload if a file is public or if its extension is not in the list.
+
+The passphrase is optional. Leave it empty if the certificate file does not have one.
+
+The signature includes the CA root and the intermediate CAs of the container. This helps other programs to validate the signature.
 
 ### Check the certificate
 
@@ -78,13 +90,38 @@ A sign setting tells the app which certificate to use and how the signature box 
 
 A new sign setting has the status Disabled. The sign dialogs show only the sign settings with the status Enable. To stop a sign setting, click **Disabled Electronic Sign**.
 
-The first sign setting that you save gets **Is Default**.
+The first sign setting that you save gets **Is Default**. The dialogs show the default setting first.
+
+### Signature policy
+
+The tab **Signature Policy** sets the type of the signature and the data that PDF readers show in the signature panel.
+
+| Signature Type | What it does | Use it for |
+|---|---|---|
+| Approval | A normal signature. Other people can sign the PDF after you. | Most documents. |
+| Certification: No Changes | The first signature of the PDF. Any later change, also a new signature, makes it not valid. The app does not sign a PDF with this signature again. | A final document that nobody else signs. |
+| Certification: Form Filling and Signing | The first signature of the PDF. Other people can fill the form fields and sign. | A document that you send to other people to sign. |
+
+A PDF can have only one certification signature, and it must be the first signature. The app stops a certification if the PDF already has signatures.
+
+**Reason**, **Location** and **Contact Information** are optional. PDF readers show them in the signature panel.
+
+### Access
+
+The tab **Access** decides who can use the sign setting.
+
+| Field | Rule |
+|---|---|
+| Users That Can Sign | Only these users can sign. Use it for a personal certificate. If you add users, the app does not use the roles to sign. |
+| Roles That Can Sign | Users with one of these roles can sign. If this field and the users are empty, only the PDF Signer Manager and the System Manager can sign. |
+| Roles That Can Verify | Users with one of these roles can verify. If it is empty, all the users that can read the PDF can verify. |
+
+If you add users, the Administrator can sign only if it is in the list.
 
 ### Signature box
 
 | Field | Default | Use |
 |---|---|---|
-| Allow Add Others Signs | On | On: other people can add signatures after this one. Off: the document does not accept changes after this signature. |
 | Position | `{"x1":10, "y1":20, "x2":300, "y2":90}` | The corners of the signature box, in PDF points. The origin is the bottom-left corner of the page. |
 | On Page | 0 | The page of the signature box. 0 is the first page and -1 is the last page. |
 | Text Size | 11 | The size of the text in the signature box. |

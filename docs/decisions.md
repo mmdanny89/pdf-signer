@@ -24,11 +24,20 @@ Frappe 16 does not load Font Awesome. The forms use the SVG icons of Frappe (`fr
 
 The app had a `file_list.js` that replaced the list settings of File with an empty object. This removed the list settings of Frappe for File. The version for Frappe 16 does not have this file.
 
+## Roles and access
+
+The app has two roles: PDF Signer Manager configures the app, and PDF Signer User signs and verifies. Each sign setting has its own users and roles. The users win over the roles, because a personal certificate is for its holder only. Without users and roles, only the managers can sign, as in the earlier versions, where only the System Manager could use the app.
+
+The whitelisted methods check the permission on the file and the access of the sign setting. The dialogs show only the sign settings that the user can use.
+
+## Signature policy
+
+The old field **Allow Add Others Signs** did not change the signature. pyHanko ignores the `doc_mdp_update_value` of a new field without a field lock. The new field **Signature Type** makes an approval or a certification signature with `certify` and `docmdp_permissions` of pyHanko. A patch sets the type from the old field: on gives Approval, off gives Certification: No Changes.
+
+After a certification that allows form filling, a new visible signature field breaks the certification, because it changes the annotations of the page. Tests with pyHanko 0.38 showed that an invisible new field and an empty field that the PDF already has keep the certification valid. For this reason the app uses an empty field first, and makes a new field invisible after this type of certification.
+
 ## Known limits
 
 - The sign dialog after an upload opens only if the browser has loaded `utils.js`. The File form loads it. The bundle `pdf_signer.bundle.js` is empty.
-- The app reads the files of the certificates, the background image and the PDF from the private files folder. A public PDF cannot be signed.
-- The sign setting needs a passphrase. A certificate without a passphrase cannot sign.
 - The fields **Add QR to Sign**, **Text Font**, **Algorithm** and **Role** do not change the signature.
 - The DocType **PDF Signer Documents Signed** does not get records.
-- The app does not check the extension and the privacy of the CA files. Refer to [configuration.md](configuration.md#create-a-certificate-container).

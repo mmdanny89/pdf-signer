@@ -1,76 +1,67 @@
-"""
-File    :   api.py
-Date    :   2022/11/16 09:06:15
-Author  :   Ing. Danny Molina Morales
-Version :   1.0
-E-mail  :   mmdanny89@gmail.com
-"""
-
 import os
 
 import frappe
 from frappe import _
 
 from pdf_signer.utils import utils
-from pdf_signer.utils.openssl import get_realpath_by_name_file
-from pdf_signer.utils.sign import sign_pdf_s, validate_sign
+from pdf_signer.utils.permission import get_allowed_settings, get_setting
+from pdf_signer.utils.sign import CONTAINER, attachment_paths, sign_file, validate_sign
 
 
-@frappe.whitelist(allow_guest=False)
-def check_pdf(file_name, is_private):
-	file_dir_site = None
-	if int(is_private) == 1:
-		file_dir_site = frappe.get_site_path("private", "files", file_name)
-	else:
-		file_dir_site = frappe.get_site_path("public", "files", file_name)
-	cert_file = os.path.abspath(file_dir_site)
-	if utils.get_mimetype_file(cert_file) == "application/pdf":
-		return {"success": True}
-	return {"success": False}
+def get_file(name, ptype):
+	"""Return the File document, or stop if the user does not have the permission."""
+	file_doc = frappe.get_doc("File", name)
+	if not frappe.has_permission("File", ptype, doc=file_doc):
+		frappe.throw(
+			_("You do not have the permission to use the file {0}.").format(file_doc.file_name),
+			frappe.PermissionError,
+		)
+	return file_doc
 
 
-@frappe.whitelist(allow_guest=False)
-def sign_pdf(file_name, sign_name):
-	try:
-		settings = frappe.get_doc("Electronic Sign Setting", sign_name)
-		return sign_pdf_s(file_name=file_name, settings=settings)
-	except frappe.DoesNotExistError:
-		return {"success": False, "msg": "Sign Settings does not exist!."}
+def is_pdf(file_doc):
+	"""Return True if the File document is a PDF file on the disk of the site."""
+	if file_doc.is_folder or not file_doc.file_url or file_doc.file_url.startswith(("http://", "https://")):
+		return False
+	path = file_doc.get_full_path()
+	return os.path.isfile(path) and utils.get_mimetype_file(path) == "application/pdf"
 
 
-@frappe.whitelist(allow_guest=False)
-def verify_pdf(file_name, sign_name):
-	result = None
-	file_real_path = get_realpath_by_name_file(file_name)["full_path"]
-	cert_container = frappe.db.get_value(
-		"Electronic Sign Setting", {"name": sign_name, "status": "Enable"}, "cert_container"
+@frappe.whitelist()
+def check_pdf(file):
+	"""Tell the File form if the file is a PDF, and if the user can sign or verify it."""
+	file_doc = get_file(file, "read")
+	if not is_pdf(file_doc):
+		return {"success": False}
+	return {
+		"success": True,
+		"can_sign": bool(
+			frappe.has_permission("File", "write", doc=file_doc) and get_allowed_settings("sign")
+		),
+		"can_verify": bool(get_allowed_settings("verify")),
+	}
+
+
+@frappe.whitelist()
+def sign_pdf(file, sign_setting):
+	file_doc = get_file(file, "write")
+	if not is_pdf(file_doc):
+		frappe.throw(_("The file {0} is not a PDF.").format(file_doc.file_name))
+	return sign_file(file_doc, get_setting(sign_setting, "sign"))
+
+
+@frappe.whitelist()
+def verify_pdf(file, sign_setting):
+	file_doc = get_file(file, "read")
+	if not is_pdf(file_doc):
+		frappe.throw(_("The file {0} is not a PDF.").format(file_doc.file_name))
+	container = get_setting(sign_setting, "verify").cert_container
+	ca_roots = attachment_paths(CONTAINER, container, "ca_root")
+	if not ca_roots:
+		frappe.throw(
+			_("The certificate container {0} does not have a CA root file.").format(container),
+			title=_("Missing CA root"),
+		)
+	return validate_sign(
+		file_doc.get_full_path(), ca_roots[-1], attachment_paths(CONTAINER, container, "ca_interm")
 	)
-	if cert_container:
-		ca_root_file_name = frappe.db.get_value(
-			"File",
-			{
-				"attached_to_name": cert_container,
-				"attached_to_doctype": "Certificate Container",
-				"attached_to_field": "ca_root",
-			},
-			"file_name",
-		)
-		interms = frappe.db.get_list(
-			"File",
-			{
-				"attached_to_name": cert_container,
-				"attached_to_doctype": "Certificate Container",
-				"attached_to_field": "ca_interm",
-			},
-			"file_name",
-		)
-		if not ca_root_file_name:
-			frappe.throw(
-				_("The certificate container {0} does not have a CA root file.").format(cert_container),
-				title=_("Missing CA root"),
-			)
-		ca_root_file_name = get_realpath_by_name_file(ca_root_file_name)["full_path"]
-		if interms:
-			interms = [get_realpath_by_name_file(interm["file_name"])["full_path"] for interm in interms]
-		result = validate_sign(file_real_path, ca_root_file_name, interms)
-	return result
