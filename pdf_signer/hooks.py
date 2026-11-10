@@ -4,6 +4,7 @@ app_publisher = "Danny Molina Morales"
 app_description = "Application for signing PDF files"
 app_email = "mmdanny89@gmail.com"
 app_license = "MIT"
+app_logo_url = "/assets/pdf_signer/images/pdf-signer-logo.svg"
 
 # Apps
 # ------------------
@@ -13,10 +14,10 @@ app_license = "MIT"
 app_home = "/desk/pdf-signer"
 
 # Each item in the list will be shown as an app in the apps page
-# No logo yet: the desk draws a letter icon from the app title.
 add_to_apps_screen = [
 	{
 		"name": app_name,
+		"logo": app_logo_url,
 		"title": app_title,
 		"route": app_home,
 		"has_permission": "pdf_signer.utils.permission.has_app_permission",
@@ -63,7 +64,8 @@ doctype_js = {"File": "public/js/file.js"}
 # Svg Icons
 # ------------------
 # include app icons in desk
-# app_include_icons = "pdf_signer/public/icons.svg"
+# The soft module icon of the dock and the sidebar header (pdf-signer-soft)
+app_include_icons = ["/assets/pdf_signer/icons/module-icons.svg"]
 
 # Home Pages
 # ----------

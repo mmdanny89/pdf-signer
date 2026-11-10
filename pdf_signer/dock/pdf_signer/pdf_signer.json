@@ -8,13 +8,13 @@
   {
    "added": 0,
    "hidden": 0,
-   "icon": "signature",
+   "icon": "pdf-signer-soft",
    "link_to": "PDF Signer",
    "link_type": "Sidebar",
    "title": "PDF Signer"
   }
  ],
- "modified": "2026-11-10 12:00:00.000000",
+ "modified": "2026-11-10 13:00:00.000000",
  "modified_by": "Administrator",
  "name": "pdf_signer",
  "owner": "Administrator",
