@@ -9,10 +9,12 @@ This guide uses example data. Replace the names and the files with your own data
 
 ## Requirements
 
-- Frappe 16 and Python 3.14.
+- Frappe 16 and Python 3.14. ERPNext is not necessary.
 - The `libmagic1` system package. The app uses it to find the PDF files.
+- The Python packages `pyHanko[opentype,qr]` 0.38 and `python-magic` 0.4. `bench get-app` installs them.
 - A certificate in PKCS#12 format (.p12 or .pfx) that contains the certificate and its private key.
-- The certificate of the certificate authority (CA) in DER format (.cer), if you want to verify signatures.
+- The CA root, and the intermediate CAs if the chain has them, in DER or PEM format (.cer or .crt). They are necessary to check the chain and to verify signatures.
+- Optional: the URL of a time stamp authority (TSA) and its root certificate. For long-term validation, the server must reach the TSA and the OCSP or CRL addresses of the certificates.
 
 ## Install the app
 
@@ -21,6 +23,7 @@ cd frappe-bench
 bench get-app --branch version-16 https://github.com/mmdanny89/pdf-signer.git
 bench --site example.local install-app pdf_signer
 bench --site example.local migrate
+bench build --app pdf_signer
 ```
 
 ## Roles

@@ -6,6 +6,13 @@ These are the decisions of the version for Frappe 16, with their reasons.
 
 The branch `version-16` starts from `version-15`, not from `main`. `version-15` has three fixes that `main` does not have: the label "Verify Signed PDF", the `.DS_Store` rule of `.gitignore`, and the chain check without `is_chain`.
 
+## Branches after version 16.0.0
+
+`version-16` merges into `main`, so `main` follows the latest version of Frappe. Before the merge, the branch `version-14` keeps the code of Frappe 14 that was in `main`. The merge of `main` into `version-16` keeps the files of version 16:
+
+- `README.md`: the text of version 16, with the table of branches.
+- `pdf_signer/utils/openssl.py`: version 16 removed it. The last fix of `main` in this file let the certificate info work without a city or a country. `pdf_signer/utils/certificate.py` reads these values with `get`, so it does not need that fix.
+
 ## Package and dependencies
 
 The app uses `pyproject.toml` with flit, like a new Frappe 16 app. The app does not have `setup.py`, `requirements.txt` or `MANIFEST.in`. The Python dependencies are in `[project] dependencies`. The apt package `libmagic1` is in `[deploy.dependencies.apt]` for Frappe Cloud.

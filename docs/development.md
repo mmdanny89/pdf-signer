@@ -72,6 +72,9 @@ The test classes use `IntegrationTestCase`. They do not have tests yet.
 
 | Branch | Frappe | Python |
 |---|---|---|
-| `main` | 14 | 3.10 |
-| `version-15` | 15 | 3.10 |
+| `main` | 16 (the latest version) | 3.14 |
 | `version-16` | 16 | 3.14 |
+| `version-15` | 15 | 3.10 |
+| `version-14` | 14 | 3.10 |
+
+Until version 16.0.0, `main` was the branch of Frappe 14. The branch `version-14` keeps that code.
