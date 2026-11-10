@@ -14,7 +14,8 @@
 | `pdf_signer/utils/permission.py` | Access of the sign settings, the query of the dialogs and the permission of the apps screen |
 | `pdf_signer/patches/v16_0/` | Patches that move the old fields of the sign settings to the new fields |
 | `pdf_signer/public/js/file.js` | Buttons and dialogs of the File form |
-| `pdf_signer/public/js/utils.js` | Sign dialog and realtime events |
+| `pdf_signer/public/js/pdf_signer.bundle.js` | Bundle of every desk page. It imports `utils.js`. |
+| `pdf_signer/public/js/utils.js` | Sign dialog, the field of the sign settings and the realtime event, in the `pdf_signer` namespace |
 
 ## Pre-commit and linters
 
@@ -39,7 +40,7 @@ pre-commit run --all-files
 
 The ruff linter hook does not fix the code. To fix the findings that ruff can fix, run `ruff check --fix .` with the ruff version of the hook.
 
-If a JavaScript file uses a function of another file of the app, declare the function in `globals` of `.eslintrc`. For example, `file.js` uses `sign_pdf_dialog` of `utils.js`.
+The shared JavaScript functions are in the `pdf_signer` namespace of `utils.js`. `.eslintrc` declares `pdf_signer` in `globals`. After a change in `utils.js`, run `bench build --app pdf_signer`.
 
 ## Translations
 

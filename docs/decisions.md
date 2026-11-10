@@ -62,13 +62,18 @@ Long-term validation uses `embed_validation_info` and `use_pades_lta` of pyHanko
 
 The preview uses the same code as the signature to calculate the box and the style, and draws the box with the stamps of pyHanko on a blank A4 page. It does not need the certificate, and it does not save the form.
 
+## JavaScript bundle
+
+`pdf_signer.bundle.js` imports `utils.js`, and `app_include_js` loads the bundle in every page of the desk. The sign dialog after an upload works in every document for this reason. A bundle does not make global functions, so `utils.js` puts its functions in the `pdf_signer` namespace (`pdf_signer.sign_pdf_dialog` and `pdf_signer.sign_setting_field`). `file.js` uses them, and does not load `utils.js` a second time.
+
+After a change in `utils.js`, run `bench build --app pdf_signer`. `bench migrate` does not build the bundle, and the browser keeps the old bundle until the build.
+
 ## Translations
 
 All the texts of the app are in English, and `pdf_signer/locale/es.po` has their translation to Spanish of Spain (es-ES), with usted. The default text of the signature box is in English, because a field default cannot be translated. The user changes the text in the sign setting.
 
 ## Known limits
 
-- The sign dialog after an upload opens only if the browser has loaded `utils.js`. The File form loads it. The bundle `pdf_signer.bundle.js` is empty.
 - The app does not use the rotation of a page (`/Rotate`) to calculate the position of the box.
 - The DocType **PDF Signer Documents Signed** does not get records.
 - The preview always uses an A4 page, and your user name in place of the name of the certificate holder.

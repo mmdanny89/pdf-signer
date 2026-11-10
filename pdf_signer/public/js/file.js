@@ -1,15 +1,13 @@
 // MIT 2022, Ing. Danny Molina Morales
 // For license information, please see license.txt
 
-frappe.require(["/assets/pdf_signer/js/utils.js"]);
-
 let customize_pdf_signer = function (frm) {
 	if (frm.doc.__islocal) return;
 	frappe.call("pdf_signer.utils.api.check_pdf", { file: frm.docname }).then((r) => {
 		if (!r.message.success) return;
 		if (r.message.can_sign) {
 			frm.add_custom_button(__("Sign PDF"), function () {
-				sign_pdf_dialog(frm.docname, () => frm.reload_doc());
+				pdf_signer.sign_pdf_dialog(frm.docname, () => frm.reload_doc());
 			}).each(function () {
 				frappe.ui.button.dress(this, {
 					label: __("Sign PDF"),
@@ -40,7 +38,7 @@ frappe.ui.form.on("File", {
 function verify_sign_pdf_dialog(file_reference) {
 	let d = new frappe.ui.Dialog({
 		title: __("Verify Signed PDF"),
-		fields: [sign_setting_field("verify")],
+		fields: [pdf_signer.sign_setting_field("verify")],
 		primary_action_label: __("Verify Signatures"),
 		primary_action(values) {
 			d.hide();

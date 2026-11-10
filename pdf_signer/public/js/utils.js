@@ -1,18 +1,22 @@
 // Copyright (c) 2022, Danny Molina Morales and contributors
 // For license information, please see license.txt
 
+// pdf_signer.bundle.js includes this file in every desk page. The functions go in the
+// pdf_signer namespace, because a bundle does not make global functions.
+frappe.provide("pdf_signer");
+
 let flag_protect = false;
 
 $(document).ready(function () {
 	frappe.realtime.on("ask_to_sign", function (file_reference) {
 		if (flag_protect == false) {
-			sign_pdf_dialog(file_reference.docname);
+			pdf_signer.sign_pdf_dialog(file_reference.docname);
 		}
 	});
 });
 
 // The Link field of the sign and verify dialogs: only the enabled settings that the user can use.
-function sign_setting_field(purpose) {
+pdf_signer.sign_setting_field = function (purpose) {
 	return {
 		label: __("Sign Setting"),
 		fieldname: "sign_setting",
@@ -24,12 +28,12 @@ function sign_setting_field(purpose) {
 			filters: { purpose: purpose },
 		}),
 	};
-}
+};
 
-function sign_pdf_dialog(file_reference, on_signed) {
+pdf_signer.sign_pdf_dialog = function (file_reference, on_signed) {
 	let d = new frappe.ui.Dialog({
 		title: __("Sign PDF"),
-		fields: [sign_setting_field("sign")],
+		fields: [pdf_signer.sign_setting_field("sign")],
 		primary_action_label: __("Sign Document"),
 		primary_action(values) {
 			flag_protect = true;
@@ -53,4 +57,4 @@ function sign_pdf_dialog(file_reference, on_signed) {
 		},
 	});
 	d.show();
-}
+};
