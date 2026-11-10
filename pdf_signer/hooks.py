@@ -1,19 +1,44 @@
-from . import __version__ as app_version
-
 app_name = "pdf_signer"
-app_title = "Pdf Signer"
+app_title = "PDF Signer"
 app_publisher = "Danny Molina Morales"
 app_description = "Application for signing PDF files"
 app_email = "mmdanny89@gmail.com"
 app_license = "MIT"
-app_version = app_version
+
+# Apps
+# ------------------
+
+# required_apps = []
+
+app_home = "/desk/pdf-signer"
+
+# Each item in the list will be shown as an app in the apps page
+# No logo yet: the desk draws a letter icon from the app title.
+add_to_apps_screen = [
+	{
+		"name": app_name,
+		"title": app_title,
+		"route": app_home,
+		"has_permission": "pdf_signer.utils.permission.has_app_permission",
+	}
+]
+
+# The dock, the rail down the left of the desk, is a document rather than a hook. Author it in
+# Manage Dock on a developer-mode site and press Export to App, and it is written to
+# `pdf_signer/dock/pdf_signer/pdf_signer.json` for git to carry. An app that ships none has no
+# rail: its sidebar gets a switcher in the header instead.
+#
+# A companion app, one that extends a host app rather than standing on its own, says so with
+# `mount_on` on that same record, and its entries are appended to the host's rail. Mounting keeps
+# the companion off the apps screen, so it takes precedence over any add_to_apps_screen above.
 
 # Includes in <head>
 # ------------------
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/pdf_signer/css/pdf_signer.css"
-app_include_js = "pdf_signer.bundle.js"
+app_include_js = ["pdf_signer.bundle.js"]
+
 # include js, css files in header of web template
 # web_include_css = "/assets/pdf_signer/css/pdf_signer.css"
 # web_include_js = "/assets/pdf_signer/js/pdf_signer.js"
@@ -30,9 +55,15 @@ app_include_js = "pdf_signer.bundle.js"
 
 # include js in doctype views
 doctype_js = {"File": "public/js/file.js"}
-doctype_list_js = {"File": "public/js/file_list.js"}
+# doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
+# doctype_kanban_js = {"doctype" : "public/js/doctype_kanban.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
+
+# Svg Icons
+# ------------------
+# include app icons in desk
+# app_include_icons = "pdf_signer/public/icons.svg"
 
 # Home Pages
 # ----------
@@ -50,6 +81,9 @@ doctype_list_js = {"File": "public/js/file_list.js"}
 
 # automatically create page for each record of this doctype
 # website_generators = ["Web Page"]
+
+# automatically load and sync documents of this doctype from downstream apps
+# importable_doctypes = [doctype_1]
 
 # Jinja
 # ----------
@@ -72,11 +106,44 @@ doctype_list_js = {"File": "public/js/file_list.js"}
 # before_uninstall = "pdf_signer.uninstall.before_uninstall"
 # after_uninstall = "pdf_signer.uninstall.after_uninstall"
 
+# Integration Setup
+# ------------------
+# To set up dependencies/integrations with other apps
+# Name of the app being installed is passed as an argument
+
+# before_app_install = "pdf_signer.utils.before_app_install"
+# after_app_install = "pdf_signer.utils.after_app_install"
+
+# Integration Cleanup
+# -------------------
+# To clean up dependencies/integrations with other apps
+# Name of the app being uninstalled is passed as an argument
+
+# before_app_uninstall = "pdf_signer.utils.before_app_uninstall"
+# after_app_uninstall = "pdf_signer.utils.after_app_uninstall"
+
+# Build
+# ------------------
+# To hook into the build process
+
+# after_build = "pdf_signer.build.after_build"
+
+# To hook into the build process of other apps
+# The list of apps being built is passed as an argument
+
+# after_app_build = "pdf_signer.build.after_app_build"
+
 # Desk Notifications
 # ------------------
 # See frappe.core.notifications.get_notification_config
 
 # notification_config = "pdf_signer.notifications.get_notification_config"
+
+# Awesome Bar
+# -----------
+# Extra search results: list of dicts with label, description, route, index.
+# route: ["List", "ToDo"], "/desk/docs/some/page", or "https://example.com"
+# awesomebar_search = ["pdf_signer.search.awesomebar_results"]
 
 # Permissions
 # -----------
@@ -90,14 +157,6 @@ doctype_list_js = {"File": "public/js/file_list.js"}
 # 	"Event": "frappe.desk.doctype.event.event.has_permission",
 # }
 
-# DocType Class
-# ---------------
-# Override standard doctype classes
-
-# override_doctype_class = {
-# 	"ToDo": "custom_app.overrides.CustomToDo"
-# }
-
 # Document Events
 # ---------------
 # Hook on document methods and events
@@ -108,11 +167,6 @@ doc_events = {
 		"on_trash": "pdf_signer.custom_events.doc_events.remove_file_signed",
 		"before_save": "pdf_signer.custom_events.doc_events.validate_extension",
 	}
-	# 	"*": {
-	# 		"on_update": "method",
-	# 		"on_cancel": "method",
-	# 		"on_trash": "method"
-	# 	}
 }
 
 # Scheduled Tasks
@@ -141,6 +195,14 @@ doc_events = {
 
 # before_tests = "pdf_signer.install.before_tests"
 
+# Extend DocType Class
+# ------------------------------
+#
+# Specify custom mixins to extend the standard doctype controller.
+# extend_doctype_class = {
+# 	"Task": "pdf_signer.custom.task.CustomTaskMixin"
+# }
+
 # Overriding Methods
 # ------------------------------
 #
@@ -159,6 +221,20 @@ doc_events = {
 #
 # auto_cancel_exempted_doctypes = ["Auto Repeat"]
 
+# Ignore links to specified DocTypes when deleting documents
+# -----------------------------------------------------------
+
+# ignore_links_on_delete = ["Communication", "ToDo"]
+
+# Request Events
+# ----------------
+# before_request = ["pdf_signer.utils.before_request"]
+# after_request = ["pdf_signer.utils.after_request"]
+
+# Job Events
+# ----------
+# before_job = ["pdf_signer.utils.before_job"]
+# after_job = ["pdf_signer.utils.after_job"]
 
 # User Data Protection
 # --------------------
@@ -191,10 +267,14 @@ doc_events = {
 # 	"pdf_signer.auth.validate"
 # ]
 
-# Translation
-# --------------------------------
+# Automatically update python controller files with type annotations for this app.
+# export_python_type_annotations = True
 
-# Make link fields search translated document names for these DocTypes
-# Recommended only for DocTypes which have limited documents with untranslated names
-# For example: Role, Gender, etc.
-# translated_search_doctypes = []
+# default_log_clearing_doctypes = {
+# 	"Logging DocType Name": 30  # days to retain logs
+# }
+
+# Translation
+# ------------
+# List of apps whose translatable strings should be excluded from this app's translations.
+# ignore_translatable_strings_from = []

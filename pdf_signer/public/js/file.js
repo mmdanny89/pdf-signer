@@ -12,24 +12,25 @@ let customize_pdf_signer = function (frm) {
 			})
 			.then((r) => {
 				if (r.message.success) {
-					frm.add_custom_button(
-						'<i class="fa fa-pencil-square"></i> Sign PDF',
-						function () {
-							sign_pdf_dialog(frm.docname);
-							frm.reload_doc();
-						}
-					)
-						.removeClass("btn-default")
-						.addClass("btn-dark");
+					frm.add_custom_button(__("Sign PDF"), function () {
+						sign_pdf_dialog(frm.docname);
+						frm.reload_doc();
+					}).each(function () {
+						frappe.ui.button.dress(this, {
+							label: __("Sign PDF"),
+							variant: "solid",
+							icon: "signature",
+						});
+					});
 
-					frm.add_custom_button(
-						'<i class="fa fa-check-square"></i> Verify Signed PDF',
-						function () {
-							verify_sign_pdf_dialog(frm.doc.file_name);
-						}
-					)
-						.removeClass("btn-default")
-						.addClass("btn-dark");
+					frm.add_custom_button(__("Verify Signed PDF"), function () {
+						verify_sign_pdf_dialog(frm.doc.file_name);
+					}).each(function () {
+						frappe.ui.button.dress(this, {
+							label: __("Verify Signed PDF"),
+							icon: "badge-check",
+						});
+					});
 				}
 			});
 	}

@@ -73,7 +73,7 @@ def sign_pdf_s(file_name, settings):
 								"File",
 								{
 									"attached_to_name": settings.name,
-									"attached_to_doctype": "Electronic Sign Setting ",
+									"attached_to_doctype": "Electronic Sign Setting",
 									"attached_to_field": "bg_image",
 								},
 								"file_name",
@@ -128,7 +128,7 @@ def sign_pdf_s(file_name, settings):
 				return {"success": True, "msg": "Doc was signed.!"}
 			except Exception as e:
 				frappe.publish_realtime("unfreeze_signer", message="", user=frappe.session.user)
-				frappe.throw(msg=str(e), exc=e.type, title="Error")
+				frappe.throw(msg=str(e), title="Error")
 		else:
 			frappe.publish_realtime("unfreeze_signer", message="", user=frappe.session.user)
 			frappe.throw(

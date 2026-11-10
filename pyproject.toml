@@ -1,3 +1,32 @@
+[project]
+name = "pdf_signer"
+authors = [
+    { name = "Danny Molina Morales", email = "mmdanny89@gmail.com"}
+]
+description = "Application for signing PDF files"
+requires-python = ">=3.14"
+readme = "README.md"
+dynamic = ["version"]
+dependencies = [
+    # "frappe~=16.0.0" # Installed and managed by bench.
+    "python-magic~=0.4.27",
+    "pyHanko[pkcs11,image-support,opentype,xmp]~=0.20.1",
+]
+
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.bench.frappe-dependencies]
+frappe = ">=16.0.0,<17.0.0"
+
+# These dependencies are only installed when developer mode is enabled
+[tool.bench.dev-dependencies]
+
+# These apt dependencies will be installed from Ubuntu repositories when you host your app on Frappe Cloud
+[deploy.dependencies.apt]
+packages = ["libmagic1"]
+
 [tool.ruff]
 line-length = 110
 target-version = "py314"

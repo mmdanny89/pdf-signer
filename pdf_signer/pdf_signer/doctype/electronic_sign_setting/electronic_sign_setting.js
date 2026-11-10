@@ -31,9 +31,13 @@ frappe.ui.form.on("Electronic Sign Setting", {
 								4
 							);
 						});
-				})
-					.removeClass("btn-default")
-					.addClass("btn-danger");
+				}).each(function () {
+					frappe.ui.button.dress(this, {
+						label: __("Disabled Electronic Sign"),
+						theme: "red",
+						icon: "circle-x",
+					});
+				});
 			} else if (frm.doc.status === "Disabled") {
 				frm.add_custom_button(__("Enable Electronic Sign"), function () {
 					frappe.db
@@ -48,9 +52,13 @@ frappe.ui.form.on("Electronic Sign Setting", {
 								4
 							);
 						});
-				})
-					.removeClass("btn-default")
-					.addClass("btn-primary");
+				}).each(function () {
+					frappe.ui.button.dress(this, {
+						label: __("Enable Electronic Sign"),
+						variant: "solid",
+						icon: "power",
+					});
+				});
 			}
 		}
 		customize_image(frm);

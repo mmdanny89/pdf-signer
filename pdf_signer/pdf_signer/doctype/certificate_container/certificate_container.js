@@ -29,9 +29,7 @@ let welcome_certs = function (frm) {
 			title: BEFORE_MESSAGE_TITLE,
 			indicator: "blue",
 			message:
-				'<i class="text-primary fa fa-angle-double-right"></i> ' +
-				BEFORE_MESSAGE_FIRST +
-				"<br>",
+				frappe.utils.icon("chevrons-right", "sm") + " " + BEFORE_MESSAGE_FIRST + "<br>",
 		});
 	}
 };
@@ -54,16 +52,20 @@ frappe.ui.form.on("Certificate Container", {
 						callback: function (r) {
 							if (r.message.errno === 0) {
 								frappe.msgprint(
-									'<i class="text-primary fa fa-user"></i> Name: <strong>' +
+									frappe.utils.icon("user", "sm") +
+										" Name: <strong>" +
 										r.message.name +
 										"</strong><br>" +
-										'<i class="text-primary fa fa-flag"></i> Country: <strong>' +
+										frappe.utils.icon("flag", "sm") +
+										" Country: <strong>" +
 										r.message.country +
 										"</strong><br>" +
-										'<i class="text-primary fa fa-home"></i> City: <strong>' +
+										frappe.utils.icon("map-pin", "sm") +
+										" City: <strong>" +
 										r.message.city +
 										"</strong><br>" +
-										'<i class="text-primary fa fa-calendar"></i> Expiration Date: <strong>' +
+										frappe.utils.icon("calendar", "sm") +
+										" Expiration Date: <strong>" +
 										r.message.expire +
 										"</strong>",
 									__("Cerificate Info")
@@ -71,9 +73,12 @@ frappe.ui.form.on("Certificate Container", {
 							}
 						},
 					});
-				})
-					.removeClass("btn-default")
-					.addClass("btn-info");
+				}).each(function () {
+					frappe.ui.button.dress(this, {
+						label: __("View Certificate Info"),
+						icon: "info",
+					});
+				});
 				frm.add_custom_button(__("Verify Chain"), function () {
 					frappe.call({
 						method: "pdf_signer.pdf_signer.doctype.certificate_container.api.verify_chain",
@@ -83,25 +88,31 @@ frappe.ui.form.on("Certificate Container", {
 						callback: function (r) {
 							if (r.message.code == 0) {
 								frappe.msgprint(
-									'<p class="text-center"><i class="text-success fa fa-check"></i> <strong>This chain match!</strong></p>',
+									'<p class="text-center">' +
+										frappe.utils.icon("circle-check", "sm") +
+										" <strong>This chain match!</strong></p>",
 									__("Verification Success")
 								);
 							} else if (r.message.code == 1) {
 								frappe.msgprint(
-									'<p class="text-center"><i class="text-warning fa fa-warning"></i> <strong>This chain match partial!. Verify chain.</strong></p>',
+									'<p class="text-center">' +
+										frappe.utils.icon("triangle-alert", "sm") +
+										" <strong>This chain match partial!. Verify chain.</strong></p>",
 									__("Verification Success")
 								);
 							} else {
 								frappe.msgprint(
-									'<p class="text-center"><i class="text-danger fa fa-times"></i> <strong>This chain not match!. Fix chain.</strong></p>',
+									'<p class="text-center">' +
+										frappe.utils.icon("circle-x", "sm") +
+										" <strong>This chain not match!. Fix chain.</strong></p>",
 									__("Verification Error")
 								);
 							}
 						},
 					});
-				})
-					.removeClass("btn-default")
-					.addClass("btn-info");
+				}).each(function () {
+					frappe.ui.button.dress(this, { label: __("Verify Chain"), icon: "link" });
+				});
 			}
 		}
 	},

@@ -206,7 +206,7 @@ def load_intermediaries(chain_files):
 
 
 def verify_chain(file_cert, passwd, file_ca_root, ca_interm, is_chain=0):
-	chain = load_certs(file_cert, passwd, file_ca_root, ca_interm, is_chain)
+	chain = load_certs(file_cert, passwd, file_ca_root, ca_interm, is_chain=is_chain)
 	if chain["errno"] == 0:
 		# binding = Binding()
 		# lib = binding.lib
@@ -279,7 +279,7 @@ def cert_detail(file, password):
 		elif certificate[1].subject.get_attributes_for_oid(x509.NameOID.COUNTRY_NAME):
 			country = certificate[1].subject.get_attributes_for_oid(x509.NameOID.COUNTRY_NAME)[0].value
 		common_name = certificate[1].subject.get_attributes_for_oid(x509.NameOID.COMMON_NAME)[0].value
-		expire = certificate[1].not_valid_after.strftime("%d/%m/%Y")
+		expire = certificate[1].not_valid_after_utc.strftime("%d/%m/%Y")
 		return {"city": city, "country": country, "name": common_name, "expire": expire, "errno": 0}
 
 

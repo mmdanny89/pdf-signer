@@ -75,14 +75,30 @@ To get a local copy up and running follow these simple example steps.
 3. Complete the new site wizard.
 
 ### Install on Self-Hosted
-Version 14
+Version 16
 ```bash
 cd frappe-bench
-bench get-app https://github.com/mmdanny89/pdf-signer.git
+bench get-app --branch version-16 https://github.com/mmdanny89/pdf-signer.git
 bench --site sitename install-app pdf_signer
 ```
-> Remeber to replace `sitename` with your site name.<br>
-> For Version 15 `bench get-app --branch verion-15 https://github.com/mmdanny89/pdf-signer.git`.
+> Remember to replace `sitename` with your site name.<br>
+> For Version 15: `bench get-app --branch version-15 https://github.com/mmdanny89/pdf-signer.git`.<br>
+> For Version 14: `bench get-app --branch main https://github.com/mmdanny89/pdf-signer.git`.
+
+### Contributing
+
+This app uses `pre-commit` for code formatting and linting. [Install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
+
+```bash
+cd apps/pdf_signer
+pre-commit install
+```
+
+Pre-commit uses these tools to check and format the code:
+
+- ruff
+- eslint
+- prettier
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
