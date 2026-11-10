@@ -1,6 +1,3 @@
-import base64
-import io
-import json
 import os
 
 import frappe
@@ -8,15 +5,14 @@ from frappe import _
 from frappe.utils import format_datetime
 from frappe.utils.data import convert_utc_to_system_timezone
 from frappe.utils.password import get_decrypted_password
-from PIL import Image
-from pyhanko import stamp
-from pyhanko.pdf_utils import images, text
 from pyhanko.pdf_utils.incremental_writer import IncrementalPdfFileWriter
 from pyhanko.pdf_utils.reader import PdfFileReader
 from pyhanko.sign import fields, signers
 from pyhanko.sign.general import load_cert_from_pemder
 from pyhanko.sign.validation import validate_pdf_signature
 from pyhanko_certvalidator import ValidationContext
+
+from pdf_signer.utils.appearance import signature_box, stamp_style
 
 CONTAINER = "Certificate Container"
 
@@ -110,9 +106,11 @@ def prepare_field(writer, setting):
 	certified = any(
 		signature.docmdp_level == fields.MDPPerm.FILL_FORMS for signature in writer.prev.embedded_signatures
 	)
-	box = None if certified else tuple(json.loads(setting.postition).values())
+	page, box = 0, None
+	if setting.visible_signature and not certified:
+		page, box = signature_box(writer, setting)
 	fields.append_signature_field(
-		writer, sig_field_spec=fields.SigFieldSpec(field_name, box=box, on_page=int(setting.on_page))
+		writer, sig_field_spec=fields.SigFieldSpec(field_name, box=box, on_page=page)
 	)
 	if certified:
 		return field_name, _(
@@ -151,27 +149,6 @@ def sign_file(file_doc, setting):
 	file_doc.generate_content_hash()
 	frappe.db.set_value("File", file_doc.name, "content_hash", file_doc.content_hash)
 	return {"success": True, "msg": " ".join(filter(None, [_("The PDF is signed."), note]))}
-
-
-def stamp_style(setting, signer):
-	"""Return the stamp style of the signature box and its text parameters."""
-	text_params = {"url": setting.additional or "", "name_info": signer.subject_name}
-	stamp_text = "Signed by: %(name_info)s\nTime: %(ts)s\n%(url)s"
-	text_box_style = text.TextBoxStyle(font_size=int(setting.text_size))
-	if setting.use_bg_image or setting.use_own_sign_bg_image:
-		if setting.use_bg_image:
-			background = attachment_paths(setting.doctype, setting.name, "bg_image")[-1]
-		else:
-			background = Image.open(
-				io.BytesIO(base64.b64decode(str(setting.own_sign).replace("data:image/png;base64,", "")))
-			)
-		style = stamp.TextStampStyle(
-			stamp_text=stamp_text, text_box_style=text_box_style, background=images.PdfImage(background)
-		)
-	else:
-		# With QR stamps, the 'url' text parameter is mandatory: it is the content of the QR code.
-		style = stamp.QRStampStyle(border_width=0, stamp_text=stamp_text, text_box_style=text_box_style)
-	return style, text_params
 
 
 def validate_sign(pdf_file_verify, root, chain=None):

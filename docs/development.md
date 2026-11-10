@@ -8,10 +8,12 @@
 | `pdf_signer/hooks.py` | Hooks of the app, made from the hooks template of Frappe 16 |
 | `pdf_signer/custom_events/doc_events.py` | The hooks of File: file checks and the sign request |
 | `pdf_signer/utils/api.py` | Whitelisted methods to check, sign and verify a PDF |
-| `pdf_signer/utils/sign.py` | Signature and validation with pyHanko |
+| `pdf_signer/utils/sign.py` | Signature, signature policy and validation with pyHanko |
+| `pdf_signer/utils/appearance.py` | Signature box: page, position, style, QR code, colors and font |
 | `pdf_signer/utils/openssl.py` | Certificate load, chain check and certificate details |
 | `pdf_signer/utils/openssl_doctype_tools.py` | Error messages of the chain check and of the certificate details |
-| `pdf_signer/utils/permission.py` | Permission check of the apps screen |
+| `pdf_signer/utils/permission.py` | Access of the sign settings, the query of the dialogs and the permission of the apps screen |
+| `pdf_signer/patches/v16_0/` | Patches that move the old fields of the sign settings to the new fields |
 | `pdf_signer/public/js/file.js` | Buttons and dialogs of the File form |
 | `pdf_signer/public/js/utils.js` | Sign dialog and realtime events |
 
@@ -39,6 +41,23 @@ pre-commit run --all-files
 The ruff linter hook does not fix the code. To fix the findings that ruff can fix, run `ruff check --fix .` with the ruff version of the hook.
 
 If a JavaScript file uses a function of another file of the app, declare the function in `globals` of `.eslintrc`. For example, `file.js` uses `sign_pdf_dialog` of `utils.js`.
+
+## Translations
+
+The texts of the app are in English. `pdf_signer/locale/es.po` has the translation to Spanish of Spain (es-ES).
+
+After you add or change a text in `_()`, `__()` or a DocType:
+
+```bash
+bench generate-pot-file --app pdf_signer
+bench update-po-files --app pdf_signer --locale es
+```
+
+Then translate the new entries in `es.po`. Keep the placeholders, for example `{0}` and `%(signer)s`, as they are. Compile the file to test it:
+
+```bash
+bench compile-po-to-mo --app pdf_signer --locale es
+```
 
 ## Tests
 

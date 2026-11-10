@@ -6,45 +6,22 @@ Version :   1.0
 E-mail  :   mmdanny89@gmail.com
 """
 
-import json
-
 import frappe
 
 from pdf_signer.utils.openssl_doctype_tools import _cert_details, _verify_chain
 
 
-@frappe.whitelist(allow_guest=False)
+def check_container_permission(name):
+	frappe.has_permission("Certificate Container", "read", doc=name, throw=True)
+
+
+@frappe.whitelist()
 def cert_details(name):
+	check_container_permission(name)
 	return _cert_details(name)
 
 
-@frappe.whitelist(allow_guest=False)
-def clean_attached_file_ca(doctype, name, file_url):
-	for file in json.loads(file_url):
-		file_ = frappe.db.get_value("Certificate Authority Intermediarie", {"name": file}, ["ca_interm"])
-		if frappe.db.exists(
-			{
-				"doctype": "File",
-				"file_url": file_,
-				"attached_to_doctype": doctype,
-				"attached_to_field": "ca",
-				"attached_to_name": name,
-			}
-		):
-			dc_name = frappe.db.get_value(
-				"File",
-				{
-					"attached_to_doctype": doctype,
-					"file_url": file_,
-					"attached_to_field": "ca",
-					"attached_to_name": name,
-				},
-				["name"],
-			)
-			frappe.delete_doc(doctype="File", name=dc_name)
-	return {"success": True}
-
-
-@frappe.whitelist(allow_guest=False)
+@frappe.whitelist()
 def verify_chain(name_container):
+	check_container_permission(name_container)
 	return _verify_chain(name_container)

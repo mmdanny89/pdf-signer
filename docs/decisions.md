@@ -36,8 +36,22 @@ The old field **Allow Add Others Signs** did not change the signature. pyHanko i
 
 After a certification that allows form filling, a new visible signature field breaks the certification, because it changes the annotations of the page. Tests with pyHanko 0.38 showed that an invisible new field and an empty field that the PDF already has keep the certification valid. For this reason the app uses an empty field first, and makes a new field invisible after this type of certification.
 
+## Appearance
+
+The box uses millimeters and positions that depend on the size of the page. The old JSON field with points needed the size of the page, and it did not work for every paper size. A patch moves the old values to the new fields and keeps the look of the old signatures: a Custom position with the same box, the same page, the same style, the old text and date format, and the old borders.
+
+pyHanko 0.38 has `text_color` and `border_color`. The app uses them for the text and the border.
+
+Frappe draws the signature in the Signature field with the color of the desk theme, and stores it as a PNG with a transparent background. The app uses the transparency of the PNG and paints the lines in **Handwritten Signature Color**, so that the color in the PDF does not depend on the theme of the user.
+
+The standard PDF font of pyHanko uses the WinAnsi encoding. It shows the letters of Spanish, but not other characters. A TTF or OTF font is optional, so that the app does not include a font file.
+
+## Translations
+
+All the texts of the app are in English, and `pdf_signer/locale/es.po` has their translation to Spanish of Spain (es-ES), with usted. The default text of the signature box is in English, because a field default cannot be translated. The user changes the text in the sign setting.
+
 ## Known limits
 
 - The sign dialog after an upload opens only if the browser has loaded `utils.js`. The File form loads it. The bundle `pdf_signer.bundle.js` is empty.
-- The fields **Add QR to Sign**, **Text Font**, **Algorithm** and **Role** do not change the signature.
+- The app does not use the rotation of a page (`/Rotate`) to calculate the position of the box.
 - The DocType **PDF Signer Documents Signed** does not get records.

@@ -45,8 +45,10 @@ def _verify_chain(name_container):
 			if pass_:
 				passwd = get_decrypted_password(doctype_, _name_cert, field_password)
 			if not file_ca and not interm_ca:
-				msg = "Certificate Authority must exist to verify the certificate chain."
-				frappe.throw(msg, "Error")
+				frappe.throw(
+					_("Attach the CA root or the intermediate CAs to verify the certificate chain."),
+					title=_("Error"),
+				)
 			chain_ = verify_chain(
 				file["file_name"],
 				passwd,
@@ -56,48 +58,59 @@ def _verify_chain(name_container):
 			if chain_["errno"] == 1:
 				if chain_["cert"] == 1:
 					frappe.throw(
-						"An error occurred while interpreting the Certificate. Check the Certificate and your Password.",
-						"Error",
+						_("The certificate cannot be read. Check the certificate file and the passphrase."),
+						title=_("Error"),
 					)
 				elif chain_["cert"] == 2:
-					frappe.throw("Certificate File not found. Contact the Administrator.", "Error")
+					frappe.throw(
+						_("The certificate file was not found. Contact the administrator."), title=_("Error")
+					)
 				elif chain_["cert"] == 3:
 					frappe.throw(
-						"The Certificate could not be accessed. Permission issues. Contact the Administrator.",
-						"Error",
+						_("The app cannot open the certificate file. Contact the administrator."),
+						title=_("Error"),
 					)
 			elif chain_["errno"] == 2:
 				if chain_["ca_root"] == 1:
 					frappe.throw(
-						"An error occurred while interpreting the Root CA. Format: PEM -> .crt or DER -> .cer. If your Root CA is a string: (PEM -> .crt). Structure: (CA_ROOT, INTERM_X, INTERM_Y...)",
-						"Error",
+						_(
+							"The CA root cannot be read. Use DER format with the extension .cer, or PEM format with the extension .crt."
+						),
+						title=_("Error"),
 					)
 				elif chain_["ca_root"] == 2 or chain_["ca_root"] == 4:
-					frappe.throw("CA-ROOT file not found. Contact the Administrator.", "Error")
+					frappe.throw(
+						_("The CA root file was not found. Contact the administrator."), title=_("Error")
+					)
 				elif chain_["ca_root"] == 3:
 					frappe.throw(
-						"The CA-ROOT could not be accessed. Permission issues. Contact the Administrator.",
-						"Error",
+						_("The app cannot open the CA root file. Contact the administrator."),
+						title=_("Error"),
 					)
 			elif chain_["errno"] == 3:
 				if chain_["cainterm"] == 1:
 					frappe.throw(
-						"An error occurred while interpreting the Intermediary CA. Format: PEM -> .crt or DER -> .cer.",
-						"Error",
+						_(
+							"An intermediate CA cannot be read. Use DER format with the extension .cer, or PEM format with the extension .crt."
+						),
+						title=_("Error"),
 					)
 				elif chain_["cainterm"] == 2 or chain_["cainterm"] == 4:
-					frappe.throw("The Intermediate CA was not found. Contact the Administrator.", "Error")
+					frappe.throw(
+						_("An intermediate CA file was not found. Contact the administrator."),
+						title=_("Error"),
+					)
 				elif chain_["cainterm"] == 3:
 					frappe.throw(
-						"The Intermediary CA could not be accessed. Permission issues. Contact the Administrator.",
-						"Error",
+						_("The app cannot open an intermediate CA file. Contact the administrator."),
+						title=_("Error"),
 					)
 			else:
 				return chain_
 		else:
-			frappe.throw("This Container is empty.", "Error")
+			frappe.throw(_("This container does not have a certificate file."), title=_("Error"))
 	else:
-		frappe.throw("This Container does not exist.", "Error")
+		frappe.throw(_("This container does not exist."), title=_("Error"))
 
 
 def _cert_details(name_container):
@@ -125,15 +138,16 @@ def _cert_details(name_container):
 		result = cert_detail(file["file_name"], passwd)
 		if result["errno"] == 1:
 			frappe.throw(
-				"An error occurred while interpreting the Certificate File. Check the Certificate and your Password.",
-				"Error",
+				_("The certificate cannot be read. Check the certificate file and the passphrase."),
+				title=_("Error"),
 			)
 		elif result["errno"] == 2:
-			frappe.throw("Certificate File not found. Contact the Administrator.", "Error")
+			frappe.throw(
+				_("The certificate file was not found. Contact the administrator."), title=_("Error")
+			)
 		elif result["errno"] == 3:
 			frappe.throw(
-				"The Certificate File could not be accessed. Permission issues. Contact the Administrator.",
-				"Error",
+				_("The app cannot open the certificate file. Contact the administrator."), title=_("Error")
 			)
 		else:
 			return result

@@ -27,22 +27,36 @@
   "column_break_access",
   "verify_roles",
   "appearance_tab",
-  "signature_style_section",
-  "postition",
-  "column_break_13",
-  "on_page",
-  "backgroud_of_sign_section",
-  "use_bg_image",
+  "box_section",
+  "visible_signature",
+  "page",
+  "page_number",
+  "column_break_box",
+  "position",
+  "box_width",
+  "box_height",
+  "margin",
+  "custom_x",
+  "custom_y",
+  "style_section",
+  "stamp_style",
+  "qr_position",
+  "qr_content",
+  "column_break_style",
   "bg_image",
-  "column_break_17",
-  "use_own_sign_bg_image",
   "own_sign",
-  "additional_info_for_signature_section",
-  "use_qr_style",
+  "handwritten_color",
+  "background_opacity",
+  "text_section",
+  "stamp_text",
   "additional",
-  "column_break_24",
-  "text_form",
-  "text_size"
+  "timestamp_format",
+  "font_file",
+  "column_break_text",
+  "text_size",
+  "text_color",
+  "border_width",
+  "border_color"
  ],
  "fields": [
   {
@@ -100,10 +114,12 @@
    "read_only": 1
   },
   {
+   "description": "The app makes PAdES signatures, the standard for signed PDF files.",
    "fieldname": "algorithm",
    "fieldtype": "Select",
    "label": "Algorithm",
    "options": "PAdES",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -178,101 +194,227 @@
    "label": "Appearance"
   },
   {
-   "fieldname": "signature_style_section",
+   "fieldname": "box_section",
    "fieldtype": "Section Break",
-   "label": "Signature Position"
+   "label": "Signature Box"
   },
   {
-   "default": "{\"x1\":10, \"y1\":20, \"x2\":300, \"y2\":90}",
-   "fieldname": "postition",
-   "fieldtype": "JSON",
-   "label": "Position"
+   "default": "1",
+   "description": "Show a box with the signature on a page. If it is off, the signature is invisible: PDF readers show it only in the signature panel.",
+   "fieldname": "visible_signature",
+   "fieldtype": "Check",
+   "label": "Visible Signature"
   },
   {
-   "fieldname": "column_break_13",
+   "default": "First Page",
+   "depends_on": "visible_signature",
+   "description": "The page of the signature box.",
+   "fieldname": "page",
+   "fieldtype": "Select",
+   "label": "Page",
+   "options": "First Page\nLast Page\nPage Number"
+  },
+  {
+   "default": "1",
+   "depends_on": "eval:doc.visible_signature && doc.page == \"Page Number\"",
+   "description": "The number of the page. The first page is 1. If the PDF has fewer pages, the app does not sign.",
+   "fieldname": "page_number",
+   "fieldtype": "Int",
+   "label": "Page Number",
+   "mandatory_depends_on": "eval:doc.visible_signature && doc.page == \"Page Number\""
+  },
+  {
+   "fieldname": "column_break_box",
    "fieldtype": "Column Break"
   },
   {
-   "default": "0",
-   "description": "<strong>Page 0: </strong> Refer to first page of document.<br>\n<strong>Page -1: </strong> Refer to latest page of document.",
-   "fieldname": "on_page",
-   "fieldtype": "Int",
-   "label": "On Page"
+   "default": "Bottom Right",
+   "depends_on": "visible_signature",
+   "description": "The place of the signature box on the page. With Custom, you give the distance from the bottom-left corner of the page.",
+   "fieldname": "position",
+   "fieldtype": "Select",
+   "label": "Position",
+   "options": "Bottom Left\nBottom Center\nBottom Right\nTop Left\nTop Center\nTop Right\nCustom"
   },
   {
-   "fieldname": "backgroud_of_sign_section",
+   "default": "70",
+   "depends_on": "visible_signature",
+   "description": "The width of the signature box in millimeters.",
+   "fieldname": "box_width",
+   "fieldtype": "Float",
+   "label": "Width (mm)",
+   "precision": "1"
+  },
+  {
+   "default": "25",
+   "depends_on": "visible_signature",
+   "description": "The height of the signature box in millimeters.",
+   "fieldname": "box_height",
+   "fieldtype": "Float",
+   "label": "Height (mm)",
+   "precision": "1"
+  },
+  {
+   "default": "10",
+   "depends_on": "eval:doc.visible_signature && doc.position != \"Custom\"",
+   "description": "The distance in millimeters between the signature box and the edges of the page.",
+   "fieldname": "margin",
+   "fieldtype": "Float",
+   "label": "Margin (mm)",
+   "precision": "1"
+  },
+  {
+   "depends_on": "eval:doc.visible_signature && doc.position == \"Custom\"",
+   "description": "The distance in millimeters from the left edge of the page to the left side of the box.",
+   "fieldname": "custom_x",
+   "fieldtype": "Float",
+   "label": "Distance from the Left (mm)",
+   "precision": "1"
+  },
+  {
+   "depends_on": "eval:doc.visible_signature && doc.position == \"Custom\"",
+   "description": "The distance in millimeters from the bottom edge of the page to the bottom side of the box.",
+   "fieldname": "custom_y",
+   "fieldtype": "Float",
+   "label": "Distance from the Bottom (mm)",
+   "precision": "1"
+  },
+  {
+   "depends_on": "visible_signature",
+   "fieldname": "style_section",
    "fieldtype": "Section Break",
-   "label": "Sign Backgroud"
+   "label": "Style"
   },
   {
-   "default": "0",
-   "fieldname": "use_bg_image",
-   "fieldtype": "Check",
-   "label": "Use backgroud image for Sign Box"
+   "default": "Text and QR Code",
+   "description": "Text: only the text. Text and QR Code: the text and a QR code. Background Image: the text on an image. Handwritten Signature: the text on a signature that you draw.",
+   "fieldname": "stamp_style",
+   "fieldtype": "Select",
+   "label": "Style",
+   "options": "Text\nText and QR Code\nBackground Image\nHandwritten Signature"
   },
   {
-   "depends_on": "eval:doc.use_bg_image;",
+   "default": "Left of Text",
+   "depends_on": "eval:doc.stamp_style == \"Text and QR Code\"",
+   "description": "The place of the QR code in the signature box.",
+   "fieldname": "qr_position",
+   "fieldtype": "Select",
+   "label": "QR Code Position",
+   "options": "Left of Text\nRight of Text\nAbove Text\nBelow Text"
+  },
+  {
+   "depends_on": "eval:doc.stamp_style == \"Text and QR Code\"",
+   "description": "The text or the web address in the QR code. If it is empty, the QR code contains the Additional Text, or the address of this site.",
+   "fieldname": "qr_content",
+   "fieldtype": "Small Text",
+   "label": "QR Code Content"
+  },
+  {
+   "fieldname": "column_break_style",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.stamp_style == \"Background Image\"",
+   "description": "A PNG or JPG image behind the text, for example a stamp of the company.",
    "fieldname": "bg_image",
    "fieldtype": "Attach Image",
-   "label": "Backgroud Image",
-   "mandatory_depends_on": "eval:doc.use_bg_image;"
+   "label": "Background Image",
+   "mandatory_depends_on": "eval:doc.stamp_style == \"Background Image\""
   },
   {
-   "fieldname": "column_break_17",
-   "fieldtype": "Column Break"
-  },
-  {
-   "default": "0",
-   "fieldname": "use_own_sign_bg_image",
-   "fieldtype": "Check",
-   "label": "Use my own sign as backgroud of Sign Box"
-  },
-  {
-   "depends_on": "eval:doc.use_own_sign_bg_image;",
+   "depends_on": "eval:doc.stamp_style == \"Handwritten Signature\"",
+   "description": "Draw your signature. The app puts it behind the text.",
    "fieldname": "own_sign",
    "fieldtype": "Signature",
-   "label": "Use my Own sign as backgroud of Sign Box",
-   "mandatory_depends_on": "eval:doc.use_own_sign_bg_image;"
+   "label": "Handwritten Signature",
+   "mandatory_depends_on": "eval:doc.stamp_style == \"Handwritten Signature\""
   },
   {
-   "fieldname": "additional_info_for_signature_section",
+   "default": "#1F3A93",
+   "depends_on": "eval:doc.stamp_style == \"Handwritten Signature\"",
+   "description": "The color of the drawn signature in the PDF. The color of the drawing pad does not change the PDF.",
+   "fieldname": "handwritten_color",
+   "fieldtype": "Color",
+   "label": "Handwritten Signature Color"
+  },
+  {
+   "default": "60",
+   "depends_on": "eval:[\"Background Image\", \"Handwritten Signature\"].includes(doc.stamp_style)",
+   "description": "100% shows the image or the drawn signature with full color. A lower value makes it lighter, so that the text is easier to read.",
+   "fieldname": "background_opacity",
+   "fieldtype": "Percent",
+   "label": "Background Opacity"
+  },
+  {
+   "depends_on": "visible_signature",
+   "fieldname": "text_section",
    "fieldtype": "Section Break",
-   "label": "Additional Info for Signature"
+   "label": "Text"
   },
   {
-   "default": "0",
-   "fieldname": "use_qr_style",
-   "fieldtype": "Check",
-   "label": "Add QR to Sign"
+   "default": "Signed by: %(signer)s\nDate: %(ts)s\n%(additional)s",
+   "description": "The text of the signature box. You can use these variables: %(signer)s the name of the certificate holder, %(ts)s the date and time of the signature, %(reason)s, %(location)s and %(additional)s.",
+   "fieldname": "stamp_text",
+   "fieldtype": "Small Text",
+   "label": "Text",
+   "reqd": 1
   },
   {
-   "default": "My Company, Ltd.",
-   "description": "Additional Info that's include on Box Sign",
+   "description": "A text for the variable %(additional)s, for example the name of the company.",
    "fieldname": "additional",
    "fieldtype": "Data",
-   "label": "Additional Info",
-   "length": 35
+   "label": "Additional Text"
   },
   {
-   "fieldname": "column_break_24",
+   "default": "%d/%m/%Y %H:%M:%S %Z",
+   "description": "The format of %(ts)s. %d day, %m month, %Y year, %H hour, %M minutes, %S seconds, %Z time zone.",
+   "fieldname": "timestamp_format",
+   "fieldtype": "Data",
+   "label": "Date Format"
+  },
+  {
+   "description": "Optional. A TTF or OTF font for the text. If it is empty, the app uses a standard PDF font. That font shows letters with accents and the letter ñ, but not other special characters.",
+   "fieldname": "font_file",
+   "fieldtype": "Attach",
+   "label": "Font File"
+  },
+  {
+   "fieldname": "column_break_text",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "text_form",
-   "fieldtype": "Select",
-   "label": "Text Font",
-   "options": "None"
   },
   {
    "default": "11",
+   "description": "The size of the text in points.",
    "fieldname": "text_size",
    "fieldtype": "Int",
    "label": "Text Size"
+  },
+  {
+   "default": "#000000",
+   "description": "The color of the text.",
+   "fieldname": "text_color",
+   "fieldtype": "Color",
+   "label": "Text Color"
+  },
+  {
+   "default": "0",
+   "description": "The width of the line around the box, in points. 0 means no border.",
+   "fieldname": "border_width",
+   "fieldtype": "Int",
+   "label": "Border Width"
+  },
+  {
+   "default": "#000000",
+   "depends_on": "eval:doc.border_width > 0",
+   "description": "The color of the line around the box.",
+   "fieldname": "border_color",
+   "fieldtype": "Color",
+   "label": "Border Color"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-11-10 14:00:00.000000",
+ "modified": "2026-11-10 15:00:00.000000",
  "modified_by": "Administrator",
  "module": "Pdf Signer",
  "name": "Electronic Sign Setting",

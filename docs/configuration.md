@@ -84,7 +84,7 @@ A sign setting tells the app which certificate to use and how the signature box 
 1. Open **PDF Signer > Signing > Electronic Sign Setting**.
 2. Click **Add Electronic Sign Setting**.
 3. Type the name in **Sign Name**, and select the **Company** and the **Certificate Container**.
-4. Set the fields of the signature box. Refer to [Signature box](#signature-box).
+4. Set the tabs **Signature Policy**, **Access** and **Appearance**. Refer to the sections below.
 5. Save the sign setting.
 6. Click **Enable Electronic Sign**.
 
@@ -118,18 +118,65 @@ The tab **Access** decides who can use the sign setting.
 
 If you add users, the Administrator can sign only if it is in the list.
 
-### Signature box
+### Appearance
+
+The tab **Appearance** sets the signature box: its page, its place, its style and its text. Each field has a description in the form.
+
+#### Signature box
 
 | Field | Default | Use |
 |---|---|---|
-| Position | `{"x1":10, "y1":20, "x2":300, "y2":90}` | The corners of the signature box, in PDF points. The origin is the bottom-left corner of the page. |
-| On Page | 0 | The page of the signature box. 0 is the first page and -1 is the last page. |
-| Text Size | 11 | The size of the text in the signature box. |
-| Additional Info | My Company, Ltd. | A text that the signature box shows. With the QR style, the QR code also contains this text. |
-| Use backgroud image for Sign Box | Off | Shows the image of **Backgroud Image** behind the text. The image must be a private PNG file. |
-| Use my own sign as backgroud of Sign Box | Off | Shows the hand signature that you draw in **Use my Own sign as backgroud of Sign Box** behind the text. |
+| Visible Signature | On | Off makes an invisible signature. PDF readers show it only in the signature panel. |
+| Page | First Page | First Page, Last Page, or Page Number. With Page Number, give the number in **Page Number**. The first page is 1. |
+| Position | Bottom Right | Bottom Left, Bottom Center, Bottom Right, Top Left, Top Center, Top Right, or Custom. |
+| Width (mm), Height (mm) | 70, 25 | The size of the box. |
+| Margin (mm) | 10 | The distance between the box and the edges of the page. Not for Custom. |
+| Distance from the Left (mm), Distance from the Bottom (mm) | | Only for Custom. The distance from the bottom-left corner of the page to the bottom-left corner of the box. |
 
-The signature box shows the name of the signer, the time of the signature and the additional info. If the two background options are off, the box also shows a QR code.
+The app calculates the box from the size of the page, so the same setting works for A4, Letter and other sizes. The app does not sign in these cases:
+
+- The PDF has fewer pages than **Page Number**.
+- The box does not fit on the page.
+
+#### Style
+
+| Style | Content of the box |
+|---|---|
+| Text | Only the text. |
+| Text and QR Code | The text and a QR code. **QR Code Position** puts the QR code on the left, on the right, above or below the text. **QR Code Content** is the text or the web address in the QR code. If it is empty, the QR code contains the Additional Text, or the address of the site. |
+| Background Image | The text on a PNG or JPG image, for example the stamp of the company. |
+| Handwritten Signature | The text on a signature that you draw in the form. |
+
+For a drawn signature, **Handwritten Signature Color** sets its color in the PDF. The drawing pad of the form shows the signature in another color. This does not change the PDF.
+
+**Background Opacity** sets the strength of the image or of the drawn signature. 100% gives the full color. A lower value makes it lighter, so that the text is easier to read.
+
+#### Text
+
+| Field | Default | Use |
+|---|---|---|
+| Text | `Signed by: %(signer)s` / `Date: %(ts)s` / `%(additional)s` | The text of the box, one line for each line of the field. |
+| Additional Text | | The value of `%(additional)s`, for example the name of the company. |
+| Date Format | `%d/%m/%Y %H:%M:%S %Z` | The format of `%(ts)s`. |
+| Font File | | Optional. A TTF or OTF font. |
+| Text Size | 11 | The size of the text in points. |
+| Text Color | #000000 | The color of the text. |
+| Border Width | 0 | The width of the line around the box, in points. 0 gives no border. |
+| Border Color | #000000 | The color of the line around the box. |
+
+These variables are available in **Text**:
+
+| Variable | Value |
+|---|---|
+| `%(signer)s` | The common name of the certificate holder. |
+| `%(ts)s` | The date and the time of the signature, in the format of **Date Format**. |
+| `%(reason)s`, `%(location)s` | The Reason and the Location of the tab Signature Policy. |
+| `%(additional)s` | The Additional Text. |
+| `%(url)s` | The content of the QR code. |
+
+The default text is in English. To have the text in Spanish, change it, for example to `Firmado por: %(signer)s`. To show a % sign, write `%%`. The form stops the save if the text has an unknown variable.
+
+The standard PDF font shows letters with accents and the letter ñ. It does not show other special characters, for example the em dash. For these characters, attach a TTF or OTF font in **Font File**. With a QR code, the text is small, because it shares the box with the code. Use a larger box or fewer lines.
 
 ## Global settings
 
