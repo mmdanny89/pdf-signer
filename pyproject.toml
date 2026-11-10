@@ -10,7 +10,7 @@ dynamic = ["version"]
 dependencies = [
     # "frappe~=16.0.0" # Installed and managed by bench.
     "python-magic~=0.4.27",
-    "pyHanko[pkcs11,image-support,opentype,xmp]~=0.20.1",
+    "pyHanko[opentype,qr]~=0.38.1",
 ]
 
 [build-system]

@@ -10,7 +10,11 @@ The branch `version-16` starts from `version-15`, not from `main`. `version-15` 
 
 The app uses `pyproject.toml` with flit, like a new Frappe 16 app. The app does not have `setup.py`, `requirements.txt` or `MANIFEST.in`. The Python dependencies are in `[project] dependencies`. The apt package `libmagic1` is in `[deploy.dependencies.apt]` for Frappe Cloud.
 
-pyHanko stays on version 0.20.1. This version works on Python 3.14 with cryptography 50 and pyOpenSSL 26.
+The app uses pyHanko 0.38 with the extras `opentype` and `qr`. pyHanko 0.20.1 was too old: it had no text color and no border color, and it did not get security fixes.
+
+The app does not use the extra `image-support`. That extra needs `python-barcode==0.16.1`, and the xpos app needs `python-barcode` 0.15.1 in the same bench. The app uses Pillow from Frappe for the images.
+
+The verification reads the status object of pyHanko. It does not parse the text of `pretty_print_details`, because that text changes between versions and cannot be translated.
 
 ## Icons and buttons
 

@@ -26,16 +26,23 @@ The dialog opens only if the browser has loaded the File form one time in the se
 3. Select an enabled sign setting. The app uses the CA root and the intermediate CAs of its certificate container.
 4. Click **Verify Sign**.
 
-The result shows one section for each signature. Each section has these tabs:
+The result shows one section for each signature, with these rows:
 
-| Tab | Content |
+| Row | Content |
 |---|---|
-| Validation | The final result, for example "The signature is judged VALID." |
-| Modifications | The changes to the document after the signature. |
-| Integrity | The check of the signed content. |
-| Signing Time | The time of the signature. |
-| Signer Info | The subject of the certificate, its fingerprints and the trust anchor. |
+| Result | The final result. The signature is valid only if all the checks below pass. |
+| Integrity | Intact, or changed after signing. |
+| Cryptographic check | The check of the signature value. |
+| Trust | Trusted, not trusted, or revoked certificate. |
+| Type | Approval, or certification with its level. |
+| Coverage | The part of the file that the signature covers. |
+| Modifications | The changes to the file after the signature. |
+| Signing time | The time that the signer reported. |
+| Time stamp | The time of the time stamp, if the signature has one. |
+| Signer, Issuer, Serial number, Valid until | The data of the certificate of the signer. |
+| Trust anchor | The CA root that the chain of the certificate ends in. |
+| SHA-256 fingerprint | The fingerprint of the certificate of the signer. |
 
-A signature is valid only if the CA of the sign setting issued the certificate of the signer.
+A signature is trusted only if its chain ends in the CA root of the sign setting. The intermediate CAs help to build the chain, but they are not trust anchors.
 
-The certificate container of the sign setting must have a CA root file. If it does not have one, the verification does not show a result.
+The certificate container of the sign setting must have a CA root file. If it does not have one, the app shows an error.

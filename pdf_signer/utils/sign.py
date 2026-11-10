@@ -2,10 +2,11 @@ import base64
 import io
 import json
 import os
-import re
 from datetime import datetime
 
 import frappe
+from frappe.utils import format_datetime
+from frappe.utils.data import convert_utc_to_system_timezone
 from frappe.utils.password import get_decrypted_password
 from PIL import Image
 from pyhanko import stamp
@@ -142,71 +143,45 @@ def sign_pdf_s(file_name, settings):
 
 
 def validate_sign(pdf_file_verify, root, chain=None):
-	result = []
-	root = load_cert_from_pemder(root)
-	trust = [root]
-	if chain:
-		for ca in chain:
-			root_cert = load_cert_from_pemder(ca)
-			trust.append(root_cert)
-	vc = ValidationContext(trust_roots=trust)
+	"""Validate every signature of the PDF against the CA root and the intermediate CAs."""
+	trust_roots = [load_cert_from_pemder(root)]
+	other_certs = [load_cert_from_pemder(ca) for ca in chain or []]
+	vc = ValidationContext(trust_roots=trust_roots, other_certs=other_certs)
 	with open(pdf_file_verify, "rb") as doc:
-		r = PdfFileReader(doc)
-		for signature in r.embedded_signatures:
-			status = validate_pdf_signature(signature, vc)
-			data_r = prepare_output(status=status.pretty_print_details())
-			result.append({"signature": signature.field_name, "status": data_r})
-	return result
+		reader = PdfFileReader(doc)
+		return [
+			signature_result(signature, validate_pdf_signature(signature, vc))
+			for signature in reader.embedded_signatures
+		]
 
 
-def prepare_output(status):
-	result = {"integrity": None, "bottom": None, "modification": None, "time": None}
-	info = re.search(
-		"Signer info\\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\n(.*?)\\n\\n\\nIntegrity\\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\n",
-		status,
-		flags=re.DOTALL,
-	)
-	integrity = re.search(
-		"\\n\\n\\nIntegrity\\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\n(.*?)\\n\\n\\nSigning time\\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\n",
-		status,
-		flags=re.DOTALL,
-	)
-	time_s = re.search(
-		"\\n\\n\\nSigning time\\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\n(.*?)\\n\\n\\nModifications\\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\n",
-		status,
-		flags=re.DOTALL,
-	)
-	modification = re.search(
-		"\\n\\n\\nModifications\\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\n(.*?)\\n\\n\\nBottom line\\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\n",
-		status,
-		flags=re.DOTALL,
-	)
-	bottom = re.search(
-		"\\n\\n\\nBottom line\\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\n(.*?)\\n\\n", status, flags=re.DOTALL
-	)
-	if integrity:
-		result["integrity"] = str(integrity.group(1)).replace("\n", "")
-	if bottom:
-		result["bottom"] = bottom.group(1)
-	if modification:
-		result["modification"] = str(modification.group(1)).replace("\n", "")
-	if time_s:
-		result["time"] = time_s.group(1)
-	if info:
-		result["info"] = parse_info(info.group(1))
-	return result
+def signature_result(signature, status):
+	"""Return the data of one signature that the verification dialog shows."""
+	cert = status.signing_cert
+	return {
+		"field": signature.field_name,
+		"valid": status.bottom_line,
+		"intact": status.intact,
+		"crypto_valid": status.valid,
+		"trusted": status.trusted,
+		"revoked": status.revoked,
+		"signer": cert.subject.human_friendly,
+		"issuer": cert.issuer.human_friendly,
+		"serial_number": format(cert.serial_number, "X"),
+		"valid_until": format_utc(cert.not_valid_after),
+		"sha256": cert.sha256_fingerprint,
+		"trust_anchor": status.validation_path[0].subject.human_friendly if status.validation_path else None,
+		"signing_time": format_utc(status.signer_reported_dt),
+		"timestamp": format_utc(status.timestamp_validity.timestamp) if status.timestamp_validity else None,
+		"coverage": status.coverage.name if status.coverage else None,
+		"modification_level": status.modification_level.name if status.modification_level else None,
+		"docmdp_ok": status.docmdp_ok,
+		"certification": signature.docmdp_level.name if signature.docmdp_level else None,
+	}
 
 
-def parse_info(info):
-	info_r = {}
-	if info:
-		data_parse = info.split("\n")
-		if data_parse:
-			info_r["subject"] = data_parse[0].replace("Certificate subject: ", "")
-			info_r["fingerprint"] = [
-				{"name": data_parse[1].split(":")[0], "value": data_parse[1].split(":")[1]},
-				{"name": data_parse[2].split(":")[0], "value": data_parse[2].split(":")[1]},
-			]
-			info_r["trust_anchor"] = data_parse[3].replace("Trust anchor: ", "")
-			info_r["trust"] = data_parse[4].replace("\n", "")
-	return info_r
+def format_utc(value):
+	"""Show a UTC datetime in the time zone of the system."""
+	if not value:
+		return None
+	return format_datetime(convert_utc_to_system_timezone(value).replace(tzinfo=None))

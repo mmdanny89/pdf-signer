@@ -9,6 +9,7 @@ E-mail  :   mmdanny89@gmail.com
 import os
 
 import frappe
+from frappe import _
 
 from pdf_signer.utils import utils
 from pdf_signer.utils.openssl import get_realpath_by_name_file
@@ -63,9 +64,13 @@ def verify_pdf(file_name, sign_name):
 			},
 			"file_name",
 		)
-		if ca_root_file_name:
-			ca_root_file_name = get_realpath_by_name_file(ca_root_file_name)["full_path"]
-			if interms:
-				interms = [get_realpath_by_name_file(interm["file_name"])["full_path"] for interm in interms]
-			result = validate_sign(file_real_path, ca_root_file_name, interms)
+		if not ca_root_file_name:
+			frappe.throw(
+				_("The certificate container {0} does not have a CA root file.").format(cert_container),
+				title=_("Missing CA root"),
+			)
+		ca_root_file_name = get_realpath_by_name_file(ca_root_file_name)["full_path"]
+		if interms:
+			interms = [get_realpath_by_name_file(interm["file_name"])["full_path"] for interm in interms]
+		result = validate_sign(file_real_path, ca_root_file_name, interms)
 	return result
