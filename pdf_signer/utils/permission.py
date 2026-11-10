@@ -76,7 +76,9 @@ def sign_setting_query(doctype, txt, searchfield, start, page_len, filters):
 	if purpose not in CHECKS:
 		frappe.throw(_("Unknown purpose: {0}").format(purpose))
 	names = get_allowed_settings(purpose, txt)[start : start + page_len]
-	companies = dict(
-		frappe.get_all(SETTING, filters={"name": ["in", names]}, fields=["name", "company"], as_list=True)
+	containers = dict(
+		frappe.get_all(
+			SETTING, filters={"name": ["in", names]}, fields=["name", "cert_container"], as_list=True
+		)
 	)
-	return [(name, companies.get(name)) for name in names]
+	return [(name, containers.get(name)) for name in names]

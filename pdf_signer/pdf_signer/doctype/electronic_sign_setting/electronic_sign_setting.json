@@ -9,7 +9,6 @@
   "general_tab",
   "sign_settings_section",
   "sign_name",
-  "company",
   "is_default",
   "column_break_4",
   "cert_container",
@@ -83,14 +82,6 @@
    "label": "Sign Name",
    "reqd": 1,
    "unique": 1
-  },
-  {
-   "fieldname": "company",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Company",
-   "options": "Company",
-   "reqd": 1
   },
   {
    "default": "0",
@@ -466,7 +457,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-11-10 16:00:00.000000",
+ "modified": "2026-11-10 17:00:00.000000",
  "modified_by": "Administrator",
  "module": "Pdf Signer",
  "name": "Electronic Sign Setting",

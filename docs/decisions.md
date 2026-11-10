@@ -24,6 +24,10 @@ Frappe 16 does not load Font Awesome. The forms use the SVG icons of Frappe (`fr
 
 The app had a `file_list.js` that replaced the list settings of File with an empty object. This removed the list settings of Frappe for File. The version for Frappe 16 does not have this file.
 
+## No company field
+
+The certificate containers and the sign settings had a mandatory link to Company. Company is a DocType of ERPNext, so on a site without ERPNext the user could not save a container or a sign setting. The app does not use the company, so the version for Frappe 16 does not have this field. The column stays in the database tables.
+
 ## Roles and access
 
 The app has two roles: PDF Signer Manager configures the app, and PDF Signer User signs and verifies. Each sign setting has its own users and roles. The users win over the roles, because a personal certificate is for its holder only. Without users and roles, only the managers can sign, as in the earlier versions, where only the System Manager could use the app.

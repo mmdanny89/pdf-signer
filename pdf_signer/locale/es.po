@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PDF Signer 16\n"
 "Report-Msgid-Bugs-To: mmdanny89@gmail.com\n"
-"POT-Creation-Date: 2026-11-10 09:56-0831\n"
-"PO-Revision-Date: 2026-11-10 09:48-1129\n"
+"POT-Creation-Date: 2026-11-10 10:02-0831\n"
+"PO-Revision-Date: 2026-11-10 09:48-1329\n"
 "Last-Translator: mmdanny89@gmail.com\n"
 "Language: es\n"
 "Language-Team: es-ES\n"
@@ -323,13 +323,6 @@ msgstr "Ciudad"
 #: pdf_signer/public/js/file.js:59
 msgid "Close"
 msgstr "Cerrar"
-
-#. Label of the company (Link) field in DocType 'Certificate Container'
-#. Label of the company (Link) field in DocType 'Electronic Sign Setting'
-#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
-#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
-msgid "Company"
-msgstr "Empresa"
 
 #. Label of the contact_info (Data) field in DocType 'Electronic Sign Setting'
 #: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json

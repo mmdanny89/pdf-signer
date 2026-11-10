@@ -4,7 +4,6 @@ This guide uses example data. Replace the names and the files with your own data
 
 | Example item | Example value |
 |---|---|
-| Company | Example Company |
 | Certificate container | Example Container |
 | Sign setting | Example Signature |
 
@@ -40,7 +39,7 @@ A certificate container keeps the certificate, its passphrase and the certificat
 
 1. Open **PDF Signer > Certificates > Certificate Container**.
 2. Click **Add Certificate Container**.
-3. Type the name in **Certificate Container Name** and select the **Company**.
+3. Type the name in **Certificate Container Name**.
 4. Save the container. The tabs **Certificate Settings** and **Certificate Authority (CA)** show after the first save.
 5. In **Certificate Settings**, attach the .p12 or .pfx file in **Certificate File**.
 6. Type the passphrase of the certificate in **Passphrase**.
@@ -79,11 +78,11 @@ After you save the container, the form shows two buttons:
 
 ## Create a sign setting
 
-A sign setting tells the app which certificate to use and how the signature box looks. You can have more than one sign setting, for example one for each company.
+A sign setting tells the app which certificate to use and how the signature box looks. You can have more than one sign setting, for example one for each certificate or each style.
 
 1. Open **PDF Signer > Signing > Electronic Sign Setting**.
 2. Click **Add Electronic Sign Setting**.
-3. Type the name in **Sign Name**, and select the **Company** and the **Certificate Container**.
+3. Type the name in **Sign Name**, and select the **Certificate Container**.
 4. Set the tabs **Signature Policy**, **Access** and **Appearance**. Refer to the sections below.
 5. Save the sign setting.
 6. Click **Enable Electronic Sign**.
