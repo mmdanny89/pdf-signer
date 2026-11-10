@@ -1,73 +1,60 @@
 // Copyright (c) 2022, Danny Molina Morales and contributors
 // For license information, please see license.txt
 
+// pdf_signer.bundle.js includes this file in every desk page. The functions go in the
+// pdf_signer namespace, because a bundle does not make global functions.
+frappe.provide("pdf_signer");
 
 let flag_protect = false;
 
-
-
-$(document).ready(function(){
-	frappe.realtime.on("ask_to_sign",function (file_reference) {
+$(document).ready(function () {
+	frappe.realtime.on("ask_to_sign", function (file_reference) {
 		if (flag_protect == false) {
-			sign_pdf_dialog(file_reference.docname);
+			pdf_signer.sign_pdf_dialog(file_reference.docname);
 		}
-			
-	});
-	frappe.realtime.on("unfreeze_signer",function () {
-		frappe.dom.unfreeze();
-		flag_protect = false
 	});
 });
 
+// The Link field of the sign and verify dialogs: only the enabled settings that the user can use.
+pdf_signer.sign_setting_field = function (purpose) {
+	return {
+		label: __("Sign Setting"),
+		fieldname: "sign_setting",
+		fieldtype: "Link",
+		options: "Electronic Sign Setting",
+		reqd: 1,
+		get_query: () => ({
+			query: "pdf_signer.utils.permission.sign_setting_query",
+			filters: { purpose: purpose },
+		}),
+	};
+};
 
-function sign_pdf_dialog(file_reference) {
+pdf_signer.sign_pdf_dialog = function (file_reference, on_signed) {
 	let d = new frappe.ui.Dialog({
-		title: 'Select a Sign Profile',
-		fields: [
-			{
-				label: 'Sign',
-				fieldname: 'sign_field',
-				fieldtype: 'Link',
-				options: 'Electronic Sign Setting',
-				get_query: function(){
-					return {
-						filters: {
-							status: 'Enable',
-						}
-					}
-				},
-				req:1
-			}
-		],
-		primary_action_label: 'Sign Document',
+		title: __("Sign PDF"),
+		fields: [pdf_signer.sign_setting_field("sign")],
+		primary_action_label: __("Sign Document"),
 		primary_action(values) {
-			flag_protect = true
-			frappe.dom.freeze("Signing Document...");
-			frappe.call({
-				method: 'pdf_signer.utils.api.sign_pdf',
-				args: {
-					file_name: file_reference,
-					sign_name: values.sign_field,
-				},
-				callback: function(r) {
-					frappe.dom.unfreeze();
-					if (r.message.success === true) {
-						frappe.show_alert({
-							message:__(r.message.msg),
-							indicator:'green'
-						}, 5);
-						flag_protect = false;
-					} else {
-						frappe.show_alert({
-							message:__(r.message.msg),
-							indicator:'red'
-						}, 5);
-						flag_protect = false
-					}										
-				}
-			});
+			flag_protect = true;
 			d.hide();
-		}
+			frappe.dom.freeze(__("Signing the document..."));
+			frappe.call({
+				method: "pdf_signer.utils.api.sign_pdf",
+				args: {
+					file: file_reference,
+					sign_setting: values.sign_setting,
+				},
+				always: () => {
+					frappe.dom.unfreeze();
+					flag_protect = false;
+				},
+				callback: function (r) {
+					frappe.show_alert({ message: r.message.msg, indicator: "green" }, 5);
+					on_signed && on_signed();
+				},
+			});
+		},
 	});
 	d.show();
-}
+};

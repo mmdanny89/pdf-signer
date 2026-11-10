@@ -6,7 +6,7 @@
  "doctype": "Workspace",
  "for_user": "",
  "hide_custom": 0,
- "icon": "quality",
+ "icon": "signature",
  "idx": 0,
  "label": "PDF Signer",
  "links": [
@@ -57,7 +57,7 @@
    "type": "Link"
   }
  ],
- "modified": "2022-11-15 13:58:02.031556",
+ "modified": "2026-11-10 13:00:00.000000",
  "modified_by": "Administrator",
  "module": "Pdf Signer",
  "name": "PDF Signer",

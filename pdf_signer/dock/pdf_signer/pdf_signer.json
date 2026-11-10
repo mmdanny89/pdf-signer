@@ -1,0 +1,23 @@
+{
+ "app": "pdf_signer",
+ "creation": "2026-11-10 12:00:00.000000",
+ "docstatus": 0,
+ "doctype": "Dock",
+ "idx": 0,
+ "items": [
+  {
+   "added": 0,
+   "hidden": 0,
+   "icon": "pdf-signer-soft",
+   "link_to": "PDF Signer",
+   "link_type": "Sidebar",
+   "title": "PDF Signer"
+  }
+ ],
+ "modified": "2026-11-10 13:00:00.000000",
+ "modified_by": "Administrator",
+ "name": "pdf_signer",
+ "owner": "Administrator",
+ "standard": 1,
+ "user": ""
+}

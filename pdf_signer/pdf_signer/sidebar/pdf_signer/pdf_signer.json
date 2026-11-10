@@ -1,0 +1,111 @@
+{
+ "app": "pdf_signer",
+ "creation": "2026-11-10 12:00:00.000000",
+ "docstatus": 0,
+ "doctype": "Sidebar",
+ "header_icon": "pdf-signer-soft",
+ "idx": 0,
+ "items": [
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "house",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Home",
+   "link_to": "PDF Signer",
+   "link_type": "Workspace",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "signature",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Signing",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Section Break"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "filters": "[[\"File\", \"file_type\", \"=\", \"PDF\"]]",
+   "icon": "file-text",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "PDF Files",
+   "link_to": "File",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "icon": "file-pen-line",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Electronic Sign Setting",
+   "link_to": "Electronic Sign Setting",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "shield-check",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Certificates",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Section Break"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "icon": "file-key",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Certificate Container",
+   "link_to": "Certificate Container",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "settings",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Settings",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Section Break"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "icon": "settings",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Global Settings PDF Signer",
+   "link_to": "Global Settings PDF Signer",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-11-10 13:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Pdf Signer",
+ "name": "PDF Signer",
+ "owner": "Administrator",
+ "standard": 1,
+ "title": "PDF Signer"
+}

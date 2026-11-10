@@ -1,41 +1,41 @@
-# -*-coding:utf-8 -*-
-"""
-File    :   doc_events.py
-Date    :   2022/11/14 14:30:58
-Author  :   Ing. Danny Molina Morales
-Version :   1.0
-E-mail  :   mmdanny89@gmail.com
-"""
-
 import frappe
 from frappe import _
 
-from pdf_signer.utils import api
+from pdf_signer.utils.api import is_pdf
+from pdf_signer.utils.permission import get_allowed_settings
+
+# Attach field -> extensions that the field accepts. All of them must be private files.
+CERTIFICATE_FIELDS = {
+	"cert_file": (".p12", ".pfx"),
+	"ca_root": (".cer", ".crt"),
+	"ca_interm": (".cer", ".crt"),
+}
 
 
 def remove_file_signed(doc, method):
-    # TODO: remove file for app register.!!
-    pass
+	# TODO: remove file for app register.!!
+	pass
 
 
 def check_file_uploaded(doc, method):
-    mime = api.check_pdf(doc.file_name, doc.is_private)
-    if mime["success"]:
-        ask = frappe.db.get_single_value("Global Settings PDF Signer", "always_ask")
-        if int(ask) == 1:
-            frappe.publish_realtime(event="ask_to_sign", message={"docname": doc.name}, user=frappe.session.user)
+	"""Ask the user to sign a new PDF, if the global settings say so and the user can sign."""
+	if not frappe.db.get_single_value("Global Settings PDF Signer", "always_ask"):
+		return
+	if is_pdf(doc) and get_allowed_settings("sign"):
+		frappe.publish_realtime(event="ask_to_sign", message={"docname": doc.name}, user=frappe.session.user)
 
 
 def validate_extension(doc, method):
-    if doc.attached_to_field == "cert_file":
-        if doc.is_private == 0:
-            frappe.throw(_("Certificates are private files."), title="Error")
-        if doc.attached_to_field == "cert_file":
-            if not str(doc.file_name).endswith((".p12", ".pfx")):
-                frappe.throw(_("Invalid extension for certificate file. Allowed: (.p12, .pfx)"), "Error")
-        if doc.attached_to_field == "ca_root":
-            if not str(doc.file_name).endswith((".cer")):
-                frappe.throw(_("Invalid extension for CA Root file. Allowed: (.cer)"), "Error")
-        if doc.attached_to_field == "ca_interm":
-            if not str(doc.file_name).endswith((".cer")):
-                frappe.throw(_("Invalid extension for CA Intermediaries files. Allowed: (.cer)"), "Error")
+	"""Accept only private certificate files with the correct extension in a certificate container."""
+	if doc.attached_to_doctype != "Certificate Container" or doc.attached_to_field not in CERTIFICATE_FIELDS:
+		return
+	if not doc.is_private:
+		frappe.throw(_("Certificate files must be private files."), title=_("Public certificate"))
+	extensions = CERTIFICATE_FIELDS[doc.attached_to_field]
+	if not str(doc.file_name).lower().endswith(extensions):
+		frappe.throw(
+			_("The file {0} has a wrong extension. Allowed extensions: {1}").format(
+				doc.file_name, ", ".join(extensions)
+			),
+			title=_("Wrong extension"),
+		)

@@ -7,9 +7,10 @@
  "engine": "InnoDB",
  "field_order": [
   "general_settings_tab",
-  "company",
-  "column_break_3",
   "container_name",
+  "column_break_3",
+  "cert_info_section",
+  "cert_info",
   "certificate_settings_tab",
   "cert_file",
   "column_break_7",
@@ -42,13 +43,15 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "company",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Company",
-   "options": "Company",
-   "reqd": 1
+   "depends_on": "eval:!doc.__islocal",
+   "fieldname": "cert_info_section",
+   "fieldtype": "Section Break",
+   "label": "Certificate"
+  },
+  {
+   "fieldname": "cert_info",
+   "fieldtype": "HTML",
+   "label": "Certificate Info"
   },
   {
    "depends_on": "eval: doc.__islocal == undefined",
@@ -57,18 +60,27 @@
    "label": "Certificate Settings"
   },
   {
-   "fieldname": "column_break_7",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "cert_file",
    "fieldtype": "Attach",
    "label": "Certificate File"
   },
   {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "passphrase",
    "fieldtype": "Password",
    "label": "Passphrase"
+  },
+  {
+   "fieldname": "section_break_12",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "html_info_certs",
+   "fieldtype": "HTML",
+   "label": "Important..."
   },
   {
    "depends_on": "eval:doc.__islocal == undefined",
@@ -92,15 +104,6 @@
    "options": "Certificate Authority Intermediarie"
   },
   {
-   "fieldname": "section_break_12",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "html_info_certs",
-   "fieldtype": "HTML",
-   "label": "Important..."
-  },
-  {
    "fieldname": "section_break_19",
    "fieldtype": "Section Break"
   },
@@ -112,7 +115,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-03 20:58:09.900914",
+ "modified": "2026-11-10 18:00:00.000000",
  "modified_by": "Administrator",
  "module": "Pdf Signer",
  "name": "Certificate Container",
@@ -128,6 +131,18 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "PDF Signer Manager",
    "share": 1,
    "write": 1
   }

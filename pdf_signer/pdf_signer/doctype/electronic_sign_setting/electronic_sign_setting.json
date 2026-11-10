@@ -6,34 +6,75 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "general_tab",
   "sign_settings_section",
   "sign_name",
-  "company",
   "is_default",
-  "allow_add_signs",
   "column_break_4",
   "cert_container",
   "status",
   "algorithm",
-  "role_signer",
-  "signature_style_section",
-  "postition",
-  "column_break_13",
-  "on_page",
-  "backgroud_of_sign_section",
-  "use_bg_image",
+  "policy_tab",
+  "signature_type",
+  "column_break_policy",
+  "reason",
+  "location",
+  "contact_info",
+  "timestamp_section",
+  "tsa_url",
+  "tsa_username",
+  "tsa_password",
+  "column_break_timestamp",
+  "tsa_certificate",
+  "long_term_validation",
+  "access_tab",
+  "sign_users",
+  "sign_roles",
+  "column_break_access",
+  "verify_roles",
+  "appearance_tab",
+  "box_section",
+  "visible_signature",
+  "page",
+  "page_number",
+  "column_break_box",
+  "position",
+  "box_width",
+  "box_height",
+  "margin",
+  "custom_x",
+  "custom_y",
+  "style_section",
+  "stamp_style",
+  "qr_position",
+  "qr_content",
+  "column_break_style",
   "bg_image",
-  "column_break_17",
-  "use_own_sign_bg_image",
   "own_sign",
-  "additional_info_for_signature_section",
-  "use_qr_style",
+  "handwritten_color",
+  "background_opacity",
+  "text_section",
+  "stamp_text",
   "additional",
-  "column_break_24",
-  "text_form",
-  "text_size"
+  "timestamp_format",
+  "font_file",
+  "column_break_text",
+  "text_size",
+  "text_color",
+  "border_width",
+  "border_color"
  ],
  "fields": [
+  {
+   "fieldname": "general_tab",
+   "fieldtype": "Tab Break",
+   "label": "General"
+  },
+  {
+   "fieldname": "sign_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Sign Settings"
+  },
   {
    "fieldname": "sign_name",
    "fieldtype": "Data",
@@ -43,12 +84,14 @@
    "unique": 1
   },
   {
-   "fieldname": "company",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Company",
-   "options": "Company",
-   "reqd": 1
+   "default": "0",
+   "fieldname": "is_default",
+   "fieldtype": "Check",
+   "label": "Is Default"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "cert_container",
@@ -59,13 +102,8 @@
    "reqd": 1
   },
   {
-   "default": "0",
-   "fieldname": "is_default",
-   "fieldtype": "Check",
-   "label": "Is Default"
-  },
-  {
    "default": "Disabled",
+   "description": "Only enabled settings show in the sign and verify dialogs. Use the buttons of the form to change it.",
    "fieldname": "status",
    "fieldtype": "Data",
    "hidden": 1,
@@ -74,130 +112,352 @@
    "read_only": 1
   },
   {
-   "fieldname": "sign_settings_section",
-   "fieldtype": "Section Break",
-   "label": "Sign Settings"
-  },
-  {
-   "fieldname": "column_break_4",
-   "fieldtype": "Column Break"
-  },
-  {
+   "description": "The app makes PAdES signatures, the standard for signed PDF files.",
    "fieldname": "algorithm",
    "fieldtype": "Select",
    "label": "Algorithm",
    "options": "PAdES",
+   "read_only": 1,
    "reqd": 1
   },
   {
-   "fieldname": "role_signer",
+   "fieldname": "policy_tab",
+   "fieldtype": "Tab Break",
+   "label": "Signature Policy"
+  },
+  {
+   "default": "Approval",
+   "description": "Approval: other people can sign the PDF after you. Certification: the first signature of the PDF. It sets which changes are allowed after it. With No Changes, any later change makes the signature not valid. With Form Filling and Signing, other people can fill the form fields and sign. A PDF can have only one certification signature, and it must be the first.",
+   "fieldname": "signature_type",
    "fieldtype": "Select",
-   "label": "Role",
-   "options": "Signer and Verifier",
+   "label": "Signature Type",
+   "options": "Approval\nCertification: No Changes\nCertification: Form Filling and Signing",
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_policy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Why you sign, for example \"I approve this document\". PDF readers show it in the signature panel.",
+   "fieldname": "reason",
+   "fieldtype": "Data",
+   "label": "Reason"
+  },
+  {
+   "description": "Where you sign, for example the city. PDF readers show it in the signature panel.",
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "label": "Location"
+  },
+  {
+   "description": "An email or a phone to contact the signer. PDF readers show it in the signature panel.",
+   "fieldname": "contact_info",
+   "fieldtype": "Data",
+   "label": "Contact Information"
+  },
+  {
+   "fieldname": "timestamp_section",
+   "fieldtype": "Section Break",
+   "label": "Time Stamp and Long-Term Validation"
+  },
+  {
+   "description": "Optional. The address of a time stamp authority (TSA), for example https://freetsa.org/tsr. The TSA adds a trusted date and time to the signature (PAdES B-T). If it is empty, the signature has the time of the server only.",
+   "fieldname": "tsa_url",
+   "fieldtype": "Data",
+   "label": "Time Stamp Authority URL",
+   "options": "URL"
+  },
+  {
+   "depends_on": "tsa_url",
+   "description": "Optional. The user, if the TSA needs one.",
+   "fieldname": "tsa_username",
+   "fieldtype": "Data",
+   "label": "TSA User"
+  },
+  {
+   "depends_on": "tsa_url",
+   "description": "Optional. The password, if the TSA needs one.",
+   "fieldname": "tsa_password",
+   "fieldtype": "Password",
+   "label": "TSA Password"
+  },
+  {
+   "fieldname": "column_break_timestamp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "tsa_url",
+   "description": "The root certificate of the TSA (.cer, .crt or .pem). The verification uses it to trust the time stamps. Get it from the website of the TSA.",
+   "fieldname": "tsa_certificate",
+   "fieldtype": "Attach",
+   "label": "TSA Root Certificate",
+   "mandatory_depends_on": "tsa_url"
+  },
+  {
+   "depends_on": "tsa_url",
+   "description": "Add to the PDF the revocation data (OCSP or CRL) of the certificates and a document time stamp (PAdES B-LTA). Then the signature can be validated after the certificate expires. The certificate must give OCSP or CRL addresses, and the server must reach them and the TSA.",
+   "fieldname": "long_term_validation",
+   "fieldtype": "Check",
+   "label": "Long-Term Validation"
+  },
+  {
+   "fieldname": "access_tab",
+   "fieldtype": "Tab Break",
+   "label": "Access"
+  },
+  {
+   "description": "Only these users can sign with this setting. Use it for a personal certificate. If you add users, the roles below are not used for signing.",
+   "fieldname": "sign_users",
+   "fieldtype": "Table MultiSelect",
+   "label": "Users That Can Sign",
+   "options": "Electronic Sign Setting User"
+  },
+  {
+   "description": "Users with one of these roles can sign with this setting. If it is empty and there are no users, only the PDF Signer Manager and the System Manager can sign.",
+   "fieldname": "sign_roles",
+   "fieldtype": "Table MultiSelect",
+   "label": "Roles That Can Sign",
+   "options": "Has Role"
+  },
+  {
+   "fieldname": "column_break_access",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Users with one of these roles can verify signatures with this setting. If it is empty, all the users that can read the PDF can verify.",
+   "fieldname": "verify_roles",
+   "fieldtype": "Table MultiSelect",
+   "label": "Roles That Can Verify",
+   "options": "Has Role"
+  },
+  {
+   "fieldname": "appearance_tab",
+   "fieldtype": "Tab Break",
+   "label": "Appearance"
+  },
+  {
+   "fieldname": "box_section",
+   "fieldtype": "Section Break",
+   "label": "Signature Box"
   },
   {
    "default": "1",
-   "fieldname": "allow_add_signs",
+   "description": "Show a box with the signature on a page. If it is off, the signature is invisible: PDF readers show it only in the signature panel.",
+   "fieldname": "visible_signature",
    "fieldtype": "Check",
-   "label": "Allow Add Others Signs"
+   "label": "Visible Signature"
   },
   {
-   "fieldname": "signature_style_section",
-   "fieldtype": "Section Break",
-   "label": "Signature Position"
+   "default": "First Page",
+   "depends_on": "visible_signature",
+   "description": "The page of the signature box.",
+   "fieldname": "page",
+   "fieldtype": "Select",
+   "label": "Page",
+   "options": "First Page\nLast Page\nPage Number"
   },
   {
-   "default": "{\"x1\":10, \"y1\":20, \"x2\":300, \"y2\":90}",
-   "fieldname": "postition",
-   "fieldtype": "JSON",
-   "label": "Position"
-  },
-  {
-   "default": "0",
-   "description": "<strong>Page 0: </strong> Refer to first page of document.<br>\n<strong>Page -1: </strong> Refer to latest page of document.",
-   "fieldname": "on_page",
+   "default": "1",
+   "depends_on": "eval:doc.visible_signature && doc.page == \"Page Number\"",
+   "description": "The number of the page. The first page is 1. If the PDF has fewer pages, the app does not sign.",
+   "fieldname": "page_number",
    "fieldtype": "Int",
-   "label": "On Page"
+   "label": "Page Number",
+   "mandatory_depends_on": "eval:doc.visible_signature && doc.page == \"Page Number\""
   },
   {
-   "depends_on": "eval:doc.use_bg_image;",
+   "fieldname": "column_break_box",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Bottom Right",
+   "depends_on": "visible_signature",
+   "description": "The place of the signature box on the page. With Custom, you give the distance from the bottom-left corner of the page.",
+   "fieldname": "position",
+   "fieldtype": "Select",
+   "label": "Position",
+   "options": "Bottom Left\nBottom Center\nBottom Right\nTop Left\nTop Center\nTop Right\nCustom"
+  },
+  {
+   "default": "70",
+   "depends_on": "visible_signature",
+   "description": "The width of the signature box in millimeters.",
+   "fieldname": "box_width",
+   "fieldtype": "Float",
+   "label": "Width (mm)",
+   "precision": "1"
+  },
+  {
+   "default": "25",
+   "depends_on": "visible_signature",
+   "description": "The height of the signature box in millimeters.",
+   "fieldname": "box_height",
+   "fieldtype": "Float",
+   "label": "Height (mm)",
+   "precision": "1"
+  },
+  {
+   "default": "10",
+   "depends_on": "eval:doc.visible_signature && doc.position != \"Custom\"",
+   "description": "The distance in millimeters between the signature box and the edges of the page.",
+   "fieldname": "margin",
+   "fieldtype": "Float",
+   "label": "Margin (mm)",
+   "precision": "1"
+  },
+  {
+   "depends_on": "eval:doc.visible_signature && doc.position == \"Custom\"",
+   "description": "The distance in millimeters from the left edge of the page to the left side of the box.",
+   "fieldname": "custom_x",
+   "fieldtype": "Float",
+   "label": "Distance from the Left (mm)",
+   "precision": "1"
+  },
+  {
+   "depends_on": "eval:doc.visible_signature && doc.position == \"Custom\"",
+   "description": "The distance in millimeters from the bottom edge of the page to the bottom side of the box.",
+   "fieldname": "custom_y",
+   "fieldtype": "Float",
+   "label": "Distance from the Bottom (mm)",
+   "precision": "1"
+  },
+  {
+   "depends_on": "visible_signature",
+   "fieldname": "style_section",
+   "fieldtype": "Section Break",
+   "label": "Style"
+  },
+  {
+   "default": "Text and QR Code",
+   "description": "Text: only the text. Text and QR Code: the text and a QR code. Background Image: the text on an image. Handwritten Signature: the text on a signature that you draw.",
+   "fieldname": "stamp_style",
+   "fieldtype": "Select",
+   "label": "Style",
+   "options": "Text\nText and QR Code\nBackground Image\nHandwritten Signature"
+  },
+  {
+   "default": "Left of Text",
+   "depends_on": "eval:doc.stamp_style == \"Text and QR Code\"",
+   "description": "The place of the QR code in the signature box.",
+   "fieldname": "qr_position",
+   "fieldtype": "Select",
+   "label": "QR Code Position",
+   "options": "Left of Text\nRight of Text\nAbove Text\nBelow Text"
+  },
+  {
+   "depends_on": "eval:doc.stamp_style == \"Text and QR Code\"",
+   "description": "The text or the web address in the QR code. If it is empty, the QR code contains the Additional Text, or the address of this site.",
+   "fieldname": "qr_content",
+   "fieldtype": "Small Text",
+   "label": "QR Code Content"
+  },
+  {
+   "fieldname": "column_break_style",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.stamp_style == \"Background Image\"",
+   "description": "A PNG or JPG image behind the text, for example a stamp of the company.",
    "fieldname": "bg_image",
    "fieldtype": "Attach Image",
-   "label": "Backgroud Image",
-   "mandatory_depends_on": "eval:doc.use_bg_image;"
+   "label": "Background Image",
+   "mandatory_depends_on": "eval:doc.stamp_style == \"Background Image\""
   },
   {
-   "default": "0",
-   "fieldname": "use_qr_style",
-   "fieldtype": "Check",
-   "label": "Add QR to Sign"
-  },
-  {
-   "depends_on": "eval:doc.use_own_sign_bg_image;",
+   "depends_on": "eval:doc.stamp_style == \"Handwritten Signature\"",
+   "description": "Draw your signature. The app puts it behind the text.",
    "fieldname": "own_sign",
    "fieldtype": "Signature",
-   "label": "Use my Own sign as backgroud of Sign Box",
-   "mandatory_depends_on": "eval:doc.use_own_sign_bg_image;"
+   "label": "Handwritten Signature",
+   "mandatory_depends_on": "eval:doc.stamp_style == \"Handwritten Signature\""
   },
   {
-   "fieldname": "text_form",
-   "fieldtype": "Select",
-   "label": "Text Font",
-   "options": "None"
+   "default": "#1F3A93",
+   "depends_on": "eval:doc.stamp_style == \"Handwritten Signature\"",
+   "description": "The color of the drawn signature in the PDF. The color of the drawing pad does not change the PDF.",
+   "fieldname": "handwritten_color",
+   "fieldtype": "Color",
+   "label": "Handwritten Signature Color"
   },
   {
-   "fieldname": "column_break_13",
-   "fieldtype": "Column Break"
+   "default": "60",
+   "depends_on": "eval:[\"Background Image\", \"Handwritten Signature\"].includes(doc.stamp_style)",
+   "description": "100% shows the image or the drawn signature with full color. A lower value makes it lighter, so that the text is easier to read. Without text, use 100%.",
+   "fieldname": "background_opacity",
+   "fieldtype": "Percent",
+   "label": "Background Opacity"
   },
   {
-   "fieldname": "backgroud_of_sign_section",
+   "depends_on": "visible_signature",
+   "fieldname": "text_section",
    "fieldtype": "Section Break",
-   "label": "Sign Backgroud"
+   "label": "Text"
   },
   {
-   "fieldname": "column_break_17",
+   "default": "Signed by: %(signer)s\nDate: %(ts)s\n%(additional)s",
+   "description": "The text of the signature box. You can use these variables: %(signer)s the name of the certificate holder, %(ts)s the date and time of the signature, %(reason)s, %(location)s and %(additional)s. Leave it empty to show only the QR code, the image or the drawn signature.",
+   "fieldname": "stamp_text",
+   "fieldtype": "Small Text",
+   "label": "Text",
+   "mandatory_depends_on": "eval:doc.visible_signature && doc.stamp_style == \"Text\""
+  },
+  {
+   "description": "A text for the variable %(additional)s, for example the name of the company.",
+   "fieldname": "additional",
+   "fieldtype": "Data",
+   "label": "Additional Text"
+  },
+  {
+   "default": "%d/%m/%Y %H:%M:%S %Z",
+   "description": "The format of %(ts)s. %d day, %m month, %Y year, %H hour, %M minutes, %S seconds, %Z time zone.",
+   "fieldname": "timestamp_format",
+   "fieldtype": "Data",
+   "label": "Date Format"
+  },
+  {
+   "description": "Optional. A TTF or OTF font for the text. If it is empty, the app uses a standard PDF font. That font shows letters with accents and the letter ñ, but not other special characters.",
+   "fieldname": "font_file",
+   "fieldtype": "Attach",
+   "label": "Font File"
+  },
+  {
+   "fieldname": "column_break_text",
    "fieldtype": "Column Break"
-  },
-  {
-   "default": "0",
-   "fieldname": "use_bg_image",
-   "fieldtype": "Check",
-   "label": "Use backgroud image for Sign Box"
-  },
-  {
-   "default": "0",
-   "fieldname": "use_own_sign_bg_image",
-   "fieldtype": "Check",
-   "label": "Use my own sign as backgroud of Sign Box"
-  },
-  {
-   "fieldname": "additional_info_for_signature_section",
-   "fieldtype": "Section Break",
-   "label": "Additional Info for Signature"
   },
   {
    "default": "11",
+   "description": "The size of the text in points.",
    "fieldname": "text_size",
    "fieldtype": "Int",
    "label": "Text Size"
   },
   {
-   "fieldname": "column_break_24",
-   "fieldtype": "Column Break"
+   "default": "#000000",
+   "description": "The color of the text.",
+   "fieldname": "text_color",
+   "fieldtype": "Color",
+   "label": "Text Color"
   },
   {
-   "default": "My Company, Ltd.",
-   "description": "Additional Info that's include on Box Sign",
-   "fieldname": "additional",
-   "fieldtype": "Data",
-   "label": "Additional Info",
-   "length": 35
+   "default": "0",
+   "description": "The width of the line around the box, in points. 0 means no border.",
+   "fieldname": "border_width",
+   "fieldtype": "Int",
+   "label": "Border Width"
+  },
+  {
+   "default": "#000000",
+   "depends_on": "eval:doc.border_width > 0",
+   "description": "The color of the line around the box.",
+   "fieldname": "border_color",
+   "fieldtype": "Color",
+   "label": "Border Color"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-29 16:11:04.492516",
+ "modified": "2026-11-10 19:00:00.000000",
  "modified_by": "Administrator",
  "module": "Pdf Signer",
  "name": "Electronic Sign Setting",
@@ -215,6 +475,22 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "PDF Signer Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "role": "PDF Signer User",
+   "select": 1
   }
  ],
  "sort_field": "modified",

@@ -1,0 +1,1616 @@
+# Spanish translations for PDF Signer.
+# Copyright (C) 2026 Danny Molina Morales
+# This file is distributed under the same license as the PDF Signer project.
+# es-ES translation (usted).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PDF Signer 16\n"
+"Report-Msgid-Bugs-To: mmdanny89@gmail.com\n"
+"POT-Creation-Date: 2026-11-10 10:59-0831\n"
+"PO-Revision-Date: 2026-11-10 09:48-1929\n"
+"Last-Translator: mmdanny89@gmail.com\n"
+"Language: es\n"
+"Language-Team: es-ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#. Description of the 'Background Opacity' (Percent) field in DocType
+#. 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+#, python-format
+msgid ""
+"100% shows the image or the drawn signature with full color. A lower value "
+"makes it lighter, so that the text is easier to read. Without text, use "
+"100%."
+msgstr ""
+"Con 100 % la imagen o la firma dibujada se muestran con todo su color. Un "
+"valor menor las aclara para que el texto se lea mejor. Sin texto, use 100 %."
+
+#. Header text in the PDF Signer Workspace
+#: pdf_signer/pdf_signer/workspace/pdf_signer/pdf_signer.json
+msgid "<span class=\"h4\">PDF Signer</span>"
+msgstr "<span class=\"h4\">PDF Signer</span>"
+
+#. Description of the 'Background Image' (Attach Image) field in DocType
+#. 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "A PNG or JPG image behind the text, for example a stamp of the company."
+msgstr "Imagen PNG o JPG detrás del texto, por ejemplo el sello de la empresa."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:70
+msgid ""
+"A blank A4 page with the signature box. The preview shows your user name in "
+"place of the name of the certificate holder."
+msgstr ""
+"Una página A4 en blanco con el recuadro de firma. La vista previa muestra su"
+" nombre de usuario en lugar del nombre del titular del certificado."
+
+#. Description of the 'Additional Text' (Data) field in DocType 'Electronic
+#. Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+#, python-format
+msgid "A text for the variable %(additional)s, for example the name of the company."
+msgstr "Texto para la variable %(additional)s, por ejemplo el nombre de la empresa."
+
+#. Option for the 'QR Code Position' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Above Text"
+msgstr "Encima del texto"
+
+#. Label of the access_tab (Tab Break) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Access"
+msgstr "Acceso"
+
+#. Description of the 'Long-Term Validation' (Check) field in DocType
+#. 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"Add to the PDF the revocation data (OCSP or CRL) of the certificates and a "
+"document time stamp (PAdES B-LTA). Then the signature can be validated after"
+" the certificate expires. The certificate must give OCSP or CRL addresses, "
+"and the server must reach them and the TSA."
+msgstr ""
+"Añade al PDF los datos de revocación (OCSP o CRL) de los certificados y un "
+"sello de tiempo del documento (PAdES B-LTA). Así la firma se puede validar "
+"después de que caduque el certificado. El certificado debe indicar "
+"direcciones OCSP o CRL, y el servidor debe poder acceder a ellas y a la TSA."
+
+#. Label of the additional (Data) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Additional Text"
+msgstr "Texto adicional"
+
+#. Label of the algorithm (Select) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Algorithm"
+msgstr "Algoritmo"
+
+#. Label of the always_ask (Check) field in DocType 'Global Settings PDF
+#. Signer'
+#: pdf_signer/pdf_signer/doctype/global_settings_pdf_signer/global_settings_pdf_signer.json
+msgid "Always Ask to Sign when PDF is Uploaded in any Doctype"
+msgstr ""
+"Preguntar siempre si se desea firmar al adjuntar un PDF en cualquier "
+"documento"
+
+#. Description of the 'Contact Information' (Data) field in DocType 'Electronic
+#. Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"An email or a phone to contact the signer. PDF readers show it in the "
+"signature panel."
+msgstr ""
+"Correo electrónico o teléfono de contacto del firmante. Los lectores de PDF "
+"lo muestran en el panel de firmas."
+
+#. Label of the appearance_tab (Tab Break) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Appearance"
+msgstr "Apariencia"
+
+#. Option for the 'Signature Type' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+#: pdf_signer/public/js/file.js:147
+msgid "Approval"
+msgstr "Aprobación"
+
+#. Description of the 'Signature Type' (Select) field in DocType 'Electronic
+#. Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"Approval: other people can sign the PDF after you. Certification: the first "
+"signature of the PDF. It sets which changes are allowed after it. With No "
+"Changes, any later change makes the signature not valid. With Form Filling "
+"and Signing, other people can fill the form fields and sign. A PDF can have "
+"only one certification signature, and it must be the first."
+msgstr ""
+"Aprobación: otras personas pueden firmar el PDF después de usted. "
+"Certificación: es la primera firma del PDF y fija qué cambios se permiten "
+"después. Con «Sin cambios», cualquier cambio posterior invalida la firma. "
+"Con «Rellenar formularios y firmar», otras personas pueden rellenar los "
+"campos del formulario y firmar. Un PDF solo puede tener una firma de "
+"certificación, y debe ser la primera."
+
+#: pdf_signer/utils/certificate.py:96
+msgid "Attach the CA root in the tab Certificate Authority (CA) to check the chain."
+msgstr ""
+"Adjunte la CA raíz en la pestaña Autoridad de certificación (CA) para "
+"comprobar la cadena."
+
+#: pdf_signer/utils/certificate.py:65
+msgid "Attach the certificate file in the tab Certificate Settings."
+msgstr "Adjunte el fichero del certificado en la pestaña Certificado."
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:122
+msgid "Authority"
+msgstr "Autoridad"
+
+#. Option for the 'Style' (Select) field in DocType 'Electronic Sign Setting'
+#. Label of the bg_image (Attach Image) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Background Image"
+msgstr "Imagen de fondo"
+
+#. Label of the background_opacity (Percent) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Background Opacity"
+msgstr "Opacidad del fondo"
+
+#. Option for the 'QR Code Position' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Below Text"
+msgstr "Debajo del texto"
+
+#. Label of the border_color (Color) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Border Color"
+msgstr "Color del borde"
+
+#. Label of the border_width (Int) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Border Width"
+msgstr "Grosor del borde"
+
+#. Option for the 'Position' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Bottom Center"
+msgstr "Abajo en el centro"
+
+#. Option for the 'Position' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Bottom Left"
+msgstr "Abajo a la izquierda"
+
+#. Option for the 'Position' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Bottom Right"
+msgstr "Abajo a la derecha"
+
+#: pdf_signer/utils/appearance.py:109
+msgid "Box outside the page"
+msgstr "Recuadro fuera de la página"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:144
+msgid "CA"
+msgstr "CA"
+
+#. Label of the ca_interm (Attach) field in DocType 'Certificate Authority
+#. Intermediarie'
+#: pdf_signer/pdf_signer/doctype/certificate_authority_intermediarie/certificate_authority_intermediarie.json
+msgid "CA Intermediarie"
+msgstr "CA intermedia"
+
+#. Label of the cert_info_section (Section Break) field in DocType 'Certificate
+#. Container'
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:144
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
+msgid "Certificate"
+msgstr "Certificado"
+
+#. Label of the certificate_authority_ca_tab (Tab Break) field in DocType
+#. 'Certificate Container'
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
+msgid "Certificate Authority (CA)"
+msgstr "Autoridad de certificación (CA)"
+
+#. Label of the ca_root (Attach) field in DocType 'Certificate Container'
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
+msgid "Certificate Authority File"
+msgstr "Fichero de la CA raíz"
+
+#. Name of a DocType
+#. Label of the ca_interms (Table) field in DocType 'Certificate Container'
+#: pdf_signer/pdf_signer/doctype/certificate_authority_intermediarie/certificate_authority_intermediarie.json
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
+msgid "Certificate Authority Intermediarie"
+msgstr "CA intermedias"
+
+#. Name of a DocType
+#. Label of the cert_container (Link) field in DocType 'Electronic Sign
+#. Setting'
+#. Label of a Sidebar Item
+#. Label of a Link in the PDF Signer Workspace
+#. Label of a shortcut in the PDF Signer Workspace
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+#: pdf_signer/pdf_signer/sidebar/pdf_signer/pdf_signer.json
+#: pdf_signer/pdf_signer/workspace/pdf_signer/pdf_signer.json
+msgid "Certificate Container"
+msgstr "Contenedor de certificados"
+
+#. Label of the container_name (Data) field in DocType 'Certificate Container'
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
+msgid "Certificate Container Name"
+msgstr "Nombre del contenedor"
+
+#. Label of the cert_file (Attach) field in DocType 'Certificate Container'
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
+msgid "Certificate File"
+msgstr "Fichero del certificado"
+
+#. Label of the cert_info (HTML) field in DocType 'Certificate Container'
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
+msgid "Certificate Info"
+msgstr "Datos del certificado"
+
+#. Label of the certificate_settings_tab (Tab Break) field in DocType
+#. 'Certificate Container'
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
+msgid "Certificate Settings"
+msgstr "Certificado"
+
+#: pdf_signer/custom_events/doc_events.py:33
+msgid "Certificate files must be private files."
+msgstr "Los ficheros de certificados deben ser privados."
+
+#. Label of a Sidebar Item
+#: pdf_signer/pdf_signer/sidebar/pdf_signer/pdf_signer.json
+msgid "Certificates"
+msgstr "Certificados"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:30
+msgid "Certificates of the certificate authority"
+msgstr "Certificados de la autoridad de certificación"
+
+#: pdf_signer/utils/sign.py:80
+msgid "Certification not possible"
+msgstr "Certificación no posible"
+
+#. Option for the 'Signature Type' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Certification: Form Filling and Signing"
+msgstr "Certificación: rellenar formularios y firmar"
+
+#. Option for the 'Signature Type' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Certification: No Changes"
+msgstr "Certificación: sin cambios"
+
+#: pdf_signer/public/js/file.js:112
+msgid "Certification: form filling and signing allowed"
+msgstr "Certificación: se permite rellenar formularios y firmar"
+
+#: pdf_signer/public/js/file.js:113
+msgid "Certification: form filling, signing and comments allowed"
+msgstr "Certificación: se permite rellenar formularios, firmar y comentar"
+
+#: pdf_signer/public/js/file.js:111
+msgid "Certification: no changes allowed"
+msgstr "Certificación: no se permiten cambios"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:129
+msgid "Chain of trust"
+msgstr "Cadena de confianza"
+
+#: pdf_signer/public/js/file.js:131
+msgid "Changed after signing"
+msgstr "Modificado después de firmar"
+
+#: pdf_signer/public/js/file.js:57
+msgid "Close"
+msgstr "Cerrar"
+
+#. Label of the contact_info (Data) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Contact Information"
+msgstr "Información de contacto"
+
+#: pdf_signer/public/js/file.js:134
+msgid "Correct"
+msgstr "Correcta"
+
+#: pdf_signer/public/js/file.js:150
+msgid "Coverage"
+msgstr "Cobertura"
+
+#: pdf_signer/public/js/file.js:133
+msgid "Cryptographic check"
+msgstr "Comprobación criptográfica"
+
+#. Option for the 'Position' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Custom"
+msgstr "Personalizada"
+
+#. Label of the date_of_sign (Datetime) field in DocType 'PDF Signer Documents
+#. Signed'
+#: pdf_signer/pdf_signer/doctype/pdf_signer_documents_signed/pdf_signer_documents_signed.json
+msgid "Date"
+msgstr "Fecha"
+
+#. Label of the timestamp_format (Data) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Date Format"
+msgstr "Formato de fecha"
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:18
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:22
+msgid "Disable Sign Setting"
+msgstr "Desactivar perfil de firma"
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting_list.js:7
+msgid "Disabled"
+msgstr "Desactivado"
+
+#: pdf_signer/utils/permission.py:61
+msgid "Disabled setting"
+msgstr "Perfil desactivado"
+
+#. Label of the custom_y (Float) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Distance from the Bottom (mm)"
+msgstr "Distancia desde abajo (mm)"
+
+#. Label of the custom_x (Float) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Distance from the Left (mm)"
+msgstr "Distancia desde la izquierda (mm)"
+
+#: pdf_signer/public/js/file.js:146
+msgid "Document time stamp (long-term validation)"
+msgstr "Sello de tiempo del documento (validación a largo plazo)"
+
+#. Description of the 'Handwritten Signature' (Signature) field in DocType
+#. 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Draw your signature. The app puts it behind the text."
+msgstr "Dibuje su firma. La aplicación la coloca detrás del texto."
+
+#. Label of the sign (Link) field in DocType 'PDF Signer Documents Signed'
+#: pdf_signer/pdf_signer/doctype/pdf_signer_documents_signed/pdf_signer_documents_signed.json
+msgid "Electronic Sign"
+msgstr "Firma electrónica"
+
+#. Name of a DocType
+#. Label of a Sidebar Item
+#. Label of a Link in the PDF Signer Workspace
+#. Label of a shortcut in the PDF Signer Workspace
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+#: pdf_signer/pdf_signer/sidebar/pdf_signer/pdf_signer.json
+#: pdf_signer/pdf_signer/workspace/pdf_signer/pdf_signer.json
+msgid "Electronic Sign Setting"
+msgstr "Perfil de firma electrónica"
+
+#. Name of a DocType
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting_user/electronic_sign_setting_user.json
+msgid "Electronic Sign Setting User"
+msgstr "Usuario del perfil de firma electrónica"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:117
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:18
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:22
+msgid "Enable Sign Setting"
+msgstr "Activar perfil de firma"
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting_list.js:5
+msgid "Enabled"
+msgstr "Activado"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:66
+msgid "Expired"
+msgstr "Caducado"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:106
+msgid "Expired {0} days ago"
+msgstr "Caducó hace {0} días"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:65
+msgid "Expires soon"
+msgstr "Caduca pronto"
+
+#. Label of the file_signed (Link) field in DocType 'PDF Signer Documents
+#. Signed'
+#: pdf_signer/pdf_signer/doctype/pdf_signer_documents_signed/pdf_signer_documents_signed.json
+msgid "File"
+msgstr "Fichero"
+
+#. Label of the file_name (Data) field in DocType 'PDF Signer Documents Signed'
+#: pdf_signer/pdf_signer/doctype/pdf_signer_documents_signed/pdf_signer_documents_signed.json
+msgid "File Name"
+msgstr "Nombre del fichero"
+
+#. Option for the 'Page' (Select) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "First Page"
+msgstr "Primera página"
+
+#. Label of the font_file (Attach) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Font File"
+msgstr "Fichero de fuente"
+
+#: pdf_signer/public/js/file.js:106
+msgid "Form filling, new signatures and comments after the signature."
+msgstr ""
+"Después de la firma solo se han rellenado formularios, añadido firmas y "
+"comentarios."
+
+#. Label of the general_tab (Tab Break) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "General"
+msgstr "General"
+
+#. Label of the general_settings_tab (Tab Break) field in DocType 'Certificate
+#. Container'
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
+msgid "General Settings"
+msgstr "Configuración general"
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:44
+msgid "Give the distance from the left and from the bottom for a custom position."
+msgstr ""
+"Indique la distancia desde la izquierda y desde abajo para una posición "
+"personalizada."
+
+#. Label of a Card Break in the PDF Signer Workspace
+#: pdf_signer/pdf_signer/workspace/pdf_signer/pdf_signer.json
+msgid "Global Settings"
+msgstr "Configuración global"
+
+#. Name of a DocType
+#. Label of a Sidebar Item
+#. Label of a Link in the PDF Signer Workspace
+#: pdf_signer/pdf_signer/doctype/global_settings_pdf_signer/global_settings_pdf_signer.json
+#: pdf_signer/pdf_signer/sidebar/pdf_signer/pdf_signer.json
+#: pdf_signer/pdf_signer/workspace/pdf_signer/pdf_signer.json
+msgid "Global Settings PDF Signer"
+msgstr "Configuración global de PDF Signer"
+
+#. Option for the 'Style' (Select) field in DocType 'Electronic Sign Setting'
+#. Label of the own_sign (Signature) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Handwritten Signature"
+msgstr "Firma manuscrita"
+
+#. Label of the handwritten_color (Color) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Handwritten Signature Color"
+msgstr "Color de la firma manuscrita"
+
+#. Label of the box_height (Float) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Height (mm)"
+msgstr "Alto (mm)"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:111
+msgid "Holder"
+msgstr "Titular"
+
+#. Label of a Sidebar Item
+#: pdf_signer/pdf_signer/sidebar/pdf_signer/pdf_signer.json
+msgid "Home"
+msgstr "Inicio"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:152
+msgid "Identification"
+msgstr "Identificación"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:115
+msgid "Identifier"
+msgstr "Identificador"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:6
+msgid "Important"
+msgstr "Importante"
+
+#. Label of the html_info_certs (HTML) field in DocType 'Certificate Container'
+#. Label of the html_info_ca (HTML) field in DocType 'Certificate Container'
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
+msgid "Important..."
+msgstr "Importante"
+
+#: pdf_signer/public/js/file.js:131
+msgid "Intact"
+msgstr "Intacto"
+
+#: pdf_signer/public/js/file.js:131
+msgid "Integrity"
+msgstr "Integridad"
+
+#: pdf_signer/utils/sign.py:63
+msgid "Invalid certificate"
+msgstr "Certificado no válido"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:73
+msgid "Invalid chain"
+msgstr "Cadena no válida"
+
+#. Label of the is_default (Check) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Is Default"
+msgstr "Predeterminado"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:121
+#: pdf_signer/public/js/file.js:164
+msgid "Issuer"
+msgstr "Emisor"
+
+#. Option for the 'Page' (Select) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Last Page"
+msgstr "Última página"
+
+#. Option for the 'QR Code Position' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Left of Text"
+msgstr "A la izquierda del texto"
+
+#. Label of the location (Data) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Location"
+msgstr "Lugar"
+
+#. Label of the long_term_validation (Check) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Long-Term Validation"
+msgstr "Validación a largo plazo"
+
+#: pdf_signer/utils/sign.py:115
+msgid "Long-term validation needs the CA root file in the certificate container {0}."
+msgstr ""
+"La validación a largo plazo necesita el fichero de la CA raíz en el "
+"contenedor de certificados {0}."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:59
+msgid "Making the preview..."
+msgstr "Generando la vista previa..."
+
+#. Label of the margin (Float) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Margin (mm)"
+msgstr "Margen (mm)"
+
+#: pdf_signer/utils/api.py:64 pdf_signer/utils/sign.py:118
+msgid "Missing CA root"
+msgstr "Falta la CA raíz"
+
+#: pdf_signer/utils/sign.py:49
+msgid "Missing certificate"
+msgstr "Falta el certificado"
+
+#: pdf_signer/utils/appearance.py:189
+msgid "Missing text"
+msgstr "Falta el texto"
+
+#: pdf_signer/public/js/file.js:151
+msgid "Modifications"
+msgstr "Modificaciones"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:112
+msgid "Name"
+msgstr "Nombre"
+
+#: pdf_signer/public/js/file.js:103
+msgid "No changes after the signature."
+msgstr "Sin cambios después de la firma."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:84
+msgid "No preview"
+msgstr "Sin vista previa"
+
+#: pdf_signer/public/js/file.js:161 pdf_signer/public/js/file.js:167
+msgid "None"
+msgstr "Ninguno"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:72
+msgid "Not checked"
+msgstr "Sin comprobar"
+
+#: pdf_signer/public/js/file.js:134
+msgid "Not correct"
+msgstr "Incorrecta"
+
+#: pdf_signer/utils/permission.py:67
+msgid "Not permitted"
+msgstr "No permitido"
+
+#: pdf_signer/public/js/file.js:140 pdf_signer/public/js/file.js:159
+msgid "Not trusted"
+msgstr "No es de confianza"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:67
+msgid "Not valid yet"
+msgstr "Aún no es válido"
+
+#. Description of the 'Status' (Data) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"Only enabled settings show in the sign and verify dialogs. Use the buttons "
+"of the form to change it."
+msgstr ""
+"Solo los perfiles activados aparecen en los diálogos de firmar y verificar. "
+"Use los botones del formulario para cambiarlo."
+
+#: pdf_signer/public/js/file.js:105
+msgid "Only form filling and new signatures after the signature."
+msgstr "Después de la firma solo se han rellenado formularios y añadido firmas."
+
+#. Description of the 'Users That Can Sign' (Table MultiSelect) field in
+#. DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"Only these users can sign with this setting. Use it for a personal "
+"certificate. If you add users, the roles below are not used for signing."
+msgstr ""
+"Solo estos usuarios pueden firmar con este perfil. Úselo para un certificado"
+" personal. Si añade usuarios, los roles de abajo no se usan para firmar."
+
+#: pdf_signer/public/js/file.js:104
+msgid "Only validation data and time stamps were added after the signature."
+msgstr ""
+"Después de la firma solo se han añadido datos de validación y sellos de "
+"tiempo."
+
+#. Description of the 'Font File' (Attach) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"Optional. A TTF or OTF font for the text. If it is empty, the app uses a "
+"standard PDF font. That font shows letters with accents and the letter ñ, "
+"but not other special characters."
+msgstr ""
+"Opcional. Fuente TTF u OTF para el texto. Si se deja vacío, la aplicación "
+"usa una fuente estándar de PDF. Esa fuente muestra las letras con tilde y la"
+" ñ, pero no otros caracteres especiales."
+
+#. Description of the 'Time Stamp Authority URL' (Data) field in DocType
+#. 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"Optional. The address of a time stamp authority (TSA), for example "
+"https://freetsa.org/tsr. The TSA adds a trusted date and time to the "
+"signature (PAdES B-T). If it is empty, the signature has the time of the "
+"server only."
+msgstr ""
+"Opcional. Dirección de una autoridad de sellado de tiempo (TSA), por ejemplo"
+" https://freetsa.org/tsr. La TSA añade a la firma una fecha y hora de "
+"confianza (PAdES B-T). Si se deja vacío, la firma solo tiene la hora del "
+"servidor."
+
+#. Description of the 'TSA Password' (Password) field in DocType 'Electronic
+#. Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Optional. The password, if the TSA needs one."
+msgstr "Opcional. La contraseña, si la TSA la pide."
+
+#. Description of the 'TSA User' (Data) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Optional. The user, if the TSA needs one."
+msgstr "Opcional. El usuario, si la TSA lo pide."
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:113
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:123
+msgid "Organization"
+msgstr "Organización"
+
+#: pdf_signer/public/js/file.js:107
+msgid "Other changes after the signature."
+msgstr "Hay otros cambios después de la firma."
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:20
+msgid "P12 or PFX certificate file"
+msgstr "Fichero de certificado P12 o PFX"
+
+#. Option for the 'Algorithm' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "PAdES"
+msgstr "PAdES"
+
+#. Label of a Sidebar Item
+#: pdf_signer/pdf_signer/sidebar/pdf_signer/pdf_signer.json
+msgid "PDF Files"
+msgstr "Ficheros PDF"
+
+#. Label of a Desktop Icon
+#. Title of a Sidebar
+#. Name of a Workspace
+#: pdf_signer/desktop_icon/pdf_signer.json
+#: pdf_signer/pdf_signer/sidebar/pdf_signer/pdf_signer.json
+#: pdf_signer/pdf_signer/workspace/pdf_signer/pdf_signer.json
+msgid "PDF Signer"
+msgstr "PDF Signer"
+
+#. Name of a DocType
+#: pdf_signer/pdf_signer/doctype/pdf_signer_documents_signed/pdf_signer_documents_signed.json
+msgid "PDF Signer Documents Signed"
+msgstr "Documentos firmados con PDF Signer"
+
+#. Name of a role
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+#: pdf_signer/pdf_signer/doctype/global_settings_pdf_signer/global_settings_pdf_signer.json
+#: pdf_signer/pdf_signer/doctype/pdf_signer_documents_signed/pdf_signer_documents_signed.json
+msgid "PDF Signer Manager"
+msgstr "Gestor de PDF Signer"
+
+#. Name of a role
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "PDF Signer User"
+msgstr "Usuario de PDF Signer"
+
+#: pdf_signer/utils/sign.py:190
+msgid "PDF Signer: the PDF could not be signed"
+msgstr "PDF Signer: no se ha podido firmar el PDF"
+
+#. Label of the page (Select) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Page"
+msgstr "Página"
+
+#. Option for the 'Page' (Select) field in DocType 'Electronic Sign Setting'
+#. Label of the page_number (Int) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Page Number"
+msgstr "Número de página"
+
+#: pdf_signer/utils/appearance.py:71
+msgid "Page not found"
+msgstr "Página no encontrada"
+
+#. Label of the passphrase (Password) field in DocType 'Certificate Container'
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
+msgid "Passphrase"
+msgstr "Contraseña"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:116
+msgid "Place"
+msgstr "Lugar"
+
+#. Label of the position (Select) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Position"
+msgstr "Posición"
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:10
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:12
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:64
+msgid "Preview Signature Box"
+msgstr "Vista previa del recuadro de firma"
+
+#: pdf_signer/custom_events/doc_events.py:33
+msgid "Public certificate"
+msgstr "Certificado público"
+
+#. Label of the qr_content (Small Text) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "QR Code Content"
+msgstr "Contenido del código QR"
+
+#. Label of the qr_position (Select) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "QR Code Position"
+msgstr "Posición del código QR"
+
+#. Label of the reason (Data) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Reason"
+msgstr "Motivo"
+
+#: pdf_signer/public/js/file.js:124
+msgid "Result"
+msgstr "Resultado"
+
+#: pdf_signer/public/js/file.js:139
+msgid "Revoked certificate"
+msgstr "Certificado revocado"
+
+#. Option for the 'QR Code Position' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Right of Text"
+msgstr "A la derecha del texto"
+
+#. Label of the sign_roles (Table MultiSelect) field in DocType 'Electronic
+#. Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Roles That Can Sign"
+msgstr "Roles que pueden firmar"
+
+#. Label of the verify_roles (Table MultiSelect) field in DocType 'Electronic
+#. Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Roles That Can Verify"
+msgstr "Roles que pueden verificar"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:154
+#: pdf_signer/public/js/file.js:168
+msgid "SHA-256 fingerprint"
+msgstr "Huella SHA-256"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:41
+msgid ""
+"Save the container first. After the save, you can attach the certificate and"
+" the certificates of the CA."
+msgstr ""
+"Guarde primero el contenedor. Después podrá adjuntar el certificado y los "
+"certificados de la CA."
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:153
+#: pdf_signer/public/js/file.js:165
+msgid "Serial number"
+msgstr "Número de serie"
+
+#. Label of a Sidebar Item
+#: pdf_signer/pdf_signer/sidebar/pdf_signer/pdf_signer.json
+msgid "Settings"
+msgstr "Configuración"
+
+#. Description of the 'Visible Signature' (Check) field in DocType 'Electronic
+#. Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"Show a box with the signature on a page. If it is off, the signature is "
+"invisible: PDF readers show it only in the signature panel."
+msgstr ""
+"Muestra un recuadro con la firma en una página. Si se desactiva, la firma es"
+" invisible: los lectores de PDF solo la muestran en el panel de firmas."
+
+#: pdf_signer/public/js/utils.js:37
+msgid "Sign Document"
+msgstr "Firmar documento"
+
+#. Label of the sign_name (Data) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Sign Name"
+msgstr "Nombre del perfil"
+
+#: pdf_signer/public/js/file.js:9 pdf_signer/public/js/file.js:13
+#: pdf_signer/public/js/utils.js:35
+msgid "Sign PDF"
+msgstr "Firmar PDF"
+
+#: pdf_signer/public/js/utils.js:21
+msgid "Sign Setting"
+msgstr "Perfil de firma"
+
+#. Label of the sign_settings_section (Section Break) field in DocType
+#. 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Sign Settings"
+msgstr "Datos del perfil"
+
+#. Label of the box_section (Section Break) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Signature Box"
+msgstr "Recuadro de firma"
+
+#. Label of the policy_tab (Tab Break) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Signature Policy"
+msgstr "Política de firma"
+
+#. Label of the signature_type (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Signature Type"
+msgstr "Tipo de firma"
+
+#: pdf_signer/utils/sign.py:193
+msgid "Signature error"
+msgstr "Error de firma"
+
+#: pdf_signer/utils/sign.py:73
+msgid "Signature not possible"
+msgstr "Firma no posible"
+
+#: pdf_signer/public/js/file.js:163
+msgid "Signer"
+msgstr "Firmante"
+
+#. Label of a Card Break in the PDF Signer Workspace
+#: pdf_signer/pdf_signer/workspace/pdf_signer/pdf_signer.json
+msgid "Signer Management"
+msgstr "Gestión de firmas"
+
+#. Label of a Sidebar Item
+#: pdf_signer/pdf_signer/sidebar/pdf_signer/pdf_signer.json
+msgid "Signing"
+msgstr "Firma"
+
+#: pdf_signer/public/js/utils.js:41
+msgid "Signing the document..."
+msgstr "Firmando el documento..."
+
+#: pdf_signer/public/js/file.js:152
+msgid "Signing time"
+msgstr "Fecha de la firma"
+
+#. Label of the status (Data) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Status"
+msgstr "Estado"
+
+#. Label of the style_section (Section Break) field in DocType 'Electronic Sign
+#. Setting'
+#. Label of the stamp_style (Select) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Style"
+msgstr "Estilo"
+
+#. Name of a role
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.json
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+#: pdf_signer/pdf_signer/doctype/global_settings_pdf_signer/global_settings_pdf_signer.json
+#: pdf_signer/pdf_signer/doctype/pdf_signer_documents_signed/pdf_signer_documents_signed.json
+msgid "System Manager"
+msgstr "Administrador del sistema"
+
+#. Label of the tsa_password (Password) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "TSA Password"
+msgstr "Contraseña de la TSA"
+
+#. Label of the tsa_certificate (Attach) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "TSA Root Certificate"
+msgstr "Certificado raíz de la TSA"
+
+#. Label of the tsa_username (Data) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "TSA User"
+msgstr "Usuario de la TSA"
+
+#. Option for the 'Style' (Select) field in DocType 'Electronic Sign Setting'
+#. Label of the text_section (Section Break) field in DocType 'Electronic Sign
+#. Setting'
+#. Label of the stamp_text (Small Text) field in DocType 'Electronic Sign
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Text"
+msgstr "Texto"
+
+#. Label of the text_color (Color) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Text Color"
+msgstr "Color del texto"
+
+#. Label of the text_size (Int) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Text Size"
+msgstr "Tamaño del texto"
+
+#. Option for the 'Style' (Select) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Text and QR Code"
+msgstr "Texto y código QR"
+
+#. Description of the 'Style' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"Text: only the text. Text and QR Code: the text and a QR code. Background "
+"Image: the text on an image. Handwritten Signature: the text on a signature "
+"that you draw."
+msgstr ""
+"Texto: solo el texto. Texto y código QR: el texto y un código QR. Imagen de "
+"fondo: el texto sobre una imagen. Firma manuscrita: el texto sobre una firma"
+" que usted dibuja."
+
+#: pdf_signer/utils/certificate.py:118
+msgid "The CA files cannot be read. Use DER (.cer) or PEM (.crt) files."
+msgstr ""
+"No se pueden leer los ficheros de la CA. Use ficheros DER (.cer) o PEM "
+"(.crt)."
+
+#: pdf_signer/utils/sign.py:77
+msgid ""
+"The PDF already has signatures. A certification signature must be the first "
+"signature of the PDF. Use a sign setting with the Approval signature type."
+msgstr ""
+"El PDF ya tiene firmas. Una firma de certificación debe ser la primera firma"
+" del PDF. Use un perfil de firma con el tipo Aprobación."
+
+#: pdf_signer/utils/sign.py:192
+msgid "The PDF could not be signed: {0}"
+msgstr "No se ha podido firmar el PDF: {0}"
+
+#: pdf_signer/utils/sign.py:72
+msgid ""
+"The PDF has a certification signature that does not allow changes. You "
+"cannot sign it again."
+msgstr ""
+"El PDF tiene una firma de certificación que no permite cambios. No se puede "
+"volver a firmar."
+
+#: pdf_signer/utils/sign.py:161
+msgid ""
+"The PDF has a certification signature. The new signature is invisible, so "
+"that the certification stays valid."
+msgstr ""
+"El PDF tiene una firma de certificación. La nueva firma es invisible para "
+"que la certificación siga siendo válida."
+
+#: pdf_signer/utils/sign.py:202
+msgid "The PDF is signed."
+msgstr "El PDF se ha firmado."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:36
+msgid "The TSA root certificate must be a .cer, .crt or .pem file."
+msgstr "El certificado raíz de la TSA debe ser un fichero .cer, .crt o .pem."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:34
+msgid "The Time Stamp Authority URL must start with http:// or https://."
+msgstr ""
+"La URL de la autoridad de sellado de tiempo debe empezar por http:// o "
+"https://."
+
+#. Description of the 'Algorithm' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "The app makes PAdES signatures, the standard for signed PDF files."
+msgstr "La aplicación genera firmas PAdES, el estándar de firma de ficheros PDF."
+
+#: pdf_signer/utils/certificate.py:74
+msgid ""
+"The certificate cannot be read. Check the certificate file and the "
+"passphrase."
+msgstr ""
+"No se puede leer el certificado. Compruebe el fichero del certificado y la "
+"contraseña."
+
+#: pdf_signer/utils/certificate.py:122
+msgid "The certificate chain is valid."
+msgstr "La cadena del certificado es válida."
+
+#: pdf_signer/utils/api.py:63
+msgid "The certificate container {0} does not have a CA root file."
+msgstr "El contenedor de certificados {0} no tiene fichero de CA raíz."
+
+#: pdf_signer/utils/sign.py:48
+msgid "The certificate container {0} does not have a certificate file."
+msgstr "El contenedor de certificados {0} no tiene fichero de certificado."
+
+#: pdf_signer/utils/certificate.py:82
+msgid "The certificate file does not contain a certificate."
+msgstr "El fichero no contiene ningún certificado."
+
+#: pdf_signer/utils/certificate.py:79
+msgid ""
+"The certificate file does not contain the private key. The app needs it to "
+"sign."
+msgstr ""
+"El fichero del certificado no contiene la clave privada. La aplicación la "
+"necesita para firmar."
+
+#: pdf_signer/utils/sign.py:60
+msgid ""
+"The certificate of {0} cannot be opened. Check the certificate file and the "
+"passphrase."
+msgstr ""
+"No se puede abrir el certificado de {0}. Compruebe el fichero del "
+"certificado y la contraseña."
+
+#: pdf_signer/utils/certificate.py:109
+msgid ""
+"The chain is not valid: the certificate does not come from the CA root of "
+"the container, or an intermediate CA is missing."
+msgstr ""
+"La cadena no es válida: el certificado no procede de la CA raíz del "
+"contenedor o falta una CA intermedia."
+
+#: pdf_signer/utils/certificate.py:114
+msgid "The chain is not valid: {0}"
+msgstr "La cadena no es válida: {0}"
+
+#. Description of the 'Handwritten Signature Color' (Color) field in DocType
+#. 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"The color of the drawn signature in the PDF. The color of the drawing pad "
+"does not change the PDF."
+msgstr ""
+"Color de la firma dibujada en el PDF. El color del panel de dibujo no afecta"
+" al PDF."
+
+#. Description of the 'Border Color' (Color) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "The color of the line around the box."
+msgstr "Color de la línea que rodea el recuadro."
+
+#. Description of the 'Text Color' (Color) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "The color of the text."
+msgstr "Color del texto."
+
+#: pdf_signer/public/js/file.js:99
+msgid "The coverage of the signature is not clear."
+msgstr "La cobertura de la firma no está clara."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:64
+msgid "The date format {0} is not correct."
+msgstr "El formato de fecha {0} no es correcto."
+
+#. Description of the 'Margin (mm)' (Float) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"The distance in millimeters between the signature box and the edges of the "
+"page."
+msgstr "Distancia en milímetros entre el recuadro de firma y los bordes de la página."
+
+#. Description of the 'Distance from the Bottom (mm)' (Float) field in DocType
+#. 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"The distance in millimeters from the bottom edge of the page to the bottom "
+"side of the box."
+msgstr ""
+"Distancia en milímetros desde el borde inferior de la página hasta el lado "
+"inferior del recuadro."
+
+#. Description of the 'Distance from the Left (mm)' (Float) field in DocType
+#. 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"The distance in millimeters from the left edge of the page to the left side "
+"of the box."
+msgstr ""
+"Distancia en milímetros desde el borde izquierdo de la página hasta el lado "
+"izquierdo del recuadro."
+
+#: pdf_signer/utils/appearance.py:56
+msgid "The file {0} does not exist."
+msgstr "El fichero {0} no existe."
+
+#: pdf_signer/custom_events/doc_events.py:37
+msgid "The file {0} has a wrong extension. Allowed extensions: {1}"
+msgstr "El fichero {0} tiene una extensión no válida. Extensiones permitidas: {1}"
+
+#: pdf_signer/utils/api.py:49 pdf_signer/utils/api.py:57
+msgid "The file {0} is not a PDF."
+msgstr "El fichero {0} no es un PDF."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:74
+msgid "The font file must be a TTF or OTF file."
+msgstr "El fichero de fuente debe ser TTF u OTF."
+
+#. Description of the 'Date Format' (Data) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+#, python-format
+msgid ""
+"The format of %(ts)s. %d day, %m month, %Y year, %H hour, %M minutes, %S "
+"seconds, %Z time zone."
+msgstr ""
+"Formato de %(ts)s. %d día, %m mes, %Y año, %H hora, %M minutos, %S segundos,"
+" %Z zona horaria."
+
+#. Description of the 'Height (mm)' (Float) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "The height of the signature box in millimeters."
+msgstr "Alto del recuadro de firma en milímetros."
+
+#. Description of the 'Page Number' (Int) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"The number of the page. The first page is 1. If the PDF has fewer pages, the"
+" app does not sign."
+msgstr ""
+"Número de la página. La primera es la 1. Si el PDF tiene menos páginas, la "
+"aplicación no firma."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:40
+msgid "The page number must be 1 or more."
+msgstr "El número de página debe ser 1 o mayor."
+
+#. Description of the 'Page' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "The page of the signature box."
+msgstr "Página del recuadro de firma."
+
+#. Description of the 'QR Code Position' (Select) field in DocType 'Electronic
+#. Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "The place of the QR code in the signature box."
+msgstr "Posición del código QR dentro del recuadro de firma."
+
+#. Description of the 'Position' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"The place of the signature box on the page. With Custom, you give the "
+"distance from the bottom-left corner of the page."
+msgstr ""
+"Posición del recuadro de firma en la página. Con «Personalizada», usted "
+"indica la distancia desde la esquina inferior izquierda de la página."
+
+#. Description of the 'TSA Root Certificate' (Attach) field in DocType
+#. 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"The root certificate of the TSA (.cer, .crt or .pem). The verification uses "
+"it to trust the time stamps. Get it from the website of the TSA."
+msgstr ""
+"Certificado raíz de la TSA (.cer, .crt o .pem). La verificación lo usa para "
+"confiar en los sellos de tiempo. Descárguelo de la web de la TSA."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:39
+msgid "The sign setting is disabled."
+msgstr "Se ha desactivado el perfil de firma."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.js:38
+msgid "The sign setting is enabled."
+msgstr "Se ha activado el perfil de firma."
+
+#: pdf_signer/utils/appearance.py:68
+msgid "The sign setting puts the signature on page {0}, but the PDF has {1} pages."
+msgstr ""
+"El perfil de firma coloca la firma en la página {0}, pero el PDF tiene {1} "
+"páginas."
+
+#: pdf_signer/utils/permission.py:61
+msgid "The sign setting {0} is disabled."
+msgstr "El perfil de firma {0} está desactivado."
+
+#: pdf_signer/utils/appearance.py:108
+msgid ""
+"The signature box does not fit on the page. Make it smaller, or change its "
+"position."
+msgstr ""
+"El recuadro de firma no cabe en la página. Hágalo más pequeño o cambie su "
+"posición."
+
+#: pdf_signer/public/js/file.js:97
+msgid "The signature covers its revision. The file has later revisions."
+msgstr "La firma cubre su revisión. El fichero tiene revisiones posteriores."
+
+#: pdf_signer/public/js/file.js:98
+msgid "The signature covers only a part of the file."
+msgstr "La firma solo cubre una parte del fichero."
+
+#: pdf_signer/public/js/file.js:96
+msgid "The signature covers the entire file."
+msgstr "La firma cubre todo el fichero."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:84
+msgid "The signature is invisible. It does not have a box to show."
+msgstr "La firma es invisible. No tiene recuadro que mostrar."
+
+#: pdf_signer/public/js/file.js:128
+msgid "The signature is not valid"
+msgstr "La firma no es válida"
+
+#: pdf_signer/public/js/file.js:127
+msgid "The signature is valid"
+msgstr "La firma es válida"
+
+#: pdf_signer/utils/sign.py:149
+msgid "The signature uses the empty signature field {0} of the PDF."
+msgstr "La firma usa el campo de firma vacío {0} del PDF."
+
+#. Description of the 'Text Size' (Int) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "The size of the text in points."
+msgstr "Tamaño del texto en puntos."
+
+#: pdf_signer/utils/appearance.py:189
+msgid "The style Text needs a text."
+msgstr "El estilo Texto necesita un texto."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:49
+msgid "The style Text needs a text. Write the Text, or select another style."
+msgstr "El estilo Texto necesita un texto. Escriba el texto o elija otro estilo."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:60
+#, python-format
+msgid "The text has a % sign that is not a variable. Write %% to show a % sign."
+msgstr ""
+"El texto tiene un signo % que no es una variable. Escriba %% para mostrar un"
+" signo %."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:55
+msgid "The text has an unknown variable: {0}. Use only {1}."
+msgstr "El texto tiene una variable desconocida: {0}. Use solo {1}."
+
+#. Description of the 'Text' (Small Text) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+#, python-format
+msgid ""
+"The text of the signature box. You can use these variables: %(signer)s the "
+"name of the certificate holder, %(ts)s the date and time of the signature, "
+"%(reason)s, %(location)s and %(additional)s. Leave it empty to show only the"
+" QR code, the image or the drawn signature."
+msgstr ""
+"Texto del recuadro de firma. Puede usar estas variables: %(signer)s el "
+"nombre del titular del certificado, %(ts)s la fecha y hora de la firma, "
+"%(reason)s, %(location)s y %(additional)s. Déjelo vacío para mostrar solo el"
+" código QR, la imagen o la firma dibujada."
+
+#. Description of the 'QR Code Content' (Small Text) field in DocType
+#. 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"The text or the web address in the QR code. If it is empty, the QR code "
+"contains the Additional Text, or the address of this site."
+msgstr ""
+"Texto o dirección web del código QR. Si se deja vacío, el código QR contiene"
+" el texto adicional o, si tampoco hay, la dirección de este sitio."
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:42
+msgid "The width and the height of the signature box must be more than 0."
+msgstr "El ancho y el alto del recuadro de firma deben ser mayores que 0."
+
+#. Description of the 'Border Width' (Int) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "The width of the line around the box, in points. 0 means no border."
+msgstr "Grosor de la línea que rodea el recuadro, en puntos. 0 significa sin borde."
+
+#. Description of the 'Width (mm)' (Float) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "The width of the signature box in millimeters."
+msgstr "Ancho del recuadro de firma en milímetros."
+
+#: pdf_signer/public/js/file.js:77
+msgid "This PDF does not have signatures."
+msgstr "Este PDF no tiene firmas."
+
+#. Label of the tsa_url (Data) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Time Stamp Authority URL"
+msgstr "URL de la autoridad de sellado de tiempo"
+
+#. Label of the timestamp_section (Section Break) field in DocType 'Electronic
+#. Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Time Stamp and Long-Term Validation"
+msgstr "Sello de tiempo y validación a largo plazo"
+
+#: pdf_signer/public/js/file.js:154
+msgid "Time stamp"
+msgstr "Sello de tiempo"
+
+#. Option for the 'Position' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Top Center"
+msgstr "Arriba en el centro"
+
+#. Option for the 'Position' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Top Left"
+msgstr "Arriba a la izquierda"
+
+#. Option for the 'Position' (Select) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Top Right"
+msgstr "Arriba a la derecha"
+
+#: pdf_signer/public/js/file.js:137
+msgid "Trust"
+msgstr "Confianza"
+
+#: pdf_signer/public/js/file.js:167
+msgid "Trust anchor"
+msgstr "Ancla de confianza"
+
+#: pdf_signer/public/js/file.js:140 pdf_signer/public/js/file.js:158
+msgid "Trusted"
+msgstr "De confianza"
+
+#: pdf_signer/public/js/file.js:143
+msgid "Type"
+msgstr "Tipo"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:114
+msgid "Unit"
+msgstr "Unidad"
+
+#: pdf_signer/utils/permission.py:77
+msgid "Unknown purpose: {0}"
+msgstr "Uso desconocido: {0}"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:21
+msgid ""
+"Use a private file with the extension .p12 or .pfx. The file must contain "
+"the certificate and its private key. If the file has a passphrase, type it "
+"in Passphrase."
+msgstr ""
+"Use un fichero privado con la extensión .p12 o .pfx. El fichero debe "
+"contener el certificado y su clave privada. Si el fichero tiene contraseña, "
+"escríbala en Contraseña."
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:31
+msgid ""
+"Use private files with the extension .cer or .crt, in DER or PEM format. "
+"Attach the CA root, and add a row for each intermediate CA. The app uses "
+"them to check the chain, to add the chain to the signatures and to verify "
+"signatures."
+msgstr ""
+"Use ficheros privados con la extensión .cer o .crt, en formato DER o PEM. "
+"Adjunte la CA raíz y añada una fila por cada CA intermedia. La aplicación "
+"los usa para comprobar la cadena, para incluirla en las firmas y para "
+"verificar firmas."
+
+#. Label of the user (Link) field in DocType 'Electronic Sign Setting User'
+#. Label of the username (Data) field in DocType 'PDF Signer Documents Signed'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting_user/electronic_sign_setting_user.json
+#: pdf_signer/pdf_signer/doctype/pdf_signer_documents_signed/pdf_signer_documents_signed.json
+msgid "User"
+msgstr "Usuario"
+
+#. Label of the sign_users (Table MultiSelect) field in DocType 'Electronic
+#. Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Users That Can Sign"
+msgstr "Usuarios que pueden firmar"
+
+#. Description of the 'Roles That Can Sign' (Table MultiSelect) field in
+#. DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"Users with one of these roles can sign with this setting. If it is empty and"
+" there are no users, only the PDF Signer Manager and the System Manager can "
+"sign."
+msgstr ""
+"Los usuarios con alguno de estos roles pueden firmar con este perfil. Si se "
+"deja vacío y no hay usuarios, solo pueden firmar el Gestor de PDF Signer y "
+"el Administrador del sistema."
+
+#. Description of the 'Roles That Can Verify' (Table MultiSelect) field in
+#. DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"Users with one of these roles can verify signatures with this setting. If it"
+" is empty, all the users that can read the PDF can verify."
+msgstr ""
+"Los usuarios con alguno de estos roles pueden verificar firmas con este "
+"perfil. Si se deja vacío, puede verificar cualquier usuario que pueda leer "
+"el PDF."
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:64
+msgid "Valid"
+msgstr "Vigente"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:71
+msgid "Valid chain"
+msgstr "Cadena válida"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:124
+msgid "Valid from"
+msgstr "Válido desde"
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:125
+#: pdf_signer/public/js/file.js:166
+msgid "Valid until"
+msgstr "Válido hasta"
+
+#: pdf_signer/public/js/file.js:55
+msgid "Verification Result"
+msgstr "Resultado de la verificación"
+
+#: pdf_signer/public/js/file.js:42
+msgid "Verify Signatures"
+msgstr "Verificar firmas"
+
+#: pdf_signer/public/js/file.js:20 pdf_signer/public/js/file.js:24
+#: pdf_signer/public/js/file.js:40
+msgid "Verify Signed PDF"
+msgstr "Verificar PDF firmado"
+
+#: pdf_signer/public/js/file.js:52
+msgid "Verifying the signatures..."
+msgstr "Verificando las firmas..."
+
+#. Label of the visible_signature (Check) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Visible Signature"
+msgstr "Firma visible"
+
+#. Description of the 'Location' (Data) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"Where you sign, for example the city. PDF readers show it in the signature "
+"panel."
+msgstr ""
+"Dónde firma, por ejemplo la ciudad. Los lectores de PDF lo muestran en el "
+"panel de firmas."
+
+#. Description of the 'Reason' (Data) field in DocType 'Electronic Sign
+#. Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid ""
+"Why you sign, for example \"I approve this document\". PDF readers show it "
+"in the signature panel."
+msgstr ""
+"Por qué firma, por ejemplo «Apruebo este documento». Los lectores de PDF lo "
+"muestran en el panel de firmas."
+
+#. Label of the box_width (Float) field in DocType 'Electronic Sign Setting'
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.json
+msgid "Width (mm)"
+msgstr "Ancho (mm)"
+
+#: pdf_signer/custom_events/doc_events.py:40
+msgid "Wrong extension"
+msgstr "Extensión no válida"
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:82
+msgid "You cannot change sign settings."
+msgstr "No puede modificar perfiles de firma."
+
+#: pdf_signer/utils/permission.py:64
+msgid "You cannot sign with the sign setting {0}."
+msgstr "No puede firmar con el perfil de firma {0}."
+
+#: pdf_signer/utils/permission.py:65
+msgid "You cannot verify with the sign setting {0}."
+msgstr "No puede verificar con el perfil de firma {0}."
+
+#: pdf_signer/utils/api.py:16
+msgid "You do not have the permission to use the file {0}."
+msgstr "No tiene permiso para usar el fichero {0}."
+
+#: pdf_signer/pdf_signer/doctype/certificate_container/certificate_container.js:105
+msgid "{0} days left"
+msgstr "Quedan {0} días"
+
+#: pdf_signer/pdf_signer/doctype/electronic_sign_setting/electronic_sign_setting.py:70
+msgid "{0} must be a color like #1F3A93."
+msgstr "{0} debe ser un color como #1F3A93."
+
